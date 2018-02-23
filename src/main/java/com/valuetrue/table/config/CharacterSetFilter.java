@@ -2,13 +2,14 @@ package com.valuetrue.table.config;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 
 public class CharacterSetFilter implements Filter {
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+
+	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain next)
 			throws IOException, ServletException {
@@ -17,6 +18,12 @@ public class CharacterSetFilter implements Filter {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		next.doFilter(request, response);
+		// test
+	}
+
+	@Override
+	public void destroy() {
+
 	}
 
 }
