@@ -3,6 +3,7 @@ package com.valuetrue.table.control;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.valuetrue.table.service.OrderTableService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -26,30 +27,29 @@ public class InfoTableController {
 	private ProductService prodService;
 
 	@Autowired
+	public void setOrderTableService(OrderTableService orderTableService) {
+		this.orderTableService = orderTableService;
+	}
+
+	private OrderTableService orderTableService;
+
+	@Autowired
 	public void setProdService(ProductService prodService) {
 		this.prodService = prodService;
 	}
 
-	@RequestMapping(value = "/information", method = RequestMethod.GET)
-	public ModelAndView listInformationTables(@ModelAttribute("tableForm") TableForm tableForm) {
-		ModelAndView model = new ModelAndView("information");
-
-		List<Product> prodList = this.prodService.getAllProducts();
-		log.info(prodList);
-		model.addObject("prodList", prodList);
-
-		return model;
-	}
 
 	@RequestMapping(value = "/infotable/{table_id}")
 	public ModelAndView addInformationTable(@ModelAttribute("tableForm") TableForm tableForm,
 			@PathVariable("table_id") int table_id) {
 		ModelAndView model = new ModelAndView("information");
 
+		OrderTable orderTab = this.orderTableService.getOrderTableById(table_id);
 		Product prod = new Product();
 		prod.setTable_id(table_id);
 		List<Product> listProds = new ArrayList<Product>();
 		listProds.add(prod);
+		tableForm.setOrderTable(orderTab);
 		tableForm.setProds(listProds);
 
 		List<Product> prodList = this.prodService.getAllProductsByTableId(table_id);

@@ -12,6 +12,7 @@
 <body>
 	<h3> Add / Edit Information Product </h3>
 
+	<%--@elvariable id="" type=""--%>
 	<form:form method="post" action="/ManageTable/infotable" modelAttribute="tableForm" >
 		<div class="table-responsive">
 			<table class="table table-bordered" style="width: 400px">
