@@ -9,11 +9,7 @@
 		http://www.springframework.org/schema/context		
 		http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc	
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd 
-        http://www.springframework.org/schema/aop	
-        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
- 		http://www.springframework.org/schema/tx	
- 		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
  		
  		
  	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
@@ -30,12 +26,26 @@
 	<bean id="productDAOImpl" class="com.valuetrue.table.dao.ProductDAOImpl">
 		<property name="jdbcTemplateServlet" ref="jdbcTemplate" />
 	</bean>
-	
+
+	<bean id="printerDAOImpl" class="com.valuetrue.table.dao.PrinterDAOImpl">
+		<property name="jdbcTemplateServlet" ref="jdbcTemplate" />
+	</bean>
+
+	<bean id="embroideryDAOImpl" class="com.valuetrue.table.dao.EmbroideryDAOImpl">
+		<property name="jdbcTemplateServlet" ref="jdbcTemplate" />
+	</bean>
+
+	<bean id="sewingDAOImpl" class="com.valuetrue.table.dao.SewingDAOImpl">
+		<property name="jdbcTemplateServlet" ref="jdbcTemplate" />
+	</bean>
+
+
+	<!-- 3. Configure jdbc template for Database -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 3. Database Configurations of MySQL -->
+	<!-- 4. Database Configurations of MySQL -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/managetable" />
@@ -44,7 +54,7 @@
 		
 	</bean>
 
-	<!-- 4. Resolves views selected for rendering by @Controller to .jsp resources in the WEB-INF/JSP directory -->
+	<!-- 5. Resolves views selected for rendering by @Controller to .jsp resources in the WEB-INF/JSP directory -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/JSP/" />
 		<property name="suffix" value=".jsp" />

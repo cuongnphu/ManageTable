@@ -14,7 +14,7 @@
 
 	<form:form method="post" action="/ManageTable/table" modelAttribute="modeltable">
 		<div class="table-responsive">
-			<table class="table table-bordered" style="width: 400px">
+			<table class="table table-bordered" style="width: 900px">
 				<tr>
 					<form:input type="text" path="id" readonly="true" hidden="true" />
 				</tr>
@@ -40,22 +40,25 @@
 	<br>
 	<br>
 	<h3>List of OrderTable :</h3>
-	<table class="table table-bordered" style="width: 600px">
+	<table class="table table-bordered" style="width: 900px">
 		<tr>
 			<th>Name</th>
 			<th>Pre_Weight</th>
 			<th>After_Weight</th>
 			<th>Edit/Delete</th>
-			<th>Add info details</th>
+			<th>Add info Products</th>
+			<th>Add info Printer</th>
+			<th>Add info Embroidery</th>
+			<th>Add info Sewing</th>
 		</tr>
-		<c:forEach items="${orderTableList}" var="empl">
+		<c:forEach items="${orderTableList}" var="ordertab">
 
 			<tr>
-				<td width="60" align="center">${empl.name}</td>
-				<td width="60" align="center">${empl.pre_weight}</td>
-				<td width="60" align="center">${empl.after_weight}</td>
-				<td width="60" align="center"><a href="edit/${empl.id}">Edit</a>/<a href="delete/${empl.id}">Delete</a></td>
-				<td width="60" align="center"><a href="infotable/${empl.id}">Add Info</a></td>
+				<td width="60" align="center">${ordertab.name}</td>
+				<td width="60" align="center">${ordertab.pre_weight}</td>
+				<td width="60" align="center">${ordertab.after_weight}</td>
+				<td width="120" align="center"><a class="btn-primary btn-sm" href="edit/${ordertab.id}">Edit</a> | <a class="btn-primary btn-sm" href="delete/${ordertab.id}">Delete</a></td>
+				<td width="120" align="center"><a class="btn-primary btn-sm" href="product/${ordertab.id}">Add Products</a></td>
 			</tr>
 		</c:forEach>
 	</table>

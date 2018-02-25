@@ -30,7 +30,7 @@ public class OrderTableController {
 
 	@RequestMapping(value="/tables", method = RequestMethod.GET)
 	public ModelAndView listOrderTables (@ModelAttribute("modeltable") OrderTable orderTable) {
-		ModelAndView model = new ModelAndView("tables");
+		ModelAndView model = new ModelAndView("views/tables");
 		
         List<OrderTable> orderTableList = this.orderTableService.getAllOrderTables();
         log.info(orderTableList);
@@ -55,7 +55,7 @@ public class OrderTableController {
 	
 	@RequestMapping(value = "/edit/{id}")
 	public ModelAndView editOrderTable (@ModelAttribute("modeltable") OrderTable orderTable , @PathVariable("id") int id) {
-		ModelAndView model = new ModelAndView("tables");
+		ModelAndView model = new ModelAndView("edit/edit_tables");
 		
 		orderTable = this.orderTableService.getOrderTableById(id);
 		List<OrderTable> orderTableList = this.orderTableService.getAllOrderTables();

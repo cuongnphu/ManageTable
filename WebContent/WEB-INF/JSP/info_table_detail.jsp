@@ -5,64 +5,68 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Manage Information Product</title>
+<title>Detail Table Information</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
 <body>
-	<h3> Add / Edit Information Product </h3>
+	<h3> Detail Information Table </h3>
 
-	<%--@elvariable id="" type=""--%>
-	<form:form method="post" action="/ManageTable/infotable" modelAttribute="tableForm" >
-		<div class="table-responsive">
-			<table class="table table-bordered" style="width: 400px">
-				<tr>
-					<td>Table Name:</td>
-					<td><form:input type="text" path="orderTable.name" readonly="true" style="color:#999999;background-color:#F4F4F4" /></td>
-				</tr>
-				<c:forEach items="${tableForm.prods}" var="prod" varStatus="status" >
-					<tr>
-						<form:input type="text" path="prods[${status.index}].id" readonly="true" hidden="true" />
-					</tr>
-					<tr>
-						<td>Table_id :</td>
-						<td><form:input type="text" path="prods[${status.index}].table_id" readonly="true" style="color:#999999;background-color:#F4F4F4" ></form:input></td>
-					</tr>
-					<tr>
-						<td>Name :</td>
-						<td><form:input type="text" path="prods[${status.index}].name" /></td>
-					</tr>
-					<tr>
-						<td>Quantity :</td>
-						<td><form:input type="text" path="prods[${status.index}].quantity" /></td>
-					</tr>				
-				</c:forEach>
-				<tr>
-					<td></td>			
-					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /></td>
-				</tr>
-			</table>
-		</div>
+	<form:form method="get"  modelAttribute="tableForm" >
+		<%--<div class="table-responsive">--%>
+			<%--<table class="table table-bordered" style="width: 400px">--%>
+				<%--<tr>--%>
+					<%--<td>Table Name:</td>--%>
+					<%--<td><form:input type="text" path="orderTable.name" readonly="true" style="color:#999999;background-color:#F4F4F4" /></td>--%>
+				<%--</tr>--%>
+				<%--<c:forEach items="${tableForm.prods}" var="prod" varStatus="status" >--%>
+					<%--<tr>--%>
+						<%--<form:input type="text" path="prods[${status.index}].id" readonly="true" hidden="true" />--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>Table_id :</td>--%>
+						<%--<td><form:input type="text" path="prods[${status.index}].table_id" readonly="true" style="color:#999999;background-color:#F4F4F4" ></form:input></td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>Name :</td>--%>
+						<%--<td><form:input type="text" path="prods[${status.index}].name" /></td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>Quantity :</td>--%>
+						<%--<td><form:input type="text" path="prods[${status.index}].quantity" /></td>--%>
+					<%--</tr>--%>
+				<%--</c:forEach>--%>
+				<%--<tr>--%>
+					<%--<td></td>--%>
+					<%--<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /></td>--%>
+				<%--</tr>--%>
+			<%--</table>--%>
+		<%--</div>--%>
 	</form:form>
-	
-	<br>
-	<br>
-	
-	<h3> List of Information Product : </h3>
+
 	<table class="table table-bordered" style="width: 600px">
 		<tr>
 			<th>Name</th>
-			<th>Table_id</th>
-			<th>Quantity</th>
-			<th>Edit/Delete</th>
+			<th>Pre_Weight</th>
+			<th>After_Weight</th>
+			<th>Name Product / Quantity</th>
 		</tr>
-		<c:forEach items="${prodList}" var="empl">
+		<c:forEach items="${listTableForm}" var="tabform" >
 
 			<tr>
-				<td width="60" align="center">${empl.name}</td>
-				<td width="60" align="center">${empl.table_id}</td>
-				<td width="60" align="center">${empl.quantity}</td>
-				<td width="60" align="center"><a href="${empl.table_id}/edit/${empl.id}">Edit</a>/<a href="${empl.table_id}/delete/${empl.id}">Delete</a></td>
+				<td width="60" align="center">${tabform.orderTable.name}</td>
+				<td width="60" align="center">${tabform.orderTable.pre_weight}</td>
+				<td width="60" align="center">${tabform.orderTable.after_weight}</td>
+				<td>
+					<table class="table table-bordered">
+						<c:forEach items="${tabform.prods}" var="prod" >
+								<tr>
+									<td width="60" align="center">${prod.name}</td>
+									<td width="60" align="center">${prod.quantity}</td>
+								</tr>
+						</c:forEach>
+					</table>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

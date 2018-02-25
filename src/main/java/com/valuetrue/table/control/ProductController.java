@@ -20,18 +20,18 @@ import com.valuetrue.table.model.Product;
 import com.valuetrue.table.model.TableForm;
 import com.valuetrue.table.service.ProductService;
 
-@Controller
-public class InfoTableController {
 
-	private Logger log = Logger.getLogger(InfoTableController.class);
+@Controller
+public class ProductController {
+
+	private Logger log = Logger.getLogger(ProductController.class);
 	private ProductService prodService;
+	private OrderTableService orderTableService;
 
 	@Autowired
 	public void setOrderTableService(OrderTableService orderTableService) {
 		this.orderTableService = orderTableService;
 	}
-
-	private OrderTableService orderTableService;
 
 	@Autowired
 	public void setProdService(ProductService prodService) {
@@ -39,22 +39,29 @@ public class InfoTableController {
 	}
 
 
-	@RequestMapping(value = "/infotable/{table_id}")
-	public ModelAndView addInformationTable(@ModelAttribute("tableForm") TableForm tableForm,
-			@PathVariable("table_id") int table_id) {
-		ModelAndView model = new ModelAndView("information");
+	@RequestMapping(value = "/product/{table_id}")
+	public ModelAndView addInformationTable(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
+		// Initialize a new ModelView
+		ModelAndView model = new ModelAndView("views/products");
 
+		// Declared object orderTable
 		OrderTable orderTab = this.orderTableService.getOrderTableById(table_id);
+
+		// Declared List object products
 		Product prod = new Product();
 		prod.setTable_id(table_id);
 		List<Product> listProds = new ArrayList<Product>();
 		listProds.add(prod);
+
+		// Setter for modelAttribute object
 		tableForm.setOrderTable(orderTab);
 		tableForm.setProds(listProds);
 
+		// Get all products by table_id
 		List<Product> prodList = this.prodService.getAllProductsByTableId(table_id);
 		log.info(prodList);
 
+		// Add to modelAttribute of spring-form in ModelView
 		model.addObject("tableForm", tableForm);
 		model.addObject("prodList", prodList);
 
@@ -62,7 +69,7 @@ public class InfoTableController {
 
 	}
 
-	@RequestMapping(value = "/infotable", method = RequestMethod.POST)
+	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	public ModelAndView saveInformationTable(@ModelAttribute("tableForm") TableForm tableForm) {
 
 		int table_id = tableForm.getProds().get(0).getTable_id();
@@ -77,7 +84,7 @@ public class InfoTableController {
 		}
 		RedirectView rv = new RedirectView();
 		rv.setContextRelative(true);
-		rv.setUrl("/infotable/" + table_id);
+		rv.setUrl("/product/" + table_id);
 
 		return new ModelAndView(rv);
 
@@ -86,7 +93,7 @@ public class InfoTableController {
 	@RequestMapping(value = "/infotable/{table_id}/edit/{id}")
 	public ModelAndView editInformationTable(@ModelAttribute("tableForm") TableForm tableForm,
 			@PathVariable("id") int id, @PathVariable("table_id") int table_id) {
-		ModelAndView model = new ModelAndView("information");
+		ModelAndView model = new ModelAndView("views/products");
 
 		Product prod = this.prodService.getProductById(id);
 		List<Product> listProds = new ArrayList<Product>();
