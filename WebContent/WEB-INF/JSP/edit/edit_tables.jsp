@@ -45,10 +45,8 @@
 			<th>Name</th>
 			<th>Pre_Weight</th>
 			<th>After_Weight</th>
-
 		</tr>
 		<c:forEach items="${orderTableList}" var="ordertab">
-
 			<tr>
 				<td width="60" align="center">${ordertab.name}</td>
 				<td width="60" align="center">${ordertab.pre_weight}</td>

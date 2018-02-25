@@ -10,9 +10,9 @@
 </head>
 
 <body>
-	<h3> Add / Edit Information Product </h3>
+	<h3> Edit Information Product </h3>
 
-	<form:form method="post" action="/ManageTable/infotable" modelAttribute="tableForm" >
+	<form:form method="post" action="/ManageTable/product" modelAttribute="tableForm" >
 		<div class="table-responsive">
 			<table class="table table-bordered" style="width: 400px">
 				<tr>
@@ -24,8 +24,7 @@
 						<form:input type="text" path="prods[${status.index}].id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
-						<td>Table_id :</td>
-						<td><form:input type="text" path="prods[${status.index}].table_id" readonly="true" style="color:#999999;background-color:#F4F4F4" ></form:input></td>
+                        <form:input type="text" path="prods[${status.index}].table_id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
 						<td>Name :</td>
@@ -38,7 +37,7 @@
 				</c:forEach>
 				<tr>
 					<td></td>			
-					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /></td>
+					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /> | <input class="btn btn-primary btn-sm" type="submit" value="Cancel" onclick="history.back()" /> </td>
 				</tr>
 			</table>
 		</div>
@@ -51,17 +50,12 @@
 	<table class="table table-bordered" style="width: 600px">
 		<tr>
 			<th>Name</th>
-			<th>Table_id</th>
 			<th>Quantity</th>
-			<th>Edit/Delete</th>
 		</tr>
-		<c:forEach items="${prodList}" var="empl">
-
+		<c:forEach items="${prodList}" var="prod">
 			<tr>
-				<td width="60" align="center">${empl.name}</td>
-				<td width="60" align="center">${empl.table_id}</td>
-				<td width="60" align="center">${empl.quantity}</td>
-				<td width="60" align="center"><a href="${empl.table_id}/edit/${empl.id}">Edit</a>/<a href="${empl.table_id}/delete/${empl.id}">Delete</a></td>
+				<td width="60" align="center">${prod.name}</td>
+				<td width="60" align="center">${prod.quantity}</td>
 			</tr>
 		</c:forEach>
 	</table>

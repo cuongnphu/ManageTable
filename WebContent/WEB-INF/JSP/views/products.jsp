@@ -24,8 +24,7 @@
 						<form:input type="text" path="prods[${status.index}].id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
-						<td>Table_id :</td>
-						<td><form:input type="text" path="prods[${status.index}].table_id" readonly="true" style="color:#999999;background-color:#F4F4F4" ></form:input></td>
+						<form:input type="text" path="prods[${status.index}].table_id" readonly="true" hidden="true"></form:input>
 					</tr>
 					<tr>
 						<td>Name :</td>
@@ -51,19 +50,26 @@
 	<table class="table table-bordered" style="width: 600px">
 		<tr>
 			<th>Name</th>
-			<th>Table_id</th>
 			<th>Quantity</th>
-			<th>Edit/Delete</th>
+			<th>Edit  | Delete</th>
 		</tr>
 		<c:forEach items="${prodList}" var="prod">
-
 			<tr>
 				<td width="60" align="center">${prod.name}</td>
-				<td width="60" align="center">${prod.table_id}</td>
 				<td width="60" align="center">${prod.quantity}</td>
-				<td width="60" align="center"><a href="${prod.table_id}/edit/${prod.id}">Edit</a>/<a href="${prod.table_id}/delete/${prod.id}">Delete</a></td>
+				<td width="60" align="center"><a class="btn-primary btn-sm" href="${prod.table_id}/edit/${prod.id}">Edit</a> | <a class="btn-primary btn-sm" href="${prod.table_id}/delete/${prod.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>
+
+	<a class="btn btn-primary btn-sm" href="../tables" >Cancel</a>
+
+    <%--<button class="btn-primary btn-sm" id="myButton" class="float-left submit-button" >Cancel</button>--%>
+
+    <%--<script type="text/javascript">--%>
+        <%--document.getElementById("myButton").onclick = function () {--%>
+            <%--location.href = "../tables";--%>
+        <%--};--%>
+    <%--</script>--%>
 </body>
 </html>
