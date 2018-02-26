@@ -1,0 +1,38 @@
+CREATE table ORDERTABLE(
+    id int(11) unsigned NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL DEFAULT '',
+    pre_weight int(10) not null default 0,
+    after_weight INT(10) not null default 0,
+    PRIMARY KEY(id)
+ )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+ CREATE table PRODUCT(
+     id int(11) unsigned NOT NULL AUTO_INCREMENT,
+     table_id int(10) not null default 0,
+     name VARCHAR(255) NOT NULL DEFAULT '',
+     quantity INT(10) not null default 0,
+     PRIMARY KEY(id)
+  )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+  CREATE TABLE `printer` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL DEFAULT '',
+    `table_id` int(11) unsigned NOT NULL,
+    `price` int(10) NOT NULL DEFAULT '0',
+    `quantity` int(10) NOT NULL DEFAULT '0',
+    `total` int(10) NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+  CREATE TABLE `embroidery` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL DEFAULT '',
+    `table_id` int(11) unsigned NOT NULL,
+    `price` int(10) NOT NULL DEFAULT '0',
+    `quantity` int(10) NOT NULL DEFAULT '0',
+    `total` int(10) NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8

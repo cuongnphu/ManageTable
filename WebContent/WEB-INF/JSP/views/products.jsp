@@ -64,12 +64,5 @@
 
 	<a class="btn btn-primary btn-sm" href="../tables" >Cancel</a>
 
-    <%--<button class="btn-primary btn-sm" id="myButton" class="float-left submit-button" >Cancel</button>--%>
-
-    <%--<script type="text/javascript">--%>
-        <%--document.getElementById("myButton").onclick = function () {--%>
-            <%--location.href = "../tables";--%>
-        <%--};--%>
-    <%--</script>--%>
 </body>
 </html>
