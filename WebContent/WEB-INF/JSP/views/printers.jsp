@@ -5,35 +5,39 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Manage Information Product</title>
+<title>Manage Information Printer</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
 <body>
-	<h3> Add / Edit Information Product </h3>
+	<h3> Add / Edit Information Printer </h3>
 
-	<form:form method="post" action="/ManageTable/product" modelAttribute="tableForm" >
+	<form:form method="post" action="/ManageTable/printer" modelAttribute="tableForm" >
 		<div class="table-responsive">
 			<table class="table table-bordered" style="width: 400px">
 				<tr>
 					<td>Table Name:</td>
 					<td><form:input type="text" path="orderTable.name" readonly="true" style="color:#999999;background-color:#F4F4F4" /></td>
 				</tr>
-				<c:forEach items="${tableForm.productList}" var="prod" varStatus="status" >
+				<c:forEach items="${tableForm.printerList}" varStatus="status" >
 					<tr>
-						<form:input type="text" path="productList[${status.index}].id" readonly="true" hidden="true" />
+						<form:input type="text" path="printerList[${status.index}].id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
-						<form:input type="text" path="productList[${status.index}].table_id" readonly="true" hidden="true"></form:input>
+						<form:input type="text" path="printerList[${status.index}].table_id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
 						<td>Name :</td>
-						<td><form:input type="text" path="productList[${status.index}].name" /></td>
+						<td><form:input type="text" path="printerList[${status.index}].name" /></td>
+					</tr>
+					<tr>
+						<td>Price :</td>
+						<td><form:input type="text" path="printerList[${status.index}].price" /></td>
 					</tr>
 					<tr>
 						<td>Quantity :</td>
-						<td><form:input type="text" path="productList[${status.index}].quantity" /></td>
-					</tr>				
+						<td><form:input type="text" path="printerList[${status.index}].quantity" /></td>
+					</tr>
 				</c:forEach>
 				<tr>
 					<td></td>			
@@ -50,14 +54,18 @@
 	<table class="table table-bordered" style="width: 600px">
 		<tr>
 			<th>Name</th>
+			<th>Price</th>
 			<th>Quantity</th>
+			<th>Total</th>
 			<th>Edit  | Delete</th>
 		</tr>
-		<c:forEach items="${prodList}" var="prod">
+		<c:forEach items="${printerList}" var="print">
 			<tr>
-				<td width="60" align="center">${prod.name}</td>
-				<td width="60" align="center">${prod.quantity}</td>
-				<td width="60" align="center"><a class="btn-primary btn-sm" href="${prod.table_id}/edit/${prod.id}">Edit</a> | <a class="btn-primary btn-sm" href="${prod.table_id}/delete/${prod.id}">Delete</a></td>
+				<td width="60" align="center">${print.name}</td>
+				<td width="60" align="center">${print.price}</td>
+				<td width="60" align="center">${print.quantity}</td>
+				<td width="60" align="center">${print.total}</td>
+				<td width="60" align="center"><a class="btn-primary btn-sm" href="${print.table_id}/edit/${print.id}">Edit</a> | <a class="btn-primary btn-sm" href="${print.table_id}/delete/${print.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

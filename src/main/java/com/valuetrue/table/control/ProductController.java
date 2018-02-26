@@ -40,7 +40,7 @@ public class ProductController {
 
 
 	@RequestMapping(value = "/product/{table_id}")
-	public ModelAndView addInformationTable(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
+	public ModelAndView listProducts(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
 		// Initialize a new ModelView
 		ModelAndView model = new ModelAndView("views/products");
 
@@ -55,7 +55,7 @@ public class ProductController {
 
 		// Setter for modelAttribute object
 		tableForm.setOrderTable(orderTab);
-		tableForm.setProds(listProds);
+		tableForm.setProductList(listProds);
 
 		// Get all products by table_id
 		List<Product> prodList = this.prodService.getAllProductsByTableId(table_id);
@@ -70,18 +70,18 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
-	public ModelAndView saveInformationTable(@ModelAttribute("tableForm") TableForm tableForm) {
+	public ModelAndView saveProduct(@ModelAttribute("tableForm") TableForm tableForm) {
 		// Get table_id for redirect page
-		int table_id = tableForm.getProds().get(0).getTable_id();
+		int table_id = tableForm.getProductList().get(0).getTable_id();
 
 		// Save or Update a product
 		try {
-			if (this.prodService.getProductById(tableForm.getProds().get(0).getId()) != null) ;
-			log.info("Update a product by id = " + tableForm.getProds().get(0).getId());
-			this.prodService.updateProduct(tableForm.getProds().get(0));
+			if (this.prodService.getProductById(tableForm.getProductList().get(0).getId()) != null) ;
+			log.info("Update a product by id = " + tableForm.getProductList().get(0).getId());
+			this.prodService.updateProduct(tableForm.getProductList().get(0));
 		} catch (EmptyResultDataAccessException e) {
 			log.info("Save a new product !!!");
-			this.prodService.saveProduct(tableForm.getProds().get(0));
+			this.prodService.saveProduct(tableForm.getProductList().get(0));
 		}
 
 		// Initialize variable for redirection page
@@ -94,7 +94,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product/{table_id}/edit/{id}")
-	public ModelAndView editInformationTable(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
+	public ModelAndView editProduct(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
 		// Initialzie a new ModelView
 		ModelAndView model = new ModelAndView("edit/edit_products");
 
@@ -108,7 +108,7 @@ public class ProductController {
 
 		// Setter for modelAttribute object
 		tableForm.setOrderTable(orderTab);
-		tableForm.setProds(listProds);
+		tableForm.setProductList(listProds);
 
 		// Get list products by parameter table_id
 		List<Product> prodList = this.prodService.getAllProductsByTableId(table_id);
@@ -121,7 +121,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product/{table_id}/delete/{id}")
-	public ModelAndView deleteOrderTable(@ModelAttribute("modeltable") OrderTable orderTable, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
+	public ModelAndView deleteProduct( @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
 		// Delete a product by parameter Id
 		log.info("Delete an product by id = " + id);
 		this.prodService.deleteProduct(id);

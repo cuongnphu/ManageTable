@@ -19,20 +19,20 @@
 					<td>Table Name:</td>
 					<td><form:input type="text" path="orderTable.name" readonly="true" style="color:#999999;background-color:#F4F4F4" /></td>
 				</tr>
-				<c:forEach items="${tableForm.prods}" var="prod" varStatus="status" >
+				<c:forEach items="${tableForm.productList}" var="prod" varStatus="status" >
 					<tr>
-						<form:input type="text" path="prods[${status.index}].id" readonly="true" hidden="true" />
+						<form:input type="text" path="productList[${status.index}].id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
-                        <form:input type="text" path="prods[${status.index}].table_id" readonly="true" hidden="true" />
+                        <form:input type="text" path="productList[${status.index}].table_id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
 						<td>Name :</td>
-						<td><form:input type="text" path="prods[${status.index}].name" /></td>
+						<td><form:input type="text" path="productList[${status.index}].name" /></td>
 					</tr>
 					<tr>
 						<td>Quantity :</td>
-						<td><form:input type="text" path="prods[${status.index}].quantity" /></td>
+						<td><form:input type="text" path="productList[${status.index}].quantity" /></td>
 					</tr>				
 				</c:forEach>
 				<tr>

@@ -13,35 +13,7 @@
 	<h3> Detail Information Table </h3>
 
 	<form:form method="get"  modelAttribute="tableForm" >
-		<%--<div class="table-responsive">--%>
-			<%--<table class="table table-bordered" style="width: 400px">--%>
-				<%--<tr>--%>
-					<%--<td>Table Name:</td>--%>
-					<%--<td><form:input type="text" path="orderTable.name" readonly="true" style="color:#999999;background-color:#F4F4F4" /></td>--%>
-				<%--</tr>--%>
-				<%--<c:forEach items="${tableForm.prods}" var="prod" varStatus="status" >--%>
-					<%--<tr>--%>
-						<%--<form:input type="text" path="prods[${status.index}].id" readonly="true" hidden="true" />--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>Table_id :</td>--%>
-						<%--<td><form:input type="text" path="prods[${status.index}].table_id" readonly="true" style="color:#999999;background-color:#F4F4F4" ></form:input></td>--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>Name :</td>--%>
-						<%--<td><form:input type="text" path="prods[${status.index}].name" /></td>--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>Quantity :</td>--%>
-						<%--<td><form:input type="text" path="prods[${status.index}].quantity" /></td>--%>
-					<%--</tr>--%>
-				<%--</c:forEach>--%>
-				<%--<tr>--%>
-					<%--<td></td>--%>
-					<%--<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /></td>--%>
-				<%--</tr>--%>
-			<%--</table>--%>
-		<%--</div>--%>
+
 	</form:form>
 
 	<table class="table table-bordered" style="width: 600px">

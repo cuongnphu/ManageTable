@@ -67,7 +67,7 @@ public class OrderTableController {
 	}
 	
 	@RequestMapping(value = "/delete/{id}")
-	public ModelAndView deleteOrderTable (@ModelAttribute("modeltable") OrderTable orderTable, @PathVariable("id") int id) {
+	public ModelAndView deleteOrderTable ( @PathVariable("id") int id) {
 		log.info("Delete an orderTable by id = " + id );
 		this.orderTableService.deleteOrderTable(id);
 		

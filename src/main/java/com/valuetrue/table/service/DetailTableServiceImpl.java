@@ -38,7 +38,7 @@ public class DetailTableServiceImpl implements DetailTableService {
             TableForm tabForm = new TableForm();
             List<Product> listProds = this.productDAO.getAllProductsByTableId(orderTab.getId());
             tabForm.setOrderTable(orderTab);
-            tabForm.setProds(listProds);
+            tabForm.setProductList(listProds);
             listTableForm.add(tabForm);
         }
 
