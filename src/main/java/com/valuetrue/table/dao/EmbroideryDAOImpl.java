@@ -52,7 +52,7 @@ public class EmbroideryDAOImpl implements EmbroideryDAO {
     @Override
     public Embroidery getEmbroideryById(int id) {
         String sql = "select * from Embroidery where id=?";
-        Embroidery embroidery = (Embroidery) jdbcTemplateServlet.query(sql, new Object[]{id}, new RowMapper<Embroidery>() {
+        Embroidery embroidery = (Embroidery) jdbcTemplateServlet.queryForObject(sql, new Object[]{id}, new RowMapper<Embroidery>() {
             @Override
             public Embroidery mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Embroidery embroid = new Embroidery();

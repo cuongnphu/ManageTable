@@ -23,11 +23,19 @@ public class EmbroideryServiceImpl implements EmbroideryService {
 
     @Override
     public void saveEmbroidery(Embroidery embroidery) {
+        // Caculate total = price * quantity
+        Integer total = embroidery.getPrice()* embroidery.getQuantity();
+        embroidery.setTotal(total);
+
         this.embroideryDAO.saveEmbroidery(embroidery);
     }
 
     @Override
     public void updateEmbroidery(Embroidery embroidery) {
+        // Caculate total = price * quantity
+        Integer total = embroidery.getPrice()* embroidery.getQuantity();
+        embroidery.setTotal(total);
+
         this.embroideryDAO.updateEmbroidery(embroidery);
     }
 

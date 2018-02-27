@@ -52,7 +52,7 @@ public class PrinterDAOImpl implements PrinterDAO {
     @Override
     public Printer getPrinterById(int id) {
         String sql = "select * from Printer where id=?";
-        Printer printer = (Printer) jdbcTemplateServlet.query(sql, new Object[]{id}, new RowMapper<Printer>() {
+        Printer printer = (Printer) jdbcTemplateServlet.queryForObject(sql, new Object[]{id}, new RowMapper<Printer>() {
             @Override
             public Printer mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Printer print = new Printer();

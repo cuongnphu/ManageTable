@@ -40,7 +40,7 @@ public class PrinterController {
 
 
     @RequestMapping(value = "/printer/{table_id}")
-    public ModelAndView addInformationTable(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
+    public ModelAndView listPrinters(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
         // Initialize a new ModelView
         ModelAndView model = new ModelAndView("views/printers");
 
@@ -70,19 +70,15 @@ public class PrinterController {
     }
 
     @RequestMapping(value = "/printer", method = RequestMethod.POST)
-    public ModelAndView saveInformationTable(@ModelAttribute("tableForm") TableForm tableForm) {
+    public ModelAndView savePrinter(@ModelAttribute("tableForm") TableForm tableForm) {
         // Get table_id for redirect page
         int table_id = tableForm.getPrinterList().get(0).getTable_id();
-
-        Printer print = tableForm.getPrinterList().get(0);
-        Integer total = tableForm.getPrinterList().get(0).getPrice()* tableForm.getPrinterList().get(0).getQuantity();
-        print.setTotal(total);
 
         // Save or Update a printer
         try {
             if (this.printerService.getPrinterById(tableForm.getPrinterList().get(0).getId()) != null) ;
             log.info("Update a printer by id = " + tableForm.getPrinterList().get(0).getId());
-            this.printerService.updatePrinter( tableForm.getPrinterList().get(0));
+            this.printerService.updatePrinter( tableForm.getPrinterList().get(0) );
         } catch (EmptyResultDataAccessException e) {
             log.info("Save a new printer !!!");
             this.printerService.savePrinter( tableForm.getPrinterList().get(0));
@@ -98,9 +94,9 @@ public class PrinterController {
     }
 
     @RequestMapping(value = "/printer/{table_id}/edit/{id}")
-    public ModelAndView editInformationTable(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
+    public ModelAndView editPrinter(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
         // Initialzie a new ModelView
-        ModelAndView model = new ModelAndView("edit/edit_products");
+        ModelAndView model = new ModelAndView("edit/edit_printers");
 
         // Declared object orderTable
         OrderTable orderTab = this.orderTableService.getOrderTableById(table_id);
@@ -125,7 +121,7 @@ public class PrinterController {
     }
 
     @RequestMapping(value = "/printer/{table_id}/delete/{id}")
-    public ModelAndView deleteOrderTable(@ModelAttribute("modeltable") OrderTable orderTable, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
+    public ModelAndView deletePrinter(@PathVariable("id") int id, @PathVariable("table_id") int table_id) {
         // Delete a printer by parameter Id
         log.info("Delete an product by id = " + id);
         this.printerService.deletePrinter(id);

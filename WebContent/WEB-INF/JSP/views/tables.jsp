@@ -60,6 +60,7 @@
 				<td width="120" align="center"><a class="btn-primary btn-sm" href="edit/${ordertab.id}">Edit</a> | <a class="btn-primary btn-sm" href="delete/${ordertab.id}">Delete</a></td>
 				<td width="120" align="center"><a class="btn-primary btn-sm" href="product/${ordertab.id}">Add Product</a></td>
 				<td width="120" align="center"><a class="btn-primary btn-sm" href="printer/${ordertab.id}">Add Printer</a></td>
+				<td width="140" align="center"><a class="btn-primary btn-sm" href="embroidery/${ordertab.id}">Add Embroidery</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -51,7 +51,7 @@ public class SewingDAOImpl implements SewingDAO {
     @Override
     public Sewing getSewingById(int id) {
         String sql = "select * from Sewing where id=?";
-        Sewing sew = (Sewing) jdbcTemplateServlet.query(sql, new Object[]{id}, new RowMapper<Sewing>() {
+        Sewing sew = (Sewing) jdbcTemplateServlet.queryForObject(sql, new Object[]{id}, new RowMapper<Sewing>() {
             @Override
             public Sewing mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Sewing sew = new Sewing();
