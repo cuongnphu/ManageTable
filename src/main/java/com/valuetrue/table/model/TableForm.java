@@ -11,6 +11,8 @@ public class TableForm {
 	private List<Product> productList;
 	private List<Printer> printerList;
 	private List<Embroidery> embroideryList;
+	private List<Sewing> sewingList;
+
 
 
 	public List<Product> getProductList() {
@@ -45,5 +47,12 @@ public class TableForm {
 		this.embroideryList = embroideryList;
 	}
 
+	public List<Sewing> getSewingList() {
+		return sewingList;
+	}
+
+	public void setSewingList(List<Sewing> sewingList) {
+		this.sewingList = sewingList;
+	}
 
 }

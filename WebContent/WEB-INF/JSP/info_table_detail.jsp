@@ -10,18 +10,20 @@
 </head>
 
 <body>
-	<h3> Detail Information Table </h3>
+	<h3> Add / Edit Information Table </h3>
 
-	<form:form method="get"  modelAttribute="tableForm" >
+    <a class="btn btn-primary btn-sm" href="tables" >Add Table</a>
 
-	</form:form>
-
-	<table class="table table-bordered" style="width: 600px">
+    <h3> List Detail Information Table </h3>
+	<table class="table table-bordered" style="width: 1200px">
 		<tr>
 			<th>Name</th>
 			<th>Pre_Weight</th>
 			<th>After_Weight</th>
-			<th>Name Product / Quantity</th>
+			<th>Name Product | Quantity</th>
+			<th>Printer | Price | Quantity</th>
+			<th>Embroidery | Price | Quantity</th>
+			<th>Sewing | Price | Quantity</th>
 		</tr>
 		<c:forEach items="${listTableForm}" var="tabform" >
 
@@ -31,11 +33,44 @@
 				<td width="60" align="center">${tabform.orderTable.after_weight}</td>
 				<td>
 					<table class="table table-bordered">
-						<c:forEach items="${tabform.prods}" var="prod" >
+						<c:forEach items="${tabform.productList}" var="prod" >
 								<tr>
 									<td width="60" align="center">${prod.name}</td>
 									<td width="60" align="center">${prod.quantity}</td>
 								</tr>
+						</c:forEach>
+					</table>
+				</td>
+				<td>
+					<table class="table table-bordered">
+						<c:forEach items="${tabform.printerList}" var="print" >
+							<tr>
+								<td width="60" align="center">${print.name}</td>
+								<td width="60" align="center">${print.price}</td>
+								<td width="60" align="center">${print.quantity}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</td>
+				<td>
+					<table class="table table-bordered">
+						<c:forEach items="${tabform.embroideryList}" var="embroid" >
+							<tr>
+								<td width="60" align="center">${embroid.name}</td>
+								<td width="60" align="center">${embroid.price}</td>
+								<td width="60" align="center">${embroid.quantity}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</td>
+				<td>
+					<table class="table table-bordered">
+						<c:forEach items="${tabform.sewingList}" var="sew" >
+							<tr>
+								<td width="60" align="center">${sew.name}</td>
+								<td width="60" align="center">${sew.price}</td>
+								<td width="60" align="center">${sew.quantity}</td>
+							</tr>
 						</c:forEach>
 					</table>
 				</td>

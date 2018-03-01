@@ -1,10 +1,7 @@
 package com.valuetrue.table.service;
 
-import com.valuetrue.table.dao.OrderTableDAO;
-import com.valuetrue.table.dao.ProductDAO;
-import com.valuetrue.table.model.OrderTable;
-import com.valuetrue.table.model.Product;
-import com.valuetrue.table.model.TableForm;
+import com.valuetrue.table.dao.*;
+import com.valuetrue.table.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +13,9 @@ public class DetailTableServiceImpl implements DetailTableService {
 
     private OrderTableDAO orderTableDAO;
     private ProductDAO productDAO;
+    private PrinterDAO printerDAO;
+    private EmbroideryDAO embroideryDAO;
+    private SewingDAO sewingDAO;
 
     @Autowired
     public void setOrderTableDAO(OrderTableDAO orderTableDAO) {
@@ -27,6 +27,22 @@ public class DetailTableServiceImpl implements DetailTableService {
         this.productDAO = productDAO;
     }
 
+    @Autowired
+    public void setPrinterDAO(PrinterDAO printerDAO) {
+        this.printerDAO = printerDAO;
+    }
+
+    @Autowired
+    public void setEmbroideryDAO(EmbroideryDAO embroideryDAO) {
+        this.embroideryDAO = embroideryDAO;
+    }
+
+    @Autowired
+    public void setSewingDAO(SewingDAO sewingDAO) {
+        this.sewingDAO = sewingDAO;
+    }
+
+
     @Override
     public List<TableForm> getAllTableForm() {
 
@@ -37,8 +53,14 @@ public class DetailTableServiceImpl implements DetailTableService {
         for (OrderTable orderTab: listOrderTable ) {
             TableForm tabForm = new TableForm();
             List<Product> listProds = this.productDAO.getAllProductsByTableId(orderTab.getId());
+            List<Printer> printerList = this.printerDAO.getAllPrintersByTableId(orderTab.getId());
+            List<Embroidery> embroideryList = this.embroideryDAO.getAllEmbroideriesByTableId(orderTab.getId());
+            List<Sewing> sewingList = this.sewingDAO.getAllSewingsByTableId(orderTab.getId());
             tabForm.setOrderTable(orderTab);
             tabForm.setProductList(listProds);
+            tabForm.setPrinterList(printerList);
+            tabForm.setEmbroideryList(embroideryList);
+            tabForm.setSewingList(sewingList);
             listTableForm.add(tabForm);
         }
 

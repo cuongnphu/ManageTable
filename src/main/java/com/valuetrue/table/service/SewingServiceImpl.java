@@ -20,11 +20,19 @@ public class SewingServiceImpl implements SewingService {
 
     @Override
     public void saveSewing(Sewing sewing) {
+        // Caculate total = price * quantity
+        Integer total = sewing.getPrice()* sewing.getQuantity();
+        sewing.setTotal(total);
+
         this.sewingDAO.saveSewing(sewing);
     }
 
     @Override
     public void updateSewing(Sewing sewing) {
+        // Caculate total = price * quantity
+        Integer total = sewing.getPrice()* sewing.getQuantity();
+        sewing.setTotal(total);
+
         this.sewingDAO.updateSewing(sewing);
     }
 

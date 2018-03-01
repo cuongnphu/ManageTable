@@ -31,7 +31,7 @@
 					<td><form:input type="text" path="after_weight" /></td>
 				</tr>
 				<tr>
-					<td></td>
+					<td><a class="btn btn-primary btn-sm" href="detailtable" >View Info Detail</a></td>
 					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /></td>
 				</tr>
 			</table>
@@ -61,6 +61,7 @@
 				<td width="120" align="center"><a class="btn-primary btn-sm" href="product/${ordertab.id}">Add Product</a></td>
 				<td width="120" align="center"><a class="btn-primary btn-sm" href="printer/${ordertab.id}">Add Printer</a></td>
 				<td width="140" align="center"><a class="btn-primary btn-sm" href="embroidery/${ordertab.id}">Add Embroidery</a></td>
+				<td width="140" align="center"><a class="btn-primary btn-sm" href="sewing/${ordertab.id}">Add Sewing</a></td>
 			</tr>
 		</c:forEach>
 	</table>
