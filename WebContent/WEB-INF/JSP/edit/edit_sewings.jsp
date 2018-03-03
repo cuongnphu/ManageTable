@@ -5,12 +5,12 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Manage Information Printer</title>
+<title>Edit Information Sewing</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
 <body>
-	<h3> Add / Edit Information Sewing </h3>
+	<h3> Edit Information Sewing </h3>
 
 	<form:form method="post" action="/ManageTable/sewing" modelAttribute="tableForm" >
 		<div class="table-responsive">
@@ -46,10 +46,8 @@
 			</table>
 		</div>
 	</form:form>
-	
 	<br>
 	<br>
-	
 	<h3> List of Information Sewing : </h3>
 	<table class="table table-bordered" style="width: 600px">
 		<tr>
@@ -57,7 +55,6 @@
 			<th>Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
-
 		</tr>
 		<c:forEach items="${sewingList}" var="sew">
 			<tr>
@@ -65,7 +62,6 @@
 				<td width="60" align="center">${sew.price}</td>
 				<td width="60" align="center">${sew.quantity}</td>
 				<td width="60" align="center">${sew.total}</td>
-
 			</tr>
 		</c:forEach>
 	</table>

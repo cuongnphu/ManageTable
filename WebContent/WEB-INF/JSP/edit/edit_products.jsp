@@ -5,7 +5,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Manage Information Product</title>
+<title>Edit Information Product</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
@@ -42,10 +42,8 @@
 			</table>
 		</div>
 	</form:form>
-	
 	<br>
 	<br>
-	
 	<h3> List of Information Product : </h3>
 	<table class="table table-bordered" style="width: 600px">
 		<tr>

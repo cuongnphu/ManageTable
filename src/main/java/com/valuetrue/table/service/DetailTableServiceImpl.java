@@ -16,6 +16,7 @@ public class DetailTableServiceImpl implements DetailTableService {
     private PrinterDAO printerDAO;
     private EmbroideryDAO embroideryDAO;
     private SewingDAO sewingDAO;
+    private MaterialDAO materialDAO;
 
     @Autowired
     public void setOrderTableDAO(OrderTableDAO orderTableDAO) {
@@ -42,6 +43,11 @@ public class DetailTableServiceImpl implements DetailTableService {
         this.sewingDAO = sewingDAO;
     }
 
+    @Autowired
+    public void setMaterialDAO(MaterialDAO materialDAO) {
+        this.materialDAO = materialDAO;
+    }
+
 
     @Override
     public List<TableForm> getAllTableForm() {
@@ -56,11 +62,13 @@ public class DetailTableServiceImpl implements DetailTableService {
             List<Printer> printerList = this.printerDAO.getAllPrintersByTableId(orderTab.getId());
             List<Embroidery> embroideryList = this.embroideryDAO.getAllEmbroideriesByTableId(orderTab.getId());
             List<Sewing> sewingList = this.sewingDAO.getAllSewingsByTableId(orderTab.getId());
+            List<Material> materialList = this.materialDAO.getAllMaterialsByTableId(orderTab.getId());
             tabForm.setOrderTable(orderTab);
             tabForm.setProductList(listProds);
             tabForm.setPrinterList(printerList);
             tabForm.setEmbroideryList(embroideryList);
             tabForm.setSewingList(sewingList);
+            tabForm.setMaterialList(materialList);
             listTableForm.add(tabForm);
         }
 

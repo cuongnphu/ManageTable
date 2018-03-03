@@ -40,7 +40,7 @@
 	<br>
 	<br>
 	<h3>List of OrderTable :</h3>
-	<table class="table table-bordered" style="width: 900px">
+	<table class="table table-bordered" style="width: 1400px">
 		<tr>
 			<th>Name</th>
 			<th>Pre_Weight</th>
@@ -50,9 +50,9 @@
 			<th>Add Printer</th>
 			<th>Add Embroidery</th>
 			<th>Add Sewing</th>
+			<th>Add Material</th>
 		</tr>
 		<c:forEach items="${orderTableList}" var="ordertab">
-
 			<tr>
 				<td width="60" align="center">${ordertab.name}</td>
 				<td width="60" align="center">${ordertab.pre_weight}</td>
@@ -62,6 +62,7 @@
 				<td width="120" align="center"><a class="btn-primary btn-sm" href="printer/${ordertab.id}">Add Printer</a></td>
 				<td width="140" align="center"><a class="btn-primary btn-sm" href="embroidery/${ordertab.id}">Add Embroidery</a></td>
 				<td width="140" align="center"><a class="btn-primary btn-sm" href="sewing/${ordertab.id}">Add Sewing</a></td>
+				<td width="140" align="center"><a class="btn-primary btn-sm" href="material/${ordertab.id}">Add Material</a></td>
 			</tr>
 		</c:forEach>
 	</table>

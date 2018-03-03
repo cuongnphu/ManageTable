@@ -15,7 +15,7 @@
     <a class="btn btn-primary btn-sm" href="tables" >Add Table</a>
 
     <h3> List Detail Information Table </h3>
-	<table class="table table-bordered" style="width: 1200px">
+	<table class="table table-bordered" style="width: 1400px">
 		<tr>
 			<th>Name</th>
 			<th>Pre_Weight</th>
@@ -24,6 +24,7 @@
 			<th>Printer | Price | Quantity</th>
 			<th>Embroidery | Price | Quantity</th>
 			<th>Sewing | Price | Quantity</th>
+            <th>Material | Weight | Num_Class | Quantity</th>
 		</tr>
 		<c:forEach items="${listTableForm}" var="tabform" >
 
@@ -74,6 +75,18 @@
 						</c:forEach>
 					</table>
 				</td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.materialList}" var="material" >
+                            <tr>
+                                <td width="60" align="center">${material.name}</td>
+                                <td width="60" align="center">${material.weight}</td>
+                                <td width="60" align="center">${material.num_class}</td>
+                                <td width="60" align="center">${material.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
 			</tr>
 		</c:forEach>
 	</table>

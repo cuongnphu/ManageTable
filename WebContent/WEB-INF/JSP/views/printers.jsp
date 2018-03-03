@@ -50,7 +50,7 @@
 	<br>
 	<br>
 	
-	<h3> List of Information Product : </h3>
+	<h3> List of Information Printers : </h3>
 	<table class="table table-bordered" style="width: 600px">
 		<tr>
 			<th>Name</th>

@@ -7,14 +7,15 @@ import java.util.List;
 
 public class TableForm {
 
+	// Initialize variable for model
 	private OrderTable orderTable;
 	private List<Product> productList;
 	private List<Printer> printerList;
 	private List<Embroidery> embroideryList;
 	private List<Sewing> sewingList;
+	private List<Material> materialList;
 
-
-
+	// Getter & Setter
 	public List<Product> getProductList() {
 		return productList;
 	}
@@ -54,5 +55,14 @@ public class TableForm {
 	public void setSewingList(List<Sewing> sewingList) {
 		this.sewingList = sewingList;
 	}
+
+	public List<Material> getMaterialList() {
+		return materialList;
+	}
+
+	public void setMaterialList(List<Material> materialList) {
+		this.materialList = materialList;
+	}
+
 
 }

@@ -5,38 +5,42 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Edit Information Embroidery</title>
+<title>Edit Information Material</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
 <body>
-	<h3> Edit Information Embroidery </h3>
+	<h3> Edit Information Materials </h3>
 
-	<form:form method="post" action="/ManageTable/embroidery" modelAttribute="tableForm" >
+	<form:form method="post" action="/ManageTable/material" modelAttribute="tableForm" >
 		<div class="table-responsive">
 			<table class="table table-bordered" style="width: 400px">
 				<tr>
 					<td>Table Name:</td>
 					<td><form:input type="text" path="orderTable.name" readonly="true" style="color:#999999;background-color:#F4F4F4" /></td>
 				</tr>
-				<c:forEach items="${tableForm.embroideryList}" varStatus="status" >
+				<c:forEach items="${tableForm.materialList}" varStatus="status" >
 					<tr>
-						<form:input type="text" path="embroideryList[${status.index}].id" readonly="true" hidden="true" />
+						<form:input type="text" path="materialList[${status.index}].id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
-						<form:input type="text" path="embroideryList[${status.index}].table_id" readonly="true" hidden="true" />
+						<form:input type="text" path="materialList[${status.index}].table_id" readonly="true" hidden="true" />
 					</tr>
 					<tr>
 						<td>Name :</td>
-						<td><form:input type="text" path="embroideryList[${status.index}].name" /></td>
+						<td><form:input type="text" path="materialList[${status.index}].name" /></td>
 					</tr>
 					<tr>
-						<td>Price :</td>
-						<td><form:input type="text" path="embroideryList[${status.index}].price" /></td>
+						<td>Weight :</td>
+						<td><form:input type="text" path="materialList[${status.index}].weight" /></td>
+					</tr>
+					<tr>
+						<td>Num_class :</td>
+						<td><form:input type="text" path="materialList[${status.index}].num_class" /></td>
 					</tr>
 					<tr>
 						<td>Quantity :</td>
-						<td><form:input type="text" path="embroideryList[${status.index}].quantity" /></td>
+						<td><form:input type="text" path="materialList[${status.index}].quantity" /></td>
 					</tr>
 				</c:forEach>
 				<tr>
@@ -48,25 +52,23 @@
 	</form:form>
 	<br>
 	<br>
-	<h3> List of Information Embroideries : </h3>
+	<h3> List of Information Materials : </h3>
 	<table class="table table-bordered" style="width: 600px">
 		<tr>
 			<th>Name</th>
-			<th>Price</th>
+			<th>Weight</th>
+			<th>Num_class</th>
 			<th>Quantity</th>
-			<th>Total</th>
 		</tr>
-		<c:forEach items="${embroideryList}" var="embroid">
+		<c:forEach items="${materialList}" var="material">
 			<tr>
-				<td width="60" align="center">${embroid.name}</td>
-				<td width="60" align="center">${embroid.price}</td>
-				<td width="60" align="center">${embroid.quantity}</td>
-				<td width="60" align="center">${embroid.total}</td>
+				<td width="60" align="center">${material.name}</td>
+				<td width="60" align="center">${material.weight}</td>
+				<td width="60" align="center">${material.num_class}</td>
+				<td width="60" align="center">${material.quantity}</td>
 			</tr>
 		</c:forEach>
 	</table>
-
-
 
 </body>
 </html>

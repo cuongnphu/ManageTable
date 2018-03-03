@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Manage Order Table</title>
+<title>Edit Order Table</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
 <body>
-	<h3> Edit Information OrderTable!!!</h3>
+	<h3> Edit Information OrderTable </h3>
 
 	<form:form method="post" action="/ManageTable/table" modelAttribute="modeltable">
 		<div class="table-responsive">
@@ -51,7 +51,6 @@
 				<td width="60" align="center">${ordertab.name}</td>
 				<td width="60" align="center">${ordertab.pre_weight}</td>
 				<td width="60" align="center">${ordertab.after_weight}</td>
-
 			</tr>
 		</c:forEach>
 	</table>
