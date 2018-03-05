@@ -7,32 +7,54 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>Edit Order Table</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script>
+        function myFunction() {
+            var table = document.getElementById("myTable");
+            var numrow = table.rows.length;
+            var row = table.insertRow(numrow);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = "NEW CELL1";
+            cell2.innerHTML = "NEW CELL2";
+        }
+    </script>
 </head>
 
 <body>
 	<h3> Edit Information OrderTable </h3>
 
-	<form:form method="post" action="/ManageTable/table" modelAttribute="modeltable">
+	<form:form method="post" action="/ManageTable/InfoDetail" modelAttribute="tableForm">
 		<div class="table-responsive">
-			<table class="table table-bordered" style="width: 400px">
+			<table class="table table-bordered" style="width: 1200px">
 				<tr>
-					<form:input type="text" path="id" readonly="true" hidden="true" />
+					<form:input type="text" path="orderTable.id" readonly="true" hidden="true" />
+				</tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Pre_Weight</th>
+                    <th>After_Weight</th>
+                    <th> Products </th>
+                </tr>
+				<tr>
+					<td><form:input type="text" path="orderTable.name" /></td>
+                    <td><form:input type="text" path="orderTable.pre_weight" /></td>
+                    <td><form:input type="text" path="orderTable.after_weight" /></td>
+                    <td>
+                        <table id="myTable" class="table table-bordered">
+                            <c:forEach items="${tableForm.productList}" varStatus="status">
+                                <tr>
+                                    <form:input type="text" path="productList[${status.index}].id" readonly="true" hidden="true" />
+                                    <form:input type="text" path="productList[${status.index}].table_id" readonly="true" hidden="true" />
+                                    <td><form:input type="text" path="productList[${status.index}].name" /></td>
+                                    <td><form:input type="text" path="productList[${status.index}].quantity" /></td>
+                                    <td><a class="button" onclick="myFunction()">+</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </td>
 				</tr>
 				<tr>
-					<td>Name :</td>
-					<td><form:input type="text" path="name" /></td>
-				</tr>
-				<tr>
-					<td>Pre_Weight :</td>
-					<td><form:input type="text" path="pre_weight" /></td>
-				</tr>
-				<tr>
-					<td>After_Weight :</td>
-					<td><form:input type="text" path="after_weight" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /> | <input class="btn btn-primary btn-sm" type="submit" value="Cancel" onclick="history.back()" />  </td>
+                    <td><button class="btn btn-primary btn-sm" type="submit">Submit</button> | <button class="btn btn-primary btn-sm" onclick="history.back()" />Cancel</button> </td>
 				</tr>
 			</table>
 		</div>

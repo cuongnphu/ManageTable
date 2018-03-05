@@ -1,7 +1,11 @@
 package com.valuetrue.table.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.valuetrue.table.model.Product;
+import com.valuetrue.table.model.TableForm;
+import com.valuetrue.table.service.ProductService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -14,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.valuetrue.table.model.OrderTable;
 import com.valuetrue.table.service.OrderTableService;
-
+import org.springframework.web.servlet.view.RedirectView;
 
 
 @Controller
@@ -22,11 +26,17 @@ public class OrderTableController {
 	
 	private Logger log = Logger.getLogger(OrderTableController.class);
 	private OrderTableService orderTableService;
+    private ProductService prodService;
 
 	@Autowired
 	public void setOrderTableService(OrderTableService orderTableService) {
 		this.orderTableService = orderTableService;
 	}
+
+    @Autowired
+    public void setProdService(ProductService prodService) {
+        this.prodService = prodService;
+    }
 
 	@RequestMapping(value="/tables", method = RequestMethod.GET)
 	public ModelAndView listOrderTables (@ModelAttribute("modeltable") OrderTable orderTable) {
@@ -52,15 +62,63 @@ public class OrderTableController {
         
         return new ModelAndView("redirect:/tables");
     }
-	
+
+    @RequestMapping(value = "/InfoDetail",method=RequestMethod.POST)
+    public ModelAndView saveInfoDetail (@ModelAttribute("tableForm") TableForm tableForm) {
+        // Get table_id for redirect page
+//        int table_id = tableForm.getProductList().get(0).getTable_id();
+
+        // Save or Update a product
+        try {
+            if (this.prodService.getProductById(tableForm.getProductList().get(0).getId()) != null) ;
+            log.info("Update a product by id = " + tableForm.getProductList().get(0).getId());
+            this.prodService.updateProduct(tableForm.getProductList().get(0));
+        } catch (EmptyResultDataAccessException e) {
+            log.info("Save a new product !!!");
+            this.prodService.saveProduct(tableForm.getProductList().get(0));
+        }
+
+        try{
+            if(this.orderTableService.getOrderTableById(tableForm.getOrderTable().getId()) != null);
+            log.info("Update a orderTable by id = " + tableForm.getOrderTable().getId() );
+            this.orderTableService.updateOrderTable(tableForm.getOrderTable());
+        }catch(EmptyResultDataAccessException e){
+            log.info("Save a new orderTable !!!");
+            this.orderTableService.saveOrderTable(tableForm.getOrderTable());
+        }
+
+        return new ModelAndView("redirect:/tables");
+    }
+
 	@RequestMapping(value = "/edit/{id}")
-	public ModelAndView editOrderTable (@ModelAttribute("modeltable") OrderTable orderTable , @PathVariable("id") int id) {
+	public ModelAndView editOrderTable (@ModelAttribute("tableForm") TableForm tableForm , @PathVariable("id") int id) {
+		// Initilaize a new Model
 		ModelAndView model = new ModelAndView("edit/edit_tables");
-		
-		orderTable = this.orderTableService.getOrderTableById(id);
+
+        // Declared object orderTable
+        OrderTable orderTab = this.orderTableService.getOrderTableById(id);
+
+        // Get all products by table_id
+        List<Product> prodList = this.prodService.getAllProductsByTableId(id);
+        log.info(prodList);
+
+        // Declared List object products
+        Product prod = new Product();
+        prod.setTable_id(id);
+        List<Product> listProds = new ArrayList<Product>();
+        listProds.add(prod);
+
+        // Setter for modelAttribute object
+        tableForm.setOrderTable(orderTab);
+        if(prodList.size() > 0)
+            tableForm.setProductList(prodList);
+        else
+            tableForm.setProductList(listProds);
+
+        // Get all orderTable
 		List<OrderTable> orderTableList = this.orderTableService.getAllOrderTables();
 		
-		model.addObject("modeltable", orderTable);
+		model.addObject("tableForm", tableForm);
 		model.addObject("orderTableList",orderTableList);
 		
 		return model;
