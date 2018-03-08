@@ -7,16 +7,27 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>Edit Order Table</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script>
-        function myFunction() {
-            var table = document.getElementById("myTable");
-            var numrow = table.rows.length;
-            var row = table.insertRow(numrow);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            cell1.innerHTML = "NEW CELL1";
-            cell2.innerHTML = "NEW CELL2";
-        }
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+       function myFunction(id) {
+           console.log("add product in table ...");
+           $.ajax({
+               type: "post",
+               url: "/ManageTable/addproduct",
+               success: function (data) {
+
+                    // alert('success: ' + data);
+
+               },
+               error: function(e){
+                   alert('Error: ' +JSON.stringify(e));
+               }
+
+           });
+       }
+
+
     </script>
 </head>
 
@@ -47,7 +58,7 @@
                                     <form:input type="text" path="productList[${status.index}].table_id" readonly="true" hidden="true" />
                                     <td><form:input type="text" path="productList[${status.index}].name" /></td>
                                     <td><form:input type="text" path="productList[${status.index}].quantity" /></td>
-                                    <td><a class="button" onclick="myFunction()">+</a></td>
+                                    <td><a class="btn btn-primary btn-sm" onclick="myFunction(41)">+</a></td>
                                 </tr>
                             </c:forEach>
                         </table>

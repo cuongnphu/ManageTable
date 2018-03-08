@@ -90,7 +90,7 @@ public class OrderTableController {
         return new ModelAndView("redirect:/tables");
     }
 
-	@RequestMapping(value = "/edit/{id}")
+	@RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
 	public ModelAndView editOrderTable (@ModelAttribute("tableForm") TableForm tableForm , @PathVariable("id") int id) {
 		// Initilaize a new Model
 		ModelAndView model = new ModelAndView("edit/edit_tables");
@@ -131,5 +131,26 @@ public class OrderTableController {
 		
 		return new ModelAndView("redirect:/tables");
 	}
+
+    @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
+    public ModelAndView addProduct() {
+
+	    log.info("==================\n \n ========================== \n \n");
+        // Declared List object products
+        Product prod = new Product();
+        prod.setTable_id(41);
+        prod.setName("");
+        prod.setQuantity(0);
+
+        this.prodService.saveProduct(prod);
+
+        // Initialize variable for redirection page
+        RedirectView rv = new RedirectView();
+        rv.setContextRelative(true);
+        rv.setUrl("/edit/" + 41);
+
+        return new ModelAndView(rv);
+
+    }
 
 }
