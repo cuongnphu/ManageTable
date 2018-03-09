@@ -14,10 +14,15 @@
            console.log("add product in table ...");
            $.ajax({
                type: "post",
-               url: "/ManageTable/addproduct",
+               url: "/ManageTable/addproduct/"+id,
                success: function (data) {
 
-                    // alert('success: ' + data);
+                    alert('success: ' + JSON.stringify(data));
+                    // var redirect = data.
+                    // if(redirect){
+                    //     window.location.reload();
+                    // }
+                   // window.location.reload(true);
 
                },
                error: function(e){
@@ -25,6 +30,7 @@
                }
 
            });
+
        }
 
 
@@ -58,7 +64,7 @@
                                     <form:input type="text" path="productList[${status.index}].table_id" readonly="true" hidden="true" />
                                     <td><form:input type="text" path="productList[${status.index}].name" /></td>
                                     <td><form:input type="text" path="productList[${status.index}].quantity" /></td>
-                                    <td><a class="btn btn-primary btn-sm" onclick="myFunction(41)">+</a></td>
+                                    <td><a class="btn btn-primary btn-sm" onclick="myFunction(${tableForm.orderTable.id})">+</a></td>
                                 </tr>
                             </c:forEach>
                         </table>

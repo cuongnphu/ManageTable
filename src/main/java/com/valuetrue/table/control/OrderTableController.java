@@ -10,10 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.valuetrue.table.model.OrderTable;
@@ -132,13 +129,16 @@ public class OrderTableController {
 		return new ModelAndView("redirect:/tables");
 	}
 
-    @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
-    public ModelAndView addProduct() {
+    @RequestMapping(value = "/addproduct/{id}", method = RequestMethod.POST)
+    public  ModelAndView addProduct(@PathVariable("id") int id) {
+        // Initilaize a new Model
+        ModelAndView model = new ModelAndView("edit/edit_tables");
 
-	    log.info("==================\n \n ========================== \n \n");
+
+        log.info("==================\n \n ========================== \n \n");
         // Declared List object products
         Product prod = new Product();
-        prod.setTable_id(41);
+        prod.setTable_id(id);
         prod.setName("");
         prod.setQuantity(0);
 
@@ -147,9 +147,12 @@ public class OrderTableController {
         // Initialize variable for redirection page
         RedirectView rv = new RedirectView();
         rv.setContextRelative(true);
-        rv.setUrl("/edit/" + 41);
+        rv.setUrl("");
 
+//        model.addObject("redirectUrl","/edit/"+id);
         return new ModelAndView(rv);
+
+//        return new ModelAndView("redirect:/tables");
 
     }
 
