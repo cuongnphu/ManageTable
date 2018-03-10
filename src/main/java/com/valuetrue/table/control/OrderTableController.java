@@ -62,8 +62,6 @@ public class OrderTableController {
 
     @RequestMapping(value = "/InfoDetail",method=RequestMethod.POST)
     public ModelAndView saveInfoDetail (@ModelAttribute("tableForm") TableForm tableForm) {
-        // Get table_id for redirect page
-//        int table_id = tableForm.getProductList().get(0).getTable_id();
 
         // Save or Update a product
         try {
@@ -130,30 +128,19 @@ public class OrderTableController {
 	}
 
     @RequestMapping(value = "/addproduct/{id}", method = RequestMethod.POST)
-    public  ModelAndView addProduct(@PathVariable("id") int id) {
-        // Initilaize a new Model
-        ModelAndView model = new ModelAndView("edit/edit_tables");
+    public @ResponseBody String addProduct(@PathVariable("id") int id) {
 
-
-        log.info("==================\n \n ========================== \n \n");
-        // Declared List object products
+        // Create product with table_id
         Product prod = new Product();
         prod.setTable_id(id);
         prod.setName("");
         prod.setQuantity(0);
 
+        // Save product
         this.prodService.saveProduct(prod);
 
-        // Initialize variable for redirection page
-        RedirectView rv = new RedirectView();
-        rv.setContextRelative(true);
-        rv.setUrl("");
-
-//        model.addObject("redirectUrl","/edit/"+id);
-        return new ModelAndView(rv);
-
-//        return new ModelAndView("redirect:/tables");
-
+        // Redirect to page
+        return "/ManageTable/edit/"+id  ;
     }
 
 }

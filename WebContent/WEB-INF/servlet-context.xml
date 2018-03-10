@@ -64,5 +64,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- 6. Define directory for resources of js , css ... -->
+	<mvc:resources mapping="/Resources/**" location="/Resources/"/>
 
 </beans>

@@ -4,37 +4,12 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Edit Order Table</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Edit Order Table</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript">
-       function myFunction(id) {
-           console.log("add product in table ...");
-           $.ajax({
-               type: "post",
-               url: "/ManageTable/addproduct/"+id,
-               success: function (data) {
+    <script src="<c:url value="/Resources/js/infodetail.js" /> "></script>
 
-                    alert('success: ' + JSON.stringify(data));
-                    // var redirect = data.
-                    // if(redirect){
-                    //     window.location.reload();
-                    // }
-                   // window.location.reload(true);
-
-               },
-               error: function(e){
-                   alert('Error: ' +JSON.stringify(e));
-               }
-
-           });
-
-       }
-
-
-    </script>
 </head>
 
 <body>
