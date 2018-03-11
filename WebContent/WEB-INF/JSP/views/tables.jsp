@@ -45,24 +45,25 @@
 			<th>Name</th>
 			<th>Pre_Weight</th>
 			<th>After_Weight</th>
-			<th> Products </th>
+			<th>Name Product | Quantity</th>
 			<th>Edit | Delete</th>
-			<%--<th>Add Printer</th>
-			<th>Add Embroidery</th>
-			<th>Add Sewing</th>
-			<th>Add Material</th>--%>
 		</tr>
-		<c:forEach items="${orderTableList}" var="ordertab">
+		<c:forEach items="${listTableForm}" var="tabform">
 			<tr>
-				<td width="60" align="center">${ordertab.name}</td>
-				<td width="60" align="center">${ordertab.pre_weight}</td>
-				<td width="60" align="center">${ordertab.after_weight}</td>
-				<td width="120" align="center"><a class="btn-primary btn-sm" href="product/${ordertab.id}">Add Product</a></td>
-				<td width="120" align="center"><a class="btn-primary btn-sm" href="edit/${ordertab.id}">Edit</a> | <a class="btn-primary btn-sm" href="delete/${ordertab.id}">Delete</a></td>
-				<%--<td width="120" align="center"><a class="btn-primary btn-sm" href="printer/${ordertab.id}">Add Printer</a></td>
-				<td width="140" align="center"><a class="btn-primary btn-sm" href="embroidery/${ordertab.id}">Add Embroidery</a></td>
-				<td width="140" align="center"><a class="btn-primary btn-sm" href="sewing/${ordertab.id}">Add Sewing</a></td>
-				<td width="140" align="center"><a class="btn-primary btn-sm" href="material/${ordertab.id}">Add Material</a></td>--%>
+                <td width="60" align="center">${tabform.orderTable.name}</td>
+                <td width="60" align="center">${tabform.orderTable.pre_weight}</td>
+                <td width="60" align="center">${tabform.orderTable.after_weight}</td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.productList}" var="prod" >
+                            <tr>
+                                <td width="60" align="center">${prod.name}</td>
+                                <td width="60" align="center">${prod.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+				<td width="120" align="center"><a class="btn-primary btn-sm" href="edit/${tabform.orderTable.id}">Edit</a> | <a class="btn-primary btn-sm" href="delete/${tabform.orderTable.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

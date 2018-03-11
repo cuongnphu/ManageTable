@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.valuetrue.table.model.Product;
 import com.valuetrue.table.model.TableForm;
+import com.valuetrue.table.service.DetailTableService;
 import com.valuetrue.table.service.ProductService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class OrderTableController {
 	private Logger log = Logger.getLogger(OrderTableController.class);
 	private OrderTableService orderTableService;
     private ProductService prodService;
+    private DetailTableService detailTableService;
+
+    @Autowired
+    public void setDetailTableService(DetailTableService detailTableService) {
+        this.detailTableService = detailTableService;
+    }
 
 	@Autowired
 	public void setOrderTableService(OrderTableService orderTableService) {
@@ -37,11 +44,14 @@ public class OrderTableController {
 
 	@RequestMapping(value="/tables", method = RequestMethod.GET)
 	public ModelAndView listOrderTables (@ModelAttribute("modeltable") OrderTable orderTable) {
+        // Initialize a ModelAndView
 		ModelAndView model = new ModelAndView("views/tables");
-		
-        List<OrderTable> orderTableList = this.orderTableService.getAllOrderTables();
-        log.info(orderTableList);
-        model.addObject("orderTableList", orderTableList);    
+
+        // Get all orderTable
+        List<TableForm> listTabForm = this.detailTableService.getAllTableForm();
+
+        // Add modelAttribute of spring-form in ModelView
+        model.addObject("listTableForm", listTabForm);
         
         return model;
 	}
@@ -62,17 +72,7 @@ public class OrderTableController {
 
     @RequestMapping(value = "/InfoDetail",method=RequestMethod.POST)
     public ModelAndView saveInfoDetail (@ModelAttribute("tableForm") TableForm tableForm) {
-
-        // Save or Update a product
-        try {
-            if (this.prodService.getProductById(tableForm.getProductList().get(0).getId()) != null) ;
-            log.info("Update a product by id = " + tableForm.getProductList().get(0).getId());
-            this.prodService.updateProduct(tableForm.getProductList().get(0));
-        } catch (EmptyResultDataAccessException e) {
-            log.info("Save a new product !!!");
-            this.prodService.saveProduct(tableForm.getProductList().get(0));
-        }
-
+	    // Save or Update orderTable
         try{
             if(this.orderTableService.getOrderTableById(tableForm.getOrderTable().getId()) != null);
             log.info("Update a orderTable by id = " + tableForm.getOrderTable().getId() );
@@ -81,6 +81,19 @@ public class OrderTableController {
             log.info("Save a new orderTable !!!");
             this.orderTableService.saveOrderTable(tableForm.getOrderTable());
         }
+
+        // Save or Update product
+        for(int i = 0 ; i < tableForm.getProductList().size(); i++){
+            try {
+                if (this.prodService.getProductById(tableForm.getProductList().get(i).getId()) != null) ;
+                log.info("Update a product by id=" + tableForm.getProductList().get(i).getId());
+                this.prodService.updateProduct(tableForm.getProductList().get(i));
+            }catch(EmptyResultDataAccessException e){
+                log.info("Save a new product !!!");
+                this.prodService.saveProduct(tableForm.getProductList().get(i));
+            }
+        }
+
 
         return new ModelAndView("redirect:/tables");
     }
@@ -96,6 +109,7 @@ public class OrderTableController {
         // Get all products by table_id
         List<Product> prodList = this.prodService.getAllProductsByTableId(id);
         log.info(prodList);
+        log.info(prodList.size());
 
         // Declared List object products
         Product prod = new Product();
@@ -111,10 +125,10 @@ public class OrderTableController {
             tableForm.setProductList(listProds);
 
         // Get all orderTable
-		List<OrderTable> orderTableList = this.orderTableService.getAllOrderTables();
-		
-		model.addObject("tableForm", tableForm);
-		model.addObject("orderTableList",orderTableList);
+        List<TableForm> listTabForm = this.detailTableService.getAllTableForm();
+
+        model.addObject("tableForm", tableForm);
+        model.addObject("listTableForm", listTabForm);
 		
 		return model;
 	}
@@ -127,20 +141,6 @@ public class OrderTableController {
 		return new ModelAndView("redirect:/tables");
 	}
 
-    @RequestMapping(value = "/addproduct/{id}", method = RequestMethod.POST)
-    public @ResponseBody String addProduct(@PathVariable("id") int id) {
 
-        // Create product with table_id
-        Product prod = new Product();
-        prod.setTable_id(id);
-        prod.setName("");
-        prod.setQuantity(0);
-
-        // Save product
-        this.prodService.saveProduct(prod);
-
-        // Redirect to page
-        return "/ManageTable/edit/"+id  ;
-    }
 
 }

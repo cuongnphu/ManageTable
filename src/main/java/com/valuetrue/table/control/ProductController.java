@@ -8,10 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -120,7 +117,7 @@ public class ProductController {
 		return model;
 	}
 
-	@RequestMapping(value = "/product/{table_id}/delete/{id}")
+	@RequestMapping(value = "/edit/{table_id}/delete/{id}")
 	public ModelAndView deleteProduct( @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
 		// Delete a product by parameter Id
 		log.info("Delete an product by id = " + id);
@@ -129,9 +126,24 @@ public class ProductController {
 		// Initialize variable for redirection page
 		RedirectView rv = new RedirectView();
 		rv.setContextRelative(true);
-		rv.setUrl("/product/" + table_id);
+		rv.setUrl("/edit/" + table_id);
 
 		return new ModelAndView(rv);
+	}
+
+	@RequestMapping(value = "/addproduct/{id}", method = RequestMethod.POST)
+	public @ResponseBody String addProduct(@PathVariable("id") int id) {
+		// Create a product with table_id
+		Product prod = new Product();
+		prod.setTable_id(id);
+		prod.setName("");
+		prod.setQuantity(0);
+
+		// Save product
+		this.prodService.saveProduct(prod);
+
+		// Redirect to page
+		return "/ManageTable/edit/"+id  ;
 	}
 
 }
