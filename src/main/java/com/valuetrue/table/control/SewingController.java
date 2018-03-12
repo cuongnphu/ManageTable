@@ -9,10 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -21,7 +18,6 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "/sewing")
 public class SewingController {
 
     private Logger log = Logger.getLogger(SewingController.class);
@@ -38,99 +34,115 @@ public class SewingController {
         this.sewingService = sewingService;
     }
 
-    @RequestMapping(value = "/{table_id}")
-    public ModelAndView listSewings(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
-        // Initialize a new ModelView
-        ModelAndView model = new ModelAndView("views/sewings");
+//    @RequestMapping(value = "/{table_id}")
+//    public ModelAndView listSewings(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
+//        // Initialize a new ModelView
+//        ModelAndView model = new ModelAndView("views/sewings");
+//
+//        // Declared object orderTable
+//        OrderTable orderTab = this.orderTableService.getOrderTableById(table_id);
+//
+//        // Declared List object Sewing
+//        Sewing sew = new Sewing();
+//        sew.setTable_id(table_id);
+//        List<Sewing> formSewingList = new ArrayList<Sewing>();
+//        formSewingList.add(sew);
+//
+//        // Setter for modelAttribute object
+//        tableForm.setOrderTable(orderTab);
+//        tableForm.setSewingList(formSewingList);
+//
+//        // Get object sewingList by table_id
+//        List<Sewing> objSewingList = this.sewingService.getAllSewingsByTableId(table_id);
+//        log.info(objSewingList);
+//
+//        // Add to modelAttribute of spring-form in ModelView
+//        model.addObject("tableForm", tableForm);
+//        model.addObject("sewingList", objSewingList);
+//
+//        return model;
+//
+//    }
+//
+//    @RequestMapping(value = "", method = RequestMethod.POST)
+//    public ModelAndView saveSewing(@ModelAttribute("tableForm") TableForm tableForm) {
+//        // Get table_id for redirect page
+//        int table_id = tableForm.getSewingList().get(0).getTable_id();
+//
+//        // Save or Update a sewing
+//        try {
+//            if (this.sewingService.getSewingById(tableForm.getSewingList().get(0).getId()) != null) ;
+//            log.info("Update a sewing by id = " + tableForm.getSewingList().get(0).getId());
+//            this.sewingService.updateSewing( tableForm.getSewingList().get(0) );
+//        } catch (EmptyResultDataAccessException e) {
+//            log.info("Save a new sewing !!!");
+//            this.sewingService.saveSewing( tableForm.getSewingList().get(0));
+//        }
+//
+//        // Initialize variable for redirection page
+//        RedirectView rv = new RedirectView();
+//        rv.setContextRelative(true);
+//        rv.setUrl("/sewing/" + table_id);
+//
+//        return new ModelAndView(rv);
+//
+//    }
+//
+//    @RequestMapping(value = "/{table_id}/edit/{id}")
+//    public ModelAndView editSewing(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
+//        // Initialzie a new ModelView
+//        ModelAndView model = new ModelAndView("edit/edit_sewings");
+//
+//        // Declared object orderTable
+//        OrderTable orderTab = this.orderTableService.getOrderTableById(table_id);
+//
+//        // Get Sewing by parameter id
+//        Sewing sew = this.sewingService.getSewingById(id);
+//        List<Sewing> formSewingList = new ArrayList<Sewing>();
+//        formSewingList.add(sew);
+//
+//        // Setter for modelAttribute object
+//        tableForm.setOrderTable(orderTab);
+//        tableForm.setSewingList(formSewingList);
+//
+//        // Get object SewingList by parameter table_id
+//        List<Sewing> objSewingList = this.sewingService.getAllSewingsByTableId(table_id);
+//
+//        // Add modelAttribute of spring-form in ModelView
+//        model.addObject("tableForm", tableForm);
+//        model.addObject("sewingList", objSewingList);
+//
+//        return model;
+//    }
 
-        // Declared object orderTable
-        OrderTable orderTab = this.orderTableService.getOrderTableById(table_id);
-
-        // Declared List object Sewing
-        Sewing sew = new Sewing();
-        sew.setTable_id(table_id);
-        List<Sewing> formSewingList = new ArrayList<Sewing>();
-        formSewingList.add(sew);
-
-        // Setter for modelAttribute object
-        tableForm.setOrderTable(orderTab);
-        tableForm.setSewingList(formSewingList);
-
-        // Get object sewingList by table_id
-        List<Sewing> objSewingList = this.sewingService.getAllSewingsByTableId(table_id);
-        log.info(objSewingList);
-
-        // Add to modelAttribute of spring-form in ModelView
-        model.addObject("tableForm", tableForm);
-        model.addObject("sewingList", objSewingList);
-
-        return model;
-
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ModelAndView saveSewing(@ModelAttribute("tableForm") TableForm tableForm) {
-        // Get table_id for redirect page
-        int table_id = tableForm.getSewingList().get(0).getTable_id();
-
-        // Save or Update a sewing
-        try {
-            if (this.sewingService.getSewingById(tableForm.getSewingList().get(0).getId()) != null) ;
-            log.info("Update a sewing by id = " + tableForm.getSewingList().get(0).getId());
-            this.sewingService.updateSewing( tableForm.getSewingList().get(0) );
-        } catch (EmptyResultDataAccessException e) {
-            log.info("Save a new sewing !!!");
-            this.sewingService.saveSewing( tableForm.getSewingList().get(0));
-        }
-
-        // Initialize variable for redirection page
-        RedirectView rv = new RedirectView();
-        rv.setContextRelative(true);
-        rv.setUrl("/sewing/" + table_id);
-
-        return new ModelAndView(rv);
-
-    }
-
-    @RequestMapping(value = "/{table_id}/edit/{id}")
-    public ModelAndView editSewing(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
-        // Initialzie a new ModelView
-        ModelAndView model = new ModelAndView("edit/edit_sewings");
-
-        // Declared object orderTable
-        OrderTable orderTab = this.orderTableService.getOrderTableById(table_id);
-
-        // Get Sewing by parameter id
-        Sewing sew = this.sewingService.getSewingById(id);
-        List<Sewing> formSewingList = new ArrayList<Sewing>();
-        formSewingList.add(sew);
-
-        // Setter for modelAttribute object
-        tableForm.setOrderTable(orderTab);
-        tableForm.setSewingList(formSewingList);
-
-        // Get object SewingList by parameter table_id
-        List<Sewing> objSewingList = this.sewingService.getAllSewingsByTableId(table_id);
-
-        // Add modelAttribute of spring-form in ModelView
-        model.addObject("tableForm", tableForm);
-        model.addObject("sewingList", objSewingList);
-
-        return model;
-    }
-
-    @RequestMapping(value = "/{table_id}/delete/{id}")
-    public ModelAndView deleteEmbroidery(@PathVariable("id") int id, @PathVariable("table_id") int table_id) {
-        // Delete a printer by parameter Id
+    @RequestMapping(value = "/edit/sewing/{table_id}/delete/{id}")
+    public ModelAndView deleteSewing(@PathVariable("id") int id, @PathVariable("table_id") int table_id) {
+        // Delete a sewing by parameter Id
         log.info("Delete an sewing by id = " + id);
         this.sewingService.deleteSewing(id);
 
         // Initialize variable for redirection page
         RedirectView rv = new RedirectView();
         rv.setContextRelative(true);
-        rv.setUrl("/sewing/" + table_id);
+        rv.setUrl("/edit/" + table_id);
 
         return new ModelAndView(rv);
+    }
+
+    @RequestMapping(value = "/addSewing/{id}", method = RequestMethod.POST)
+    public @ResponseBody String addSewing(@PathVariable("id") int id) {
+        // Create a Sewing with table_id
+        Sewing sew = new Sewing();
+        sew.setTable_id(id);
+        sew.setName("");
+        sew.setPrice(0);
+        sew.setQuantity(0);
+
+        // Save sewing
+        this.sewingService.saveSewing(sew);
+
+        // Redirect to page
+        return "/ManageTable/edit/"+id  ;
     }
 
 }

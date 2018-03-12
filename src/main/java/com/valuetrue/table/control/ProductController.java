@@ -117,7 +117,7 @@ public class ProductController {
 		return model;
 	}
 
-	@RequestMapping(value = "/edit/{table_id}/delete/{id}")
+	@RequestMapping(value = "/edit/product/{table_id}/delete/{id}")
 	public ModelAndView deleteProduct( @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
 		// Delete a product by parameter Id
 		log.info("Delete an product by id = " + id);

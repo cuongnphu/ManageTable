@@ -10,10 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -39,7 +36,7 @@ public class PrinterController {
     }
 
 
-    @RequestMapping(value = "/printer/{table_id}")
+    @RequestMapping(value = "/{table_id}")
     public ModelAndView listPrinters(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("table_id") int table_id) {
         // Initialize a new ModelView
         ModelAndView model = new ModelAndView("views/printers");
@@ -69,7 +66,7 @@ public class PrinterController {
 
     }
 
-    @RequestMapping(value = "/printer", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView savePrinter(@ModelAttribute("tableForm") TableForm tableForm) {
         // Get table_id for redirect page
         int table_id = tableForm.getPrinterList().get(0).getTable_id();
@@ -93,7 +90,7 @@ public class PrinterController {
 
     }
 
-    @RequestMapping(value = "/printer/{table_id}/edit/{id}")
+    @RequestMapping(value = "/{table_id}/edit/{id}")
     public ModelAndView editPrinter(@ModelAttribute("tableForm") TableForm tableForm, @PathVariable("id") int id, @PathVariable("table_id") int table_id) {
         // Initialzie a new ModelView
         ModelAndView model = new ModelAndView("edit/edit_printers");
@@ -120,19 +117,34 @@ public class PrinterController {
         return model;
     }
 
-    @RequestMapping(value = "/printer/{table_id}/delete/{id}")
+    @RequestMapping(value = "/edit/printer/{table_id}/delete/{id}")
     public ModelAndView deletePrinter(@PathVariable("id") int id, @PathVariable("table_id") int table_id) {
         // Delete a printer by parameter Id
-        log.info("Delete an product by id = " + id);
+        log.info("Delete an printer by id = " + id);
         this.printerService.deletePrinter(id);
 
         // Initialize variable for redirection page
         RedirectView rv = new RedirectView();
         rv.setContextRelative(true);
-        rv.setUrl("/printer/" + table_id);
+        rv.setUrl("/edit/" + table_id);
 
         return new ModelAndView(rv);
     }
 
+    @RequestMapping(value = "/addprinter/{id}", method = RequestMethod.POST)
+    public @ResponseBody String addPrinter(@PathVariable("id") int id) {
+        // Create a printer with table_id
+        Printer print = new Printer();
+        print.setTable_id(id);
+        print.setName("");
+        print.setPrice(0);
+        print.setQuantity(0);
+
+        // Save printer
+        this.printerService.savePrinter(print);
+
+        // Redirect to page
+        return "/ManageTable/edit/"+id  ;
+    }
 
 }

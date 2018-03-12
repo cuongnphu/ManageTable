@@ -46,6 +46,9 @@
 			<th>Pre_Weight</th>
 			<th>After_Weight</th>
 			<th>Name Product | Quantity</th>
+            <th>Printer | Price | Quantity</th>
+            <th>Embroidery | Price | Quantity</th>
+            <th>Sewing | Price | Quantity</th>
 			<th>Edit | Delete</th>
 		</tr>
 		<c:forEach items="${listTableForm}" var="tabform">
@@ -59,6 +62,39 @@
                             <tr>
                                 <td width="60" align="center">${prod.name}</td>
                                 <td width="60" align="center">${prod.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.printerList}" var="print" >
+                            <tr>
+                                <td width="60" align="center">${print.name}</td>
+                                <td width="60" align="center">${print.price}</td>
+                                <td width="60" align="center">${print.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.embroideryList}" var="embroid" >
+                            <tr>
+                                <td width="60" align="center">${embroid.name}</td>
+                                <td width="60" align="center">${embroid.price}</td>
+                                <td width="60" align="center">${embroid.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.sewingList}" var="sew" >
+                            <tr>
+                                <td width="60" align="center">${sew.name}</td>
+                                <td width="60" align="center">${sew.price}</td>
+                                <td width="60" align="center">${sew.quantity}</td>
                             </tr>
                         </c:forEach>
                     </table>

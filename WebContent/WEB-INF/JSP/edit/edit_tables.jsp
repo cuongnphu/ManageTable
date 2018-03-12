@@ -14,7 +14,7 @@
 	<h3> Edit Information OrderTable </h3>
 	<form:form method="post" action="/ManageTable/InfoDetail" modelAttribute="tableForm">
 		<div class="table-responsive">
-			<table class="table table-bordered" style="width: 1200px">
+			<table class="table table-bordered" style="width: 1400px">
 				<tr>
 					<form:input type="text" path="orderTable.id" readonly="true" hidden="true" />
 				</tr>
@@ -23,6 +23,9 @@
                     <th>Pre_Weight</th>
                     <th>After_Weight</th>
                     <th>Name Product | Quantity</th>
+                    <th>Printer | Price | Quantity</th>
+                    <th>Embroidery | Price | Quantity</th>
+                    <th>Sewing | Price | Quantity</th>
                 </tr>
 				<tr>
 					<td><form:input type="text" path="orderTable.name" /></td>
@@ -36,11 +39,56 @@
                                     <form:input type="text" path="productList[${status.index}].table_id" readonly="true" hidden="true" />
                                     <td><form:input type="text" path="productList[${status.index}].name" /></td>
                                     <td><form:input type="text" path="productList[${status.index}].quantity" /></td>
-                                    <td><a class="btn-primary btn-sm" href="${prod.table_id}/delete/${prod.id}">-</a></td>
+                                    <td><a class="btn-primary btn-sm" href="product/${prod.table_id}/delete/${prod.id}">-</a></td>
                                 </tr>
                             </c:forEach>
                         </table>
-                        <a class="btn btn-primary btn-sm" onclick="myFunction(${tableForm.orderTable.id})">add product</a>
+                        <a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add product</a>
+                    </td>
+                    <td>
+                        <table class="table table-bordered">
+                            <c:forEach items="${tableForm.printerList}" var="print" varStatus="status">
+                                <tr>
+                                    <form:input type="text" path="printerList[${status.index}].id" readonly="true" hidden="true" />
+                                    <form:input type="text" path="printerList[${status.index}].table_id" readonly="true" hidden="true" />
+                                    <td><form:input type="text" path="printerList[${status.index}].name" /></td>
+                                    <td><form:input type="text" path="printerList[${status.index}].price" /></td>
+                                    <td><form:input type="text" path="printerList[${status.index}].quantity" /></td>
+                                    <td><a class="btn-primary btn-sm" href="printer/${print.table_id}/delete/${print.id}">-</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                        <a class="btn btn-primary btn-sm" onclick="addPrinter(${tableForm.orderTable.id})">add printer</a>
+                    </td>
+                    <td>
+                        <table class="table table-bordered">
+                            <c:forEach items="${tableForm.embroideryList}" var="embroid" varStatus="status">
+                                <tr>
+                                    <form:input type="text" path="embroideryList[${status.index}].id" readonly="true" hidden="true" />
+                                    <form:input type="text" path="embroideryList[${status.index}].table_id" readonly="true" hidden="true" />
+                                    <td><form:input type="text" path="embroideryList[${status.index}].name" /></td>
+                                    <td><form:input type="text" path="embroideryList[${status.index}].price" /></td>
+                                    <td><form:input type="text" path="embroideryList[${status.index}].quantity" /></td>
+                                    <td><a class="btn-primary btn-sm" href="embroidery/${embroid.table_id}/delete/${embroid.id}">-</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                        <a class="btn btn-primary btn-sm" onclick="addEmbroidery(${tableForm.orderTable.id})">add embroidery</a>
+                    </td>
+                    <td>
+                        <table class="table table-bordered">
+                            <c:forEach items="${tableForm.sewingList}" var="sew" varStatus="status">
+                                <tr>
+                                    <form:input type="text" path="sewingList[${status.index}].id" readonly="true" hidden="true" />
+                                    <form:input type="text" path="sewingList[${status.index}].table_id" readonly="true" hidden="true" />
+                                    <td><form:input type="text" path="sewingList[${status.index}].name" /></td>
+                                    <td><form:input type="text" path="sewingList[${status.index}].price" /></td>
+                                    <td><form:input type="text" path="sewingList[${status.index}].quantity" /></td>
+                                    <td><a class="btn-primary btn-sm" href="sewing/${sew.table_id}/delete/${sew.id}">-</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                        <a class="btn btn-primary btn-sm" onclick="addSewing(${tableForm.orderTable.id})">add Sewing</a>
                     </td>
 				</tr>
 				<tr>
@@ -58,6 +106,9 @@
             <th>Pre_Weight</th>
             <th>After_Weight</th>
             <th>Name Product | Quantity</th>
+            <th>Printer | Price | Quantity</th>
+            <th>Embroidery | Price | Quantity</th>
+            <th>Sewing | Price | Quantity</th>
         </tr>
         <c:forEach items="${listTableForm}" var="tabform" >
             <tr>
@@ -70,6 +121,39 @@
                             <tr>
                                 <td width="60" align="center">${prod.name}</td>
                                 <td width="60" align="center">${prod.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.printerList}" var="print" >
+                            <tr>
+                                <td width="60" align="center">${print.name}</td>
+                                <td width="60" align="center">${print.price}</td>
+                                <td width="60" align="center">${print.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.embroideryList}" var="embroid" >
+                            <tr>
+                                <td width="60" align="center">${embroid.name}</td>
+                                <td width="60" align="center">${embroid.price}</td>
+                                <td width="60" align="center">${embroid.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.sewingList}" var="sew" >
+                            <tr>
+                                <td width="60" align="center">${sew.name}</td>
+                                <td width="60" align="center">${sew.price}</td>
+                                <td width="60" align="center">${sew.quantity}</td>
                             </tr>
                         </c:forEach>
                     </table>
