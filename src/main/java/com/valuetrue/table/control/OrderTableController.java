@@ -25,6 +25,7 @@ public class OrderTableController {
     private PrinterService printerService;
     private EmbroideryService embroideryService;
     private SewingService sewingService;
+    private MaterialServie materialServie;
 
     @Autowired
     public void setDetailTableService(DetailTableService detailTableService) {
@@ -54,6 +55,11 @@ public class OrderTableController {
     @Autowired
     public void setSewingService(SewingService sewingService) {
         this.sewingService = sewingService;
+    }
+
+    @Autowired
+    public void setMaterialServie(MaterialServie materialServie) {
+        this.materialServie = materialServie;
     }
 
 	@RequestMapping(value="/tables", method = RequestMethod.GET)
@@ -144,6 +150,18 @@ public class OrderTableController {
             }
         }
 
+        // Save or Update material
+        for(int i = 0 ; i < tableForm.getMaterialList().size(); i++){
+            try {
+                if (this.materialServie.getMaterialById(tableForm.getMaterialList().get(i).getId()) != null) ;
+                log.info("Update a material by id=" + tableForm.getMaterialList().get(i).getId());
+                this.materialServie.updateMaterial(tableForm.getMaterialList().get(i));
+            }catch(EmptyResultDataAccessException e){
+                log.info("Save a new material !!!");
+                this.materialServie.saveMaterial(tableForm.getMaterialList().get(i));
+            }
+        }
+
         return new ModelAndView("redirect:/tables");
     }
 
@@ -170,6 +188,10 @@ public class OrderTableController {
         // Get List Sewings by table_id
         List<Sewing> sewingListByTableId = this.sewingService.getAllSewingsByTableId(id);
         log.info(sewingListByTableId);
+
+        // Get List Material by table_id
+        List<Material> materialListByTableId = this.materialServie.getAllMaterialsByTableId(id);
+        log.info(materialListByTableId);
 
         // Setter for modelAttribute object
         tableForm.setOrderTable(orderTab);
@@ -215,6 +237,16 @@ public class OrderTableController {
             List<Sewing> listSews = new ArrayList<Sewing>();
             listSews.add(sew);
             tableForm.setSewingList(listSews);
+        }
+
+        if(materialListByTableId.size()>0)
+            tableForm.setMaterialList(materialListByTableId);
+        else{
+            Material mate = new Material();
+            mate.setTable_id(id);
+            List<Material> listMates = new ArrayList<Material>();
+            listMates.add(mate);
+            tableForm.setMaterialList(listMates);
         }
 
         // Get all orderTable detail

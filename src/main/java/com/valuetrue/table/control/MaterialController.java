@@ -130,17 +130,17 @@ public class MaterialController {
         return new ModelAndView(rv);
     }
 
-    @RequestMapping(value = "/addSewing/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/addMaterial/{id}", method = RequestMethod.POST)
     public @ResponseBody String addMaterial(@PathVariable("id") int id) {
         // Create a Material with table_id
         Material mate = new Material();
         mate.setTable_id(id);
         mate.setName("");
-//        mate.setWeight(0);
+        mate.setWeight(0f);
         mate.setNum_class(0);
         mate.setQuantity(0);
 
-        // Save sewing
+        // Save material
         this.materialServie.saveMaterial(mate);
 
         // Redirect to page
