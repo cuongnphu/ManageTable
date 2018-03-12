@@ -67,3 +67,20 @@ function addSewing(id) {
         }
     });
 }
+
+function addMaterial(id) {
+    console.log("add material in table ...");
+    $.ajax({
+        type: "post",
+        url: "/ManageTable/addMaterial/"+id,
+        success: function (data) {
+            var redirect =  data;
+            if(redirect){
+                window.location.replace(redirect);
+            }
+        },
+        error: function(e){
+            alert('Error: ' +JSON.stringify(e));
+        }
+    });
+}

@@ -49,6 +49,7 @@
             <th>Printer | Price | Quantity</th>
             <th>Embroidery | Price | Quantity</th>
             <th>Sewing | Price | Quantity</th>
+            <th>Material | Weight | Num_Class | Quantity</th>
 			<th>Edit | Delete</th>
 		</tr>
 		<c:forEach items="${listTableForm}" var="tabform">
@@ -95,6 +96,18 @@
                                 <td width="60" align="center">${sew.name}</td>
                                 <td width="60" align="center">${sew.price}</td>
                                 <td width="60" align="center">${sew.quantity}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered">
+                        <c:forEach items="${tabform.materialList}" var="material" >
+                            <tr>
+                                <td width="60" align="center">${material.name}</td>
+                                <td width="60" align="center">${material.weight}</td>
+                                <td width="60" align="center">${material.num_class}</td>
+                                <td width="60" align="center">${material.quantity}</td>
                             </tr>
                         </c:forEach>
                     </table>
