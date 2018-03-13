@@ -9,24 +9,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="<c:url value="/Resources/js/infodetail.js" /> "></script>
+    <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> " />
 </head>
 <body>
 	<h3> Edit Information OrderTable </h3>
 	<form:form method="post" action="/ManageTable/InfoDetail" modelAttribute="tableForm">
 		<div class="table-responsive">
-			<table class="table table-bordered" style="width: 1400px">
+			<table class="table table-bordered" style="width: 1400px;">
 				<tr>
 					<form:input type="text" path="orderTable.id" readonly="true" hidden="true" />
 				</tr>
                 <tr>
-                    <th>Name</th>
-                    <th>Pre_Weight</th>
-                    <th>After_Weight</th>
-                    <th>Name Product | Quantity</th>
-                    <th>Printer | Price | Quantity</th>
-                    <th>Embroidery | Price | Quantity</th>
-                    <th>Sewing | Price | Quantity</th>
-                    <th>Material | Weight | Num_Class | Quantity</th>
+                    <th width="65px;">Name</th>
+                    <th width="65px;">Pre Weight</th>
+                    <th width="65px;">After Weight</th>
+                    <th width="120px;">Name Product | Quantity</th>
+                    <th width="65px;">Printer | Price | Quantity</th>
+                    <th width="65px;">Embroidery | Price | Quantity</th>
+                    <th width="65px;">Sewing | Price | Quantity</th>
+                    <th width="65px;">Material | Weight | Num_Class | Quantity</th>
                 </tr>
 				<tr>
 					<td><form:input type="text" path="orderTable.name" /></td>
@@ -109,6 +110,13 @@
                     </td>
 				</tr>
 				<tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td><button class="btn btn-primary btn-sm" type="submit">Submit</button> | <a class="btn btn-primary btn-sm" onclick="window.location.replace('/ManageTable/tables')" >Cancel</a> </td>
 				</tr>
 			</table>
@@ -117,8 +125,8 @@
 	<br>
 	<br>
     <h3> List Detail Information Table </h3>
-    <table class="table table-bordered" style="width: 1400px">
-        <tr>
+    <table class="table table-bordered" id="tb-list" style="width: 1400px">
+        <tr class="tb-row">
             <th>Name</th>
             <th>Pre_Weight</th>
             <th>After_Weight</th>
@@ -129,7 +137,7 @@
             <th>Material | Weight | Num_Class | Quantity</th>
         </tr>
         <c:forEach items="${listTableForm}" var="tabform" >
-            <tr>
+            <tr class="tb-row">
                 <td width="60" align="center">${tabform.orderTable.name}</td>
                 <td width="60" align="center">${tabform.orderTable.pre_weight}</td>
                 <td width="60" align="center">${tabform.orderTable.after_weight}</td>

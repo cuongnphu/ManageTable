@@ -1,0 +1,7 @@
+table td input{
+    width: 100%;
+}
+
+#tb-list .tb-row:nth-child(2n+1) {
+    background: #F4F4F4;
+}
