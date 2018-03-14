@@ -7,7 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Edit Information OrderTable</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>--%>
+    <%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>--%>
+
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     <script src="<c:url value="/Resources/js/infodetail.js" /> "></script>
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> " />
 </head>
@@ -34,33 +39,28 @@
                     <td><form:input type="text" path="orderTable.pre_weight" /></td>
                     <td><form:input type="text" path="orderTable.after_weight" /></td>
                     <td>
-                        <div>
+                        <div class="container-fluid">
                             <c:forEach items="${tableForm.productList}" var="prod" varStatus="status">
-                                <div>
-                                    <div style="float: left;width: 90%">
+                                <div class="row">
+                                    <div  class="col-sm-10">
                                         <form:input type="text" path="productList[${status.index}].id" readonly="true"
                                                     hidden="true"/>
                                         <form:input type="text" path="productList[${status.index}].table_id"
                                                     readonly="true"
                                                     hidden="true"/>
                                         <form:input type="text" path="productList[${status.index}].name"/>
-                                        <br>
+                                        <br><br>
                                         <form:input type="text" path="productList[${status.index}].quantity"/>
                                     </div>
-                                    <div style="float: right;width: 8%">
-                                        <a class="btn-primary btn-sm"
-                                           href="product/${prod.table_id}/delete/${prod.id}">-</a>
+                                    <div  class="col-sm-2">
+                                        <a class="btn-primary btn-xs" href="product/${prod.table_id}/delete/${prod.id}">-</a>
                                     </div>
                                 </div>
-                                <div>
-                                    <hr size="1" style="color: lightslategrey;border: blue"/>
-                                    <br>
-                                </div>
+                                <hr size="1" style="color: lightslategrey;border: solid 1px"/>
                             </c:forEach>
                         </div>
                         <div>
-                            <a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add
-                                product</a>
+                            <a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add product</a>
                         </div>
                     </td>
                     <td>
