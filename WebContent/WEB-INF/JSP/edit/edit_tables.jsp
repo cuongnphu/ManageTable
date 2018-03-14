@@ -20,32 +20,48 @@
 					<form:input type="text" path="orderTable.id" readonly="true" hidden="true" />
 				</tr>
                 <tr>
-                    <th width="65px;">Name</th>
-                    <th width="65px;">Pre Weight</th>
-                    <th width="65px;">After Weight</th>
-                    <th width="120px;">Name Product | Quantity</th>
-                    <th width="65px;">Printer | Price | Quantity</th>
-                    <th width="65px;">Embroidery | Price | Quantity</th>
-                    <th width="65px;">Sewing | Price | Quantity</th>
-                    <th width="65px;">Material | Weight | Num_Class | Quantity</th>
+                    <th width="5%">Name</th>
+                    <th width="3%;">Pre Weight</th>
+                    <th width="3%;">After Weight</th>
+                    <th width="15%;">Name Product | Quantity</th>
+                    <th width="18%;">Printer | Price | Quantity</th>
+                    <th width="18%;">Embroidery | Price | Quantity</th>
+                    <th width="18%;">Sewing | Price | Quantity</th>
+                    <th width="20%;">Material | Weight | Num_Class | Quantity</th>
                 </tr>
 				<tr>
 					<td><form:input type="text" path="orderTable.name" /></td>
                     <td><form:input type="text" path="orderTable.pre_weight" /></td>
                     <td><form:input type="text" path="orderTable.after_weight" /></td>
                     <td>
-                        <table class="table table-bordered">
+                        <div>
                             <c:forEach items="${tableForm.productList}" var="prod" varStatus="status">
-                                <tr>
-                                    <form:input type="text" path="productList[${status.index}].id" readonly="true" hidden="true" />
-                                    <form:input type="text" path="productList[${status.index}].table_id" readonly="true" hidden="true" />
-                                    <td><form:input type="text" path="productList[${status.index}].name" /></td>
-                                    <td><form:input type="text" path="productList[${status.index}].quantity" /></td>
-                                    <td><a class="btn-primary btn-sm" href="product/${prod.table_id}/delete/${prod.id}">-</a></td>
-                                </tr>
+                                <div>
+                                    <div style="float: left;width: 90%">
+                                        <form:input type="text" path="productList[${status.index}].id" readonly="true"
+                                                    hidden="true"/>
+                                        <form:input type="text" path="productList[${status.index}].table_id"
+                                                    readonly="true"
+                                                    hidden="true"/>
+                                        <form:input type="text" path="productList[${status.index}].name"/>
+                                        <br>
+                                        <form:input type="text" path="productList[${status.index}].quantity"/>
+                                    </div>
+                                    <div style="float: right;width: 8%">
+                                        <a class="btn-primary btn-sm"
+                                           href="product/${prod.table_id}/delete/${prod.id}">-</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <hr size="1" style="color: lightslategrey;border: blue"/>
+                                    <br>
+                                </div>
                             </c:forEach>
-                        </table>
-                        <a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add product</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add
+                                product</a>
+                        </div>
                     </td>
                     <td>
                         <table class="table table-bordered">
@@ -110,14 +126,7 @@
                     </td>
 				</tr>
 				<tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button class="btn btn-primary btn-sm" type="submit">Submit</button> | <a class="btn btn-primary btn-sm" onclick="window.location.replace('/ManageTable/tables')" >Cancel</a> </td>
+                    <td colspan="8" align="right"><button class="btn btn-primary btn-sm" type="submit">Submit</button> | <a class="btn btn-primary btn-sm" onclick="window.location.replace('/ManageTable/tables')" >Cancel</a> </td>
 				</tr>
 			</table>
 		</div>
