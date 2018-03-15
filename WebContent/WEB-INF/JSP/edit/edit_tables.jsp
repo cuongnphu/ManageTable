@@ -8,8 +8,41 @@
     <title>Edit Information OrderTable</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="<c:url value="/Resources/js/infodetail.js" /> "></script>
+    <%--<script src="<c:url value="/Resources/js/infodetail.js" /> "></script>--%>
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> " />
+    <script type="text/javascript">
+        function addTest(id) {
+            var div = document.getElementById("myProduct");
+            var divrow = document.createElement("div");
+            divrow.className = "row";
+            var divleft = document.createElement("div");
+            divleft.className = "p-0";
+            divleft.style = "float: left;width: 90%";
+            var inputid = document.createElement("input");
+            inputid.type = "text";
+            inputid.name = "productList[1].id";
+            inputid.readOnly = "true";
+            inputid.hidden = "true";
+            var inputtableid = document.createElement("input");
+            inputtableid.type = "text";
+            inputtableid.name = "productList[1].table_id";
+            inputtableid.readOnly = "true";
+            inputtableid.hidden = "true";
+            var inputName = document.createElement("input");
+            inputName.type = "text";
+            inputName.name = "productList[1].name";
+            var inputQuantity = document.createElement("input");
+            inputQuantity.type = "text";
+            inputQuantity.name = "productList[1].quantity";
+            divleft.appendChild(inputid);
+            divleft.appendChild(inputtableid);
+            divleft.appendChild(inputName);
+            divleft.appendChild(inputQuantity);
+            divrow.appendChild(divleft);
+            div.appendChild(divrow);
+
+        }
+    </script>
 </head>
 <body>
 	<h3> Edit Information OrderTable </h3>
@@ -34,7 +67,7 @@
                     <td><form:input type="text" path="orderTable.pre_weight" /></td>
                     <td><form:input type="text" path="orderTable.after_weight" /></td>
                     <td>
-                        <div class="container-fluid">
+                        <div id="myProduct" class="container-fluid">
                             <c:forEach items="${tableForm.productList}" var="prod" varStatus="status">
                                 <div class="row">
                                     <div style="float: left;width: 90%" class="p-0">
@@ -55,7 +88,8 @@
                             </c:forEach>
                         </div>
                         <div>
-                            <a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add product</a>
+                            <%--<a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add product</a>--%>
+                            <a class="btn btn-primary btn-sm" onclick="addTest(${tableForm.orderTable.id})">add product</a>
                         </div>
                     </td>
                     <td>

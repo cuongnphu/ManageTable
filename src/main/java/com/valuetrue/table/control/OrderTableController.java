@@ -28,9 +28,7 @@ public class OrderTableController {
     private MaterialServie materialServie;
 
     @Autowired
-    public void setDetailTableService(DetailTableService detailTableService) {
-        this.detailTableService = detailTableService;
-    }
+    public void setDetailTableService(DetailTableService detailTableService) { this.detailTableService = detailTableService; }
 
 	@Autowired
 	public void setOrderTableService(OrderTableService orderTableService) {
@@ -48,9 +46,7 @@ public class OrderTableController {
     }
 
     @Autowired
-    public void setEmbroideryService(EmbroideryService embroideryService) {
-        this.embroideryService = embroideryService;
-    }
+    public void setEmbroideryService(EmbroideryService embroideryService) { this.embroideryService = embroideryService; }
 
     @Autowired
     public void setSewingService(SewingService sewingService) {
