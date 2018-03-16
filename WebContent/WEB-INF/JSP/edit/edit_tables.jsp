@@ -11,36 +11,49 @@
     <%--<script src="<c:url value="/Resources/js/infodetail.js" /> "></script>--%>
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> " />
     <script type="text/javascript">
-        function addTest(id) {
+        var count = 0;
+        var index = 0;
+        function addTest(id,intIndex) {
+            index = intIndex + count;
             var div = document.getElementById("myProduct");
             var divrow = document.createElement("div");
             divrow.className = "row";
+            divrow.id = index;
             var divleft = document.createElement("div");
             divleft.className = "p-0";
             divleft.style = "float: left;width: 90%";
             var inputid = document.createElement("input");
+            inputid.id = "productList"+index+".id";
             inputid.type = "text";
-            inputid.name = "productList[1].id";
+            inputid.name = "productList["+index+"].id";
             inputid.readOnly = "true";
             inputid.hidden = "true";
+            inputid.value = 0;
             var inputtableid = document.createElement("input");
+            inputtableid.id = "productList"+index+".table_id";
             inputtableid.type = "text";
-            inputtableid.name = "productList[1].table_id";
+            inputtableid.name = "productList["+index+"].table_id";
             inputtableid.readOnly = "true";
             inputtableid.hidden = "true";
+            inputtableid.value = id;
             var inputName = document.createElement("input");
+            inputName.id = "productList"+index+".name";
             inputName.type = "text";
-            inputName.name = "productList[1].name";
+            inputName.name = "productList["+index+"].name";
             var inputQuantity = document.createElement("input");
+            inputQuantity.id = "productList"+index+".quantity";
             inputQuantity.type = "text";
-            inputQuantity.name = "productList[1].quantity";
+            inputQuantity.name = "productList["+index+"].quantity";
+            var br = document.createElement("br");
             divleft.appendChild(inputid);
             divleft.appendChild(inputtableid);
             divleft.appendChild(inputName);
+            divleft.appendChild(br);
             divleft.appendChild(inputQuantity);
             divrow.appendChild(divleft);
             div.appendChild(divrow);
-
+            div.appendChild(br);
+            count++;
         }
     </script>
 </head>
@@ -89,7 +102,7 @@
                         </div>
                         <div>
                             <%--<a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add product</a>--%>
-                            <a class="btn btn-primary btn-sm" onclick="addTest(${tableForm.orderTable.id})">add product</a>
+                            <a class="btn btn-primary btn-sm" onclick="addTest(${tableForm.orderTable.id},${tableForm.productList.size()})">add product</a>
                         </div>
                     </td>
                     <td>
