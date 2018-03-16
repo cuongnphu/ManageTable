@@ -50,11 +50,29 @@
             divleft.appendChild(inputName);
             divleft.appendChild(br);
             divleft.appendChild(inputQuantity);
+            var divright = document.createElement("div");
+            divright.className = "p-1";
+            divright.style = "float:right;width:8%";
+            var alement = document.createElement("a");
+            alement.className = "btn-primary btn-xs";
+            alement.innerText = "-";
+            alement.onclick = "removeRow("+index+")";
+            divright.appendChild(alement);
             divrow.appendChild(divleft);
+            divrow.appendChild(divright);
             div.appendChild(divrow);
             div.appendChild(br);
+
             count++;
         }
+
+        function removeRow(id) {
+            var div = document.getElementById("myProduct");
+            var listdivrow = div.childNodes;
+            alert('test ' + id);
+            div.removeChild(listdivrow[id]);
+        }
+
     </script>
 </head>
 <body>
