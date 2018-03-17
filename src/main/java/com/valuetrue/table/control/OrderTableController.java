@@ -161,9 +161,6 @@ public class OrderTableController {
         return new ModelAndView("redirect:/tables");
     }
 
-
-
-
 	@RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
 	public ModelAndView editOrderTable (@ModelAttribute("tableForm") TableForm tableForm , @PathVariable("id") int id) {
 		// Initilaize a new Model

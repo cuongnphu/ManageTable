@@ -28,14 +28,14 @@
             inputid.name = "productList["+index+"].id";
             inputid.readOnly = "true";
             inputid.hidden = "true";
-            inputid.value = 0;
+            inputid.value = "0";
             var inputtableid = document.createElement("input");
             inputtableid.id = "productList"+index+".table_id";
             inputtableid.type = "text";
             inputtableid.name = "productList["+index+"].table_id";
             inputtableid.readOnly = "true";
             inputtableid.hidden = "true";
-            inputtableid.value = id;
+            inputtableid.value = id.toString();
             var inputName = document.createElement("input");
             inputName.id = "productList"+index+".name";
             inputName.type = "text";
@@ -50,28 +50,29 @@
             divleft.appendChild(inputName);
             divleft.appendChild(br);
             divleft.appendChild(inputQuantity);
+            var br = document.createElement("br");
+            divleft.appendChild(br);
+            var br = document.createElement("br");
+            divleft.appendChild(br);
             var divright = document.createElement("div");
             divright.className = "p-1";
             divright.style = "float:right;width:8%";
-            var alement = document.createElement("a");
-            alement.className = "btn-primary btn-xs";
-            alement.innerText = "-";
-            alement.onclick = "removeRow("+index+")";
-            divright.appendChild(alement);
+            var a = document.createElement("a");
+            a.className = "btn-primary btn-xs";
+            a.innerText = "-";
+            a.onclick = function (ev) {
+                var div = document.getElementById("myProduct");
+                console.log(index + "\n");
+                console.log(a.parentNode.parentNode.parentNode);
+                a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
+            };
+            divright.appendChild(a);
             divrow.appendChild(divleft);
             divrow.appendChild(divright);
             div.appendChild(divrow);
-            div.appendChild(br);
-
             count++;
         }
 
-        function removeRow(id) {
-            var div = document.getElementById("myProduct");
-            var listdivrow = div.childNodes;
-            alert('test ' + id);
-            div.removeChild(listdivrow[id]);
-        }
 
     </script>
 </head>
@@ -110,12 +111,13 @@
                                         <form:input type="text" path="productList[${status.index}].name"/>
                                         <br>
                                         <form:input type="text" path="productList[${status.index}].quantity"/>
+                                        <br>
+                                        <br>
                                     </div>
                                     <div style="float: right;width: 8%" class="p-1">
                                         <a class="btn-primary btn-xs" href="product/${prod.table_id}/delete/${prod.id}">-</a>
                                     </div>
                                 </div>
-                                <br>
                             </c:forEach>
                         </div>
                         <div>
