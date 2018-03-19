@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import org.springframework.web.servlet.view.RedirectView;
 
 
 @Controller
@@ -99,14 +98,16 @@ public class OrderTableController {
         }
 
         // Save or Update product
-        for(int i = 0 ; i < tableForm.getProductList().size(); i++){
-            try {
-                if (this.prodService.getProductById(tableForm.getProductList().get(i).getId()) != null) ;
-                log.info("Update a product by id=" + tableForm.getProductList().get(i).getId());
-                this.prodService.updateProduct(tableForm.getProductList().get(i));
-            }catch(EmptyResultDataAccessException e){
-                log.info("Save a new product !!!");
-                this.prodService.saveProduct(tableForm.getProductList().get(i));
+        if(tableForm.getProductList() != null) {
+            for (int i = 0; i < tableForm.getProductList().size(); i++) {
+                try {
+                    if (this.prodService.getProductById(tableForm.getProductList().get(i).getId()) != null) ;
+                    log.info("Update a product by id=" + tableForm.getProductList().get(i).getId());
+                    this.prodService.updateProduct(tableForm.getProductList().get(i));
+                } catch (EmptyResultDataAccessException e) {
+                    log.info("Save a new product !!!");
+                    this.prodService.saveProduct(tableForm.getProductList().get(i));
+                }
             }
         }
 
@@ -191,59 +192,54 @@ public class OrderTableController {
 
         // Setter for modelAttribute object
         tableForm.setOrderTable(orderTab);
-        if(productListByTableId.size() > 0)
-            tableForm.setProductList(productListByTableId);
-        else {
-            // Declared List object products
-            Product prod = new Product();
-            prod.setTable_id(id);
-            List<Product> listProds = new ArrayList<Product>();
-            listProds.add(prod);
-            tableForm.setProductList(listProds);
-        }
+        tableForm.setProductList(productListByTableId);
+        tableForm.setPrinterList(printerListByTableId);
+        tableForm.setEmbroideryList(embroideryListByTableId);
+        tableForm.setSewingList(sewingListByTableId);
+        tableForm.setMaterialList(materialListByTableId);
 
-        if(printerListByTableId.size()>0)
-            tableForm.setPrinterList(printerListByTableId);
-        else {
-            // Declare list object printers
-            Printer print = new Printer();
-            print.setTable_id(id);
-            List<Printer> listPrinters = new ArrayList<Printer>();
-            listPrinters.add(print);
-            tableForm.setPrinterList(listPrinters);
-        }
-
-        if(embroideryListByTableId.size()>0)
-            tableForm.setEmbroideryList(embroideryListByTableId);
-        else{
-            // Declare list object embroideries
-            Embroidery embroid = new Embroidery();
-            embroid.setTable_id(id);
-            List<Embroidery> listEmbroids = new ArrayList<Embroidery>();
-            listEmbroids.add(embroid);
-            tableForm.setEmbroideryList(listEmbroids);
-        }
-
-        if(sewingListByTableId.size()>0)
-            tableForm.setSewingList(sewingListByTableId);
-        else{
-            // Declare list object sewings
-            Sewing sew = new Sewing();
-            sew.setTable_id(id);
-            List<Sewing> listSews = new ArrayList<Sewing>();
-            listSews.add(sew);
-            tableForm.setSewingList(listSews);
-        }
-
-        if(materialListByTableId.size()>0)
-            tableForm.setMaterialList(materialListByTableId);
-        else{
-            Material mate = new Material();
-            mate.setTable_id(id);
-            List<Material> listMates = new ArrayList<Material>();
-            listMates.add(mate);
-            tableForm.setMaterialList(listMates);
-        }
+//        if(printerListByTableId.size()>0)
+//
+//        else {
+//            // Declare list object printers
+//            Printer print = new Printer();
+//            print.setTable_id(id);
+//            List<Printer> listPrinters = new ArrayList<Printer>();
+//            listPrinters.add(print);
+//            tableForm.setPrinterList(listPrinters);
+//        }
+//
+//        if(embroideryListByTableId.size()>0)
+//
+//        else{
+//            // Declare list object embroideries
+//            Embroidery embroid = new Embroidery();
+//            embroid.setTable_id(id);
+//            List<Embroidery> listEmbroids = new ArrayList<Embroidery>();
+//            listEmbroids.add(embroid);
+//            tableForm.setEmbroideryList(listEmbroids);
+//        }
+//
+//        if(sewingListByTableId.size()>0)
+//
+//        else{
+//            // Declare list object sewings
+//            Sewing sew = new Sewing();
+//            sew.setTable_id(id);
+//            List<Sewing> listSews = new ArrayList<Sewing>();
+//            listSews.add(sew);
+//            tableForm.setSewingList(listSews);
+//        }
+//
+//        if(materialListByTableId.size()>0)
+//
+//        else{
+//            Material mate = new Material();
+//            mate.setTable_id(id);
+//            List<Material> listMates = new ArrayList<Material>();
+//            listMates.add(mate);
+//            tableForm.setMaterialList(listMates);
+//        }
 
         // Get all orderTable detail
         List<TableForm> listTabForm = this.detailTableService.getAllTableForm();

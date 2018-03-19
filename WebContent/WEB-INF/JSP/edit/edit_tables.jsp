@@ -7,74 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Edit Information OrderTable</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <%--<script src="<c:url value="/Resources/js/infodetail.js" /> "></script>--%>
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> " />
-    <script type="text/javascript">
-        var count = 0;
-        var index = 0;
-        function addTest(id,intIndex) {
-            index = intIndex + count;
-            var div = document.getElementById("myProduct");
-            var divrow = document.createElement("div");
-            divrow.className = "row";
-            divrow.id = index;
-            var divleft = document.createElement("div");
-            divleft.className = "p-0";
-            divleft.style = "float: left;width: 90%";
-            var inputid = document.createElement("input");
-            inputid.id = "productList"+index+".id";
-            inputid.type = "text";
-            inputid.name = "productList["+index+"].id";
-            inputid.readOnly = "true";
-            inputid.hidden = "true";
-            inputid.value = "0";
-            var inputtableid = document.createElement("input");
-            inputtableid.id = "productList"+index+".table_id";
-            inputtableid.type = "text";
-            inputtableid.name = "productList["+index+"].table_id";
-            inputtableid.readOnly = "true";
-            inputtableid.hidden = "true";
-            inputtableid.value = id.toString();
-            var inputName = document.createElement("input");
-            inputName.id = "productList"+index+".name";
-            inputName.type = "text";
-            inputName.name = "productList["+index+"].name";
-            var inputQuantity = document.createElement("input");
-            inputQuantity.id = "productList"+index+".quantity";
-            inputQuantity.type = "text";
-            inputQuantity.name = "productList["+index+"].quantity";
-            var br = document.createElement("br");
-            divleft.appendChild(inputid);
-            divleft.appendChild(inputtableid);
-            divleft.appendChild(inputName);
-            divleft.appendChild(br);
-            divleft.appendChild(inputQuantity);
-            var br = document.createElement("br");
-            divleft.appendChild(br);
-            var br = document.createElement("br");
-            divleft.appendChild(br);
-            var divright = document.createElement("div");
-            divright.className = "p-1";
-            divright.style = "float:right;width:8%";
-            var a = document.createElement("a");
-            a.className = "btn-primary btn-xs";
-            a.innerText = "-";
-            a.onclick = function (ev) {
-                var div = document.getElementById("myProduct");
-                console.log(index + "\n");
-                console.log(a.parentNode.parentNode.parentNode);
-                a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
-            };
-            divright.appendChild(a);
-            divrow.appendChild(divleft);
-            divrow.appendChild(divright);
-            div.appendChild(divrow);
-            count++;
-        }
-
-
-    </script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="<c:url value="/Resources/js/product.js" /> "></script>
+    <script src="<c:url value="/Resources/js/printer.js" /> "></script>
+    <script src="<c:url value="/Resources/js/embroidery.js" /> "></script>
+    <script src="<c:url value="/Resources/js/sewing.js" /> "></script>
 </head>
 <body>
 	<h3> Edit Information OrderTable </h3>
@@ -85,14 +23,14 @@
 					<form:input type="text" path="orderTable.id" readonly="true" hidden="true" />
 				</tr>
                 <tr>
-                    <th width="5%">Name</th>
+                    <th width="6%">Name</th>
                     <th width="3%;">Pre Weight</th>
                     <th width="3%;">After Weight</th>
-                    <th width="15%;">Name Product | Quantity</th>
-                    <th width="18%;">Printer | Price | Quantity</th>
-                    <th width="18%;">Embroidery | Price | Quantity</th>
-                    <th width="18%;">Sewing | Price | Quantity</th>
-                    <th width="20%;">Material | Weight | Num_Class | Quantity</th>
+                    <th width="12%;">Name Product | Quantity</th>
+                    <th width="10%;">Printer | Price | Quantity</th>
+                    <th width="10%;">Embroidery | Price | Quantity</th>
+                    <th width="10%;">Sewing | Price | Quantity</th>
+                    <th width="46%;">Material | Weight | Num_Class | Quantity</th>
                 </tr>
 				<tr>
 					<td><form:input type="text" path="orderTable.name" /></td>
@@ -100,124 +38,132 @@
                     <td><form:input type="text" path="orderTable.after_weight" /></td>
                     <td>
                         <div id="myProduct" class="container-fluid">
-                            <c:forEach items="${tableForm.productList}" var="prod" varStatus="status">
-                                <div class="row">
-                                    <div style="float: left;width: 90%" class="p-0">
-                                        <form:input type="text" path="productList[${status.index}].id" readonly="true"
-                                                    hidden="true"/>
-                                        <form:input type="text" path="productList[${status.index}].table_id"
-                                                    readonly="true"
-                                                    hidden="true"/>
-                                        <form:input type="text" path="productList[${status.index}].name"/>
-                                        <br>
-                                        <form:input type="text" path="productList[${status.index}].quantity"/>
-                                        <br>
-                                        <br>
+                            <c:if test="${tableForm.productList.size() > 0}" >
+                                <c:forEach items="${tableForm.productList}" var="prod" varStatus="status">
+                                    <div class="row">
+                                        <div style="float: left;width: 90%" class="p-0">
+                                            <form:input type="text" path="productList[${status.index}].id" readonly="true"
+                                                        hidden="true"/>
+                                            <form:input type="text" path="productList[${status.index}].table_id"
+                                                        readonly="true"
+                                                        hidden="true"/>
+                                            <form:input type="text" path="productList[${status.index}].name"/>
+                                            <br>
+                                            <form:input type="text" path="productList[${status.index}].quantity"/>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <div style="float: right;width: 8%" class="p-1">
+                                            <a class="btn-primary btn-xs" href="product/${prod.table_id}/delete/${prod.id}">-</a>
+                                        </div>
                                     </div>
-                                    <div style="float: right;width: 8%" class="p-1">
-                                        <a class="btn-primary btn-xs" href="product/${prod.table_id}/delete/${prod.id}">-</a>
-                                    </div>
-                                </div>
-                            </c:forEach>
+                                </c:forEach>
+                            </c:if>
                         </div>
                         <div>
-                            <%--<a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id})">add product</a>--%>
-                            <a class="btn btn-primary btn-sm" onclick="addTest(${tableForm.orderTable.id},${tableForm.productList.size()})">add product</a>
+                            <a class="btn btn-primary btn-sm" onclick="addProduct(${tableForm.orderTable.id},${tableForm.productList.size()})">add product</a>
                         </div>
                     </td>
                     <td>
-                        <div class="container-fluid">
-                            <c:forEach items="${tableForm.printerList}" var="print" varStatus="status">
-                                <div class="row">
-                                    <div style="float: left;width: 90%" class="p-0">
-                                        <form:input type="text" path="printerList[${status.index}].id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="printerList[${status.index}].table_id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="printerList[${status.index}].name" />
-                                        <br>
-                                        <form:input type="text" path="printerList[${status.index}].price" />
-                                        <br>
-                                        <form:input type="text" path="printerList[${status.index}].quantity" />
+                        <div id="myPrinter" class="container-fluid">
+                            <c:if test="${tableForm.printerList.size() > 0}">
+                                <c:forEach items="${tableForm.printerList}" var="print" varStatus="status">
+                                    <div class="row">
+                                        <div style="float: left;width: 90%" class="p-0">
+                                            <form:input type="text" path="printerList[${status.index}].id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="printerList[${status.index}].table_id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="printerList[${status.index}].name" />
+                                            <br>
+                                            <form:input type="text" path="printerList[${status.index}].price" />
+                                            <br>
+                                            <form:input type="text" path="printerList[${status.index}].quantity" />
+                                        </div>
+                                        <div style="float: right;width: 8%" class="p-1">
+                                            <a class="btn-primary btn-xs" href="printer/${print.table_id}/delete/${print.id}">-</a>
+                                        </div>
                                     </div>
-                                    <div style="float: right;width: 8%" class="p-1">
-                                        <a class="btn-primary btn-xs" href="printer/${print.table_id}/delete/${print.id}">-</a>
-                                    </div>
-                                </div>
-                                <br>
-                            </c:forEach>
+                                    <br>
+                                </c:forEach>
+                            </c:if>
                         </div>
                         <div>
-                            <a class="btn btn-primary btn-sm" onclick="addPrinter(${tableForm.orderTable.id})">add printer</a>
+                            <a class="btn btn-primary btn-sm" onclick="addPrinter(${tableForm.orderTable.id},${tableForm.printerList.size()})">add printer</a>
                         </div>
                     </td>
                     <td>
-                        <div class="container-fluid">
-                            <c:forEach items="${tableForm.embroideryList}" var="embroid" varStatus="status">
-                                <div class="row">
-                                    <div style="float: left;width: 90%" class="p-0">
-                                        <form:input type="text" path="embroideryList[${status.index}].id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="embroideryList[${status.index}].table_id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="embroideryList[${status.index}].name" />
-                                        <br>
-                                        <form:input type="text" path="embroideryList[${status.index}].price" />
-                                        <br>
-                                        <form:input type="text" path="embroideryList[${status.index}].quantity" />
+                        <div id="myEmbroidery" class="container-fluid">
+                            <c:if test="${tableForm.embroideryList.size() > 0}">
+                                <c:forEach items="${tableForm.embroideryList}" var="embroid" varStatus="status">
+                                    <div class="row">
+                                        <div style="float: left;width: 90%" class="p-0">
+                                            <form:input type="text" path="embroideryList[${status.index}].id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="embroideryList[${status.index}].table_id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="embroideryList[${status.index}].name" />
+                                            <br>
+                                            <form:input type="text" path="embroideryList[${status.index}].price" />
+                                            <br>
+                                            <form:input type="text" path="embroideryList[${status.index}].quantity" />
+                                        </div>
+                                        <div style="float: right;width: 8%" class="p-1">
+                                            <a class="btn-primary btn-xs" href="embroidery/${embroid.table_id}/delete/${embroid.id}">-</a>
+                                        </div>
                                     </div>
-                                    <div style="float: right;width: 8%" class="p-1">
-                                        <a class="btn-primary btn-xs" href="embroidery/${embroid.table_id}/delete/${embroid.id}">-</a>
-                                    </div>
-                                </div>
-                                <br>
-                            </c:forEach>
+                                    <br>
+                                </c:forEach>
+                            </c:if>
                         </div>
                         <div>
-                            <a class="btn btn-primary btn-sm" onclick="addEmbroidery(${tableForm.orderTable.id})">add embroidery</a>
+                            <a class="btn btn-primary btn-sm" onclick="addEmbroidery(${tableForm.orderTable.id},${tableForm.embroideryList.size()})">add embroidery</a>
                         </div>
                     </td>
                     <td>
-                        <div class="container-fluid">
-                            <c:forEach items="${tableForm.sewingList}" var="sew" varStatus="status">
-                                <div class="row">
-                                    <div style="float: left;width: 90%" class="p-0">
-                                        <form:input type="text" path="sewingList[${status.index}].id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="sewingList[${status.index}].table_id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="sewingList[${status.index}].name" />
-                                        <br>
-                                        <form:input type="text" path="sewingList[${status.index}].price" />
-                                        <br>
-                                        <form:input type="text" path="sewingList[${status.index}].quantity" />
+                        <div id="mySewing" class="container-fluid">
+                            <c:if test="${tableForm.sewingList.size() > 0}">
+                                <c:forEach items="${tableForm.sewingList}" var="sew" varStatus="status">
+                                    <div class="row">
+                                        <div style="float: left;width: 90%" class="p-0">
+                                            <form:input type="text" path="sewingList[${status.index}].id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="sewingList[${status.index}].table_id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="sewingList[${status.index}].name" />
+                                            <br>
+                                            <form:input type="text" path="sewingList[${status.index}].price" />
+                                            <br>
+                                            <form:input type="text" path="sewingList[${status.index}].quantity" />
+                                        </div>
+                                        <div style="float: right;width: 8%" class="p-1">
+                                            <a class="btn-primary btn-xs" href="sewing/${sew.table_id}/delete/${sew.id}">-</a>
+                                        </div>
                                     </div>
-                                    <div style="float: right;width: 8%" class="p-1">
-                                        <a class="btn-primary btn-xs" href="sewing/${sew.table_id}/delete/${sew.id}">-</a>
-                                    </div>
-                                </div>
-                                <br>
-                            </c:forEach>
+                                    <br>
+                                </c:forEach>
+                            </c:if>
                         </div>
                         <div>
                             <a class="btn btn-primary btn-sm" onclick="addSewing(${tableForm.orderTable.id})">add Sewing</a>
                         </div>
                     </td>
                     <td>
-                        <div class="container-fluid">
-                            <c:forEach items="${tableForm.materialList}" var="mate" varStatus="status">
-                                <div class="row">
-                                    <div style="float: left;width: 90%" class="p-0">
-                                        <form:input type="text" path="materialList[${status.index}].id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="materialList[${status.index}].table_id" readonly="true" hidden="true" />
-                                        <form:input type="text" path="materialList[${status.index}].name" />
-                                        <br>
-                                        <form:input type="text" path="materialList[${status.index}].weight" />
-                                        <br>
-                                        <form:input type="text" path="materialList[${status.index}].num_class" />
-                                        <br>
-                                        <form:input type="text" path="materialList[${status.index}].quantity" />
+                        <div id="myMaterial" class="container-fluid">
+                            <c:if test="${tableForm.materialList.size() > 0}">
+                                <c:forEach items="${tableForm.materialList}" var="mate" varStatus="status">
+                                    <div class="row">
+                                        <div style="float: left;width: 90%;display: inline-block" class="p-0" >
+                                            <form:input type="text" path="materialList[${status.index}].id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="materialList[${status.index}].table_id" readonly="true" hidden="true" />
+                                            <form:input type="text" path="materialList[${status.index}].name" />
+                                            <form:input type="text" path="materialList[${status.index}].weight" />
+                                            <br>
+                                            <form:input type="text" path="materialList[${status.index}].num_class" />
+                                            <br>
+                                            <form:input type="text" path="materialList[${status.index}].quantity" />
+                                        </div>
+                                        <div style="float: right;width: 8%" class="p-1">
+                                            <a class="btn-primary btn-xs" href="material/${mate.table_id}/delete/${mate.id}">-</a>
+                                        </div>
                                     </div>
-                                    <div style="float: right;width: 8%" class="p-1">
-                                        <a class="btn-primary btn-xs" href="material/${mate.table_id}/delete/${mate.id}">-</a>
-                                    </div>
-                                </div>
-                                <br>
-                            </c:forEach>
+                                    <br>
+                                </c:forEach>
+                            </c:if>
                         </div>
                         <div>
                             <a class="btn btn-primary btn-sm" onclick="addMaterial(${tableForm.orderTable.id})">add Material</a>
