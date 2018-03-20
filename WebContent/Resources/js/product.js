@@ -66,9 +66,6 @@ function addProduct(tableId,intIndex) {
     a.className = "btn-primary btn-xs";
     a.innerText = "-";
     a.onclick = function (ev) {
-        var div = document.getElementById("myProduct");
-        console.log(index + "\n");
-        console.log(a.parentNode.parentNode.parentNode);
         a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
     };
     divright.appendChild(a);
@@ -85,19 +82,4 @@ function addProduct(tableId,intIndex) {
 
 
 
-function addMaterial(id) {
-    console.log("add material in table ...");
-    $.ajax({
-        type: "post",
-        url: "/ManageTable/addMaterial/"+id,
-        success: function (data) {
-            var redirect =  data;
-            if(redirect){
-                window.location.replace(redirect);
-            }
-        },
-        error: function(e){
-            alert('Error: ' +JSON.stringify(e));
-        }
-    });
-}
+

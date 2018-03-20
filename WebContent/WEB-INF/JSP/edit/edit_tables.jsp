@@ -13,6 +13,7 @@
     <script src="<c:url value="/Resources/js/printer.js" /> "></script>
     <script src="<c:url value="/Resources/js/embroidery.js" /> "></script>
     <script src="<c:url value="/Resources/js/sewing.js" /> "></script>
+    <script src="<c:url value="/Resources/js/material.js" /> "></script>
 </head>
 <body>
 	<h3> Edit Information OrderTable </h3>
@@ -20,14 +21,14 @@
 		<div class="table-responsive">
 			<table class="table table-bordered" style="width: 1400px;">
                 <tr>
-                    <th style="width: 9%">Name</th>
-                    <th style="width: 3%">Pre Weight</th>
-                    <th style="width: 2%">After Weight</th>
-                    <th style="width: 10%">Name Product | Quantity</th>
-                    <th style="width: 10%">Printer | Price | Quantity</th>
-                    <th style="width: 10%">Embroidery | Price | Quantity</th>
-                    <th style="width: 10%">Sewing | Price | Quantity</th>
-                    <th style="width: 47%">Material | Weight | Num_Class | Quantity</th>
+                    <th style="width: 8%">Name</th>
+                    <th style="width: 6%">Pre Weight</th>
+                    <th style="width: 6%">After Weight</th>
+                    <th style="width: 11%">Name Product | Quantity</th>
+                    <th style="width: 11%">Printer | Price | Quantity</th>
+                    <th style="width: 11%">Embroidery | Price | Quantity</th>
+                    <th style="width: 11%">Sewing | Price | Quantity</th>
+                    <th style="width: 36%">Material | Weight | Num_Class | Quantity</th>
                 </tr>
                 <tr>
                     <form:input type="text" path="orderTable.id" readonly="true" hidden="true" />
@@ -139,7 +140,7 @@
                             </c:if>
                         </div>
                         <div>
-                            <a class="btn btn-primary btn-sm" onclick="addSewing(${tableForm.orderTable.id})">add Sewing</a>
+                            <a class="btn btn-primary btn-sm" onclick="addSewing(${tableForm.orderTable.id},${tableForm.sewingList.size()})">add Sewing</a>
                         </div>
                     </td>
                     <td>
@@ -147,7 +148,7 @@
                             <c:if test="${tableForm.materialList.size() > 0}">
                                 <c:forEach items="${tableForm.materialList}" var="mate" varStatus="status">
                                     <div class="row">
-                                        <div style="float: left;width: 93%" class="p-0">
+                                        <div style="float: left;width: 95%" class="p-0">
                                             <form:input type="text" path="materialList[${status.index}].id" readonly="true" hidden="true" />
                                             <form:input type="text" path="materialList[${status.index}].table_id" readonly="true" hidden="true" />
                                             <form:input type="text" path="materialList[${status.index}].name"  cssStyle="width: 30%; "/>
@@ -155,7 +156,7 @@
                                             <form:input type="text" path="materialList[${status.index}].num_class" cssStyle="width: 22%; " />
                                             <form:input type="text" path="materialList[${status.index}].quantity" cssStyle="width: 23%; " />
                                         </div>
-                                        <div style="float: right;width: 5%" class="p-1">
+                                        <div style="float: right;width: 3%" class="p-1">
                                             <a class="btn-primary btn-xs" href="material/${mate.table_id}/delete/${mate.id}">-</a>
                                         </div>
                                     </div>
@@ -164,7 +165,7 @@
                             </c:if>
                         </div>
                         <div>
-                            <a class="btn btn-primary btn-sm" onclick="addMaterial(${tableForm.orderTable.id})">add Material</a>
+                            <a class="btn btn-primary btn-sm" onclick="addMaterial(${tableForm.orderTable.id},${tableForm.materialList.size()})">add Material</a>
                         </div>
                     </td>
 				</tr>
