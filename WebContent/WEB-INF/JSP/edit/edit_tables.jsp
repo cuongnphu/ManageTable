@@ -170,7 +170,7 @@
                     </td>
 				</tr>
 				<tr>
-                    <td colspan="8" align="right"><button class="btn btn-primary btn-sm" type="submit">Submit</button> | <a class="btn btn-primary btn-sm" onclick="window.location.replace('/ManageTable/tables')" >Cancel</a> </td>
+                    <td colspan="8" align="center"><button class="btn btn-primary btn-sm" type="submit">Submit</button> | <a class="btn btn-primary btn-sm" onclick="window.location.replace('/ManageTable/tables')" >Cancel</a> </td>
 				</tr>
 			</table>
 		</div>

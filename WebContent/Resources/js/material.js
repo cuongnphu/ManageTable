@@ -17,7 +17,7 @@ function postMaterial(tableId) {
 
 var count = 0;
 var index = 0;
-function addMaterial(tableId,intIndex) {
+function addMaterial(tabId,intIndex) {
     index = intIndex + count;
     var div = document.getElementById("myMaterial");
     var divrow = document.createElement("div");
@@ -32,14 +32,14 @@ function addMaterial(tableId,intIndex) {
     inputid.name = "materialList["+index+"].id";
     inputid.readOnly = "true";
     inputid.hidden = "true";
-    inputid.value = "0";
+    inputid.setAttribute('value',"0");
     var inputtableid = document.createElement("input");
     inputtableid.id = "materialList"+index+".table_id";
     inputtableid.type = "text";
     inputtableid.name = "materialList["+index+"].table_id";
     inputtableid.readOnly = "true";
     inputtableid.hidden = "true";
-    inputtableid.value = tableId.toString();
+    inputtableid.setAttribute('value',tabId.toString());
     var inputName = document.createElement("input");
     inputName.id = "materialList"+index+".name";
     inputName.type = "text";

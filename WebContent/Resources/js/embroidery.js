@@ -17,7 +17,7 @@ function postEmbroidery(tableId) {
 
 var count = 0;
 var index = 0;
-function addEmbroidery(tableId,intIndex) {
+function addEmbroidery(tabId,intIndex) {
     index = intIndex + count;
     var div = document.getElementById("myEmbroidery");
     var divrow = document.createElement("div");
@@ -32,14 +32,14 @@ function addEmbroidery(tableId,intIndex) {
     inputid.name = "embroideryList["+index+"].id";
     inputid.readOnly = "true";
     inputid.hidden = "true";
-    inputid.value = "0";
+    inputid.setAttribute('value',"0");
     var inputtableid = document.createElement("input");
     inputtableid.id = "embroideryList"+index+".table_id";
     inputtableid.type = "text";
     inputtableid.name = "embroideryList["+index+"].table_id";
     inputtableid.readOnly = "true";
     inputtableid.hidden = "true";
-    inputtableid.value = tableId.toString();
+    inputtableid.setAttribute('value',tabId.toString());
     var inputName = document.createElement("input");
     inputName.id = "embroideryList"+index+".name";
     inputName.type = "text";
@@ -52,18 +52,14 @@ function addEmbroidery(tableId,intIndex) {
     inputQuantity.id = "embroideryList"+index+".quantity";
     inputQuantity.type = "text";
     inputQuantity.name = "embroideryList["+index+"].quantity";
-    var br = document.createElement("br");
     divleft.appendChild(inputid);
     divleft.appendChild(inputtableid);
     divleft.appendChild(inputName);
-    divleft.appendChild(br);
+    divleft.innerHTML += '<br>';
     divleft.appendChild(inputPrice);
-    divleft.appendChild(br);
+    divleft.innerHTML += '<br>';
     divleft.appendChild(inputQuantity);
-    var br = document.createElement("br");
-    divleft.appendChild(br);
-    var br = document.createElement("br");
-    divleft.appendChild(br);
+    divleft.innerHTML += '<br><br>';
     var divright = document.createElement("div");
     divright.className = "p-1";
     divright.style = "float:right;width:8%";

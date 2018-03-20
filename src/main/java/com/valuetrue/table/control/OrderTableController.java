@@ -112,50 +112,58 @@ public class OrderTableController {
         }
 
         // Save or Update printer
-        for(int i = 0 ; i < tableForm.getPrinterList().size(); i++){
-            try {
-                if (this.printerService.getPrinterById(tableForm.getPrinterList().get(i).getId()) != null) ;
-                log.info("Update a printer by id=" + tableForm.getPrinterList().get(i).getId());
-                this.printerService.updatePrinter(tableForm.getPrinterList().get(i));
-            }catch(EmptyResultDataAccessException e){
-                log.info("Save a new printer !!!");
-                this.printerService.savePrinter(tableForm.getPrinterList().get(i));
+        if(tableForm.getPrinterList() != null){
+            for(int i = 0 ; i < tableForm.getPrinterList().size(); i++){
+                try {
+                    if (this.printerService.getPrinterById(tableForm.getPrinterList().get(i).getId()) != null) ;
+                    log.info("Update a printer by id=" + tableForm.getPrinterList().get(i).getId());
+                    this.printerService.updatePrinter(tableForm.getPrinterList().get(i));
+                }catch(EmptyResultDataAccessException e){
+                    log.info("Save a new printer !!!");
+                    this.printerService.savePrinter(tableForm.getPrinterList().get(i));
+                }
             }
         }
 
         // Save or Update embroidery
-        for(int i = 0 ; i < tableForm.getPrinterList().size(); i++){
-            try {
-                if (this.embroideryService.getEmbroideryById(tableForm.getEmbroideryList().get(i).getId()) != null) ;
-                log.info("Update a embroidery by id=" + tableForm.getEmbroideryList().get(i).getId());
-                this.embroideryService.updateEmbroidery(tableForm.getEmbroideryList().get(i));
-            }catch(EmptyResultDataAccessException e){
-                log.info("Save a new embroidery !!!");
-                this.embroideryService.saveEmbroidery(tableForm.getEmbroideryList().get(i));
+        if(tableForm.getEmbroideryList() != null){
+            for(int i = 0 ; i < tableForm.getPrinterList().size(); i++){
+                try {
+                    if (this.embroideryService.getEmbroideryById(tableForm.getEmbroideryList().get(i).getId()) != null) ;
+                    log.info("Update a embroidery by id=" + tableForm.getEmbroideryList().get(i).getId());
+                    this.embroideryService.updateEmbroidery(tableForm.getEmbroideryList().get(i));
+                }catch(EmptyResultDataAccessException e){
+                    log.info("Save a new embroidery !!!");
+                    this.embroideryService.saveEmbroidery(tableForm.getEmbroideryList().get(i));
+                }
             }
         }
 
         // Save or Update sewing
-        for(int i = 0 ; i < tableForm.getSewingList().size(); i++){
-            try {
-                if (this.sewingService.getSewingById(tableForm.getSewingList().get(i).getId()) != null) ;
-                log.info("Update a sewing by id=" + tableForm.getSewingList().get(i).getId());
-                this.sewingService.updateSewing(tableForm.getSewingList().get(i));
-            }catch(EmptyResultDataAccessException e){
-                log.info("Save a new sewing !!!");
-                this.sewingService.saveSewing(tableForm.getSewingList().get(i));
+        if(tableForm.getSewingList() != null) {
+            for (int i = 0; i < tableForm.getSewingList().size(); i++) {
+                try {
+                    if (this.sewingService.getSewingById(tableForm.getSewingList().get(i).getId()) != null) ;
+                    log.info("Update a sewing by id=" + tableForm.getSewingList().get(i).getId());
+                    this.sewingService.updateSewing(tableForm.getSewingList().get(i));
+                } catch (EmptyResultDataAccessException e) {
+                    log.info("Save a new sewing !!!");
+                    this.sewingService.saveSewing(tableForm.getSewingList().get(i));
+                }
             }
         }
 
         // Save or Update material
-        for(int i = 0 ; i < tableForm.getMaterialList().size(); i++){
-            try {
-                if (this.materialServie.getMaterialById(tableForm.getMaterialList().get(i).getId()) != null) ;
-                log.info("Update a material by id=" + tableForm.getMaterialList().get(i).getId());
-                this.materialServie.updateMaterial(tableForm.getMaterialList().get(i));
-            }catch(EmptyResultDataAccessException e){
-                log.info("Save a new material !!!");
-                this.materialServie.saveMaterial(tableForm.getMaterialList().get(i));
+        if(tableForm.getMaterialList() != null) {
+            for (int i = 0; i < tableForm.getMaterialList().size(); i++) {
+                try {
+                    if (this.materialServie.getMaterialById(tableForm.getMaterialList().get(i).getId()) != null) ;
+                    log.info("Update a material by id=" + tableForm.getMaterialList().get(i).getId());
+                    this.materialServie.updateMaterial(tableForm.getMaterialList().get(i));
+                } catch (EmptyResultDataAccessException e) {
+                    log.info("Save a new material !!!");
+                    this.materialServie.saveMaterial(tableForm.getMaterialList().get(i));
+                }
             }
         }
 

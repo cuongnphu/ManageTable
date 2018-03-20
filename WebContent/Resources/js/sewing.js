@@ -17,7 +17,7 @@ function postSewing(tableId) {
 
 var count = 0;
 var index = 0;
-function addSewing(tableId,intIndex) {
+function addSewing(tabId,intIndex) {
     index = intIndex + count;
     var div = document.getElementById("mySewing");
     var divrow = document.createElement("div");
@@ -32,14 +32,14 @@ function addSewing(tableId,intIndex) {
     inputid.name = "sewingList["+index+"].id";
     inputid.readOnly = "true";
     inputid.hidden = "true";
-    inputid.value = "0";
+    inputid.setAttribute('value',"0");
     var inputtableid = document.createElement("input");
     inputtableid.id = "sewingList"+index+".table_id";
     inputtableid.type = "text";
     inputtableid.name = "sewingList["+index+"].table_id";
     inputtableid.readOnly = "true";
     inputtableid.hidden = "true";
-    inputtableid.value = tableId.toString();
+    inputtableid.setAttribute('value',tabId.toString());
     var inputName = document.createElement("input");
     inputName.id = "sewingList"+index+".name";
     inputName.type = "text";
@@ -52,18 +52,14 @@ function addSewing(tableId,intIndex) {
     inputQuantity.id = "sewingList"+index+".quantity";
     inputQuantity.type = "text";
     inputQuantity.name = "sewingList["+index+"].quantity";
-    var br = document.createElement("br");
     divleft.appendChild(inputid);
     divleft.appendChild(inputtableid);
     divleft.appendChild(inputName);
-    divleft.appendChild(br);
+    divleft.innerHTML += '<br>';
     divleft.appendChild(inputPrice);
-    divleft.appendChild(br);
+    divleft.innerHTML += '<br>';
     divleft.appendChild(inputQuantity);
-    var br = document.createElement("br");
-    divleft.appendChild(br);
-    var br = document.createElement("br");
-    divleft.appendChild(br);
+    divleft.innerHTML += '<br><br>';
     var divright = document.createElement("div");
     divright.className = "p-1";
     divright.style = "float:right;width:8%";
