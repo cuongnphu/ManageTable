@@ -15,10 +15,10 @@ function postMaterial(tableId) {
     });
 }
 
-var count = 0;
+var mate_count = 0;
 var index = 0;
 function addMaterial(tabId,intIndex) {
-    index = intIndex + count;
+    index = intIndex + mate_count;
     var div = document.getElementById("myMaterial");
     var divrow = document.createElement("div");
     divrow.className = "row";
@@ -83,5 +83,5 @@ function addMaterial(tabId,intIndex) {
     divrow.appendChild(divleft);
     divrow.appendChild(divright);
     div.appendChild(divrow);
-    count++;
+    mate_count++;
 }

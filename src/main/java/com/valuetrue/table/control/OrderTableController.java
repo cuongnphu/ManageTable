@@ -1,6 +1,5 @@
 package com.valuetrue.table.control;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.valuetrue.table.model.*;
@@ -205,49 +204,6 @@ public class OrderTableController {
         tableForm.setEmbroideryList(embroideryListByTableId);
         tableForm.setSewingList(sewingListByTableId);
         tableForm.setMaterialList(materialListByTableId);
-
-//        if(printerListByTableId.size()>0)
-//
-//        else {
-//            // Declare list object printers
-//            Printer print = new Printer();
-//            print.setTable_id(id);
-//            List<Printer> listPrinters = new ArrayList<Printer>();
-//            listPrinters.add(print);
-//            tableForm.setPrinterList(listPrinters);
-//        }
-//
-//        if(embroideryListByTableId.size()>0)
-//
-//        else{
-//            // Declare list object embroideries
-//            Embroidery embroid = new Embroidery();
-//            embroid.setTable_id(id);
-//            List<Embroidery> listEmbroids = new ArrayList<Embroidery>();
-//            listEmbroids.add(embroid);
-//            tableForm.setEmbroideryList(listEmbroids);
-//        }
-//
-//        if(sewingListByTableId.size()>0)
-//
-//        else{
-//            // Declare list object sewings
-//            Sewing sew = new Sewing();
-//            sew.setTable_id(id);
-//            List<Sewing> listSews = new ArrayList<Sewing>();
-//            listSews.add(sew);
-//            tableForm.setSewingList(listSews);
-//        }
-//
-//        if(materialListByTableId.size()>0)
-//
-//        else{
-//            Material mate = new Material();
-//            mate.setTable_id(id);
-//            List<Material> listMates = new ArrayList<Material>();
-//            listMates.add(mate);
-//            tableForm.setMaterialList(listMates);
-//        }
 
         // Get all orderTable detail
         List<TableForm> listTabForm = this.detailTableService.getAllTableForm();

@@ -15,10 +15,10 @@ function postPrinter(tableId) {
     });
 }
 
-var count = 0;
+var print_count = 0;
 var index = 0;
 function addPrinter(tabId,intIndex) {
-    index = intIndex + count;
+    index = intIndex + print_count;
     var div = document.getElementById("myPrinter");
     var divrow = document.createElement("div");
     divrow.className = "row";
@@ -73,6 +73,5 @@ function addPrinter(tabId,intIndex) {
     divrow.appendChild(divleft);
     divrow.appendChild(divright);
     div.appendChild(divrow);
-    console.log('printer:' + index);
-    count++;
+    print_count++;
 }

@@ -20,15 +20,15 @@
 				</tr>
 				<tr>
 					<td>Name :</td>
-					<td><form:input type="text" path="name" /></td>
+					<td><form:input type="text" path="name" placeholder="Ba`n xxx" /></td>
 				</tr>
 				<tr>
 					<td>Pre_Weight :</td>
-					<td><form:input type="text" path="pre_weight" /></td>
+					<td><form:input type="text" path="pre_weight" placeholder=".kg"/></td>
 				</tr>
 				<tr>
 					<td>After_Weight :</td>
-					<td><form:input type="text" path="after_weight" /></td>
+					<td><form:input type="text" path="after_weight" placeholder=".kg"/></td>
 				</tr>
 				<tr>
 					<td><a class="btn btn-primary btn-sm" href="detailtable" >View Info Detail</a></td>

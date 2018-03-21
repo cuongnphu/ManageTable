@@ -16,10 +16,10 @@ function postProduct(tableId) {
     });
 }
 
-var count = 0;
+var prod_count = 0;
 var index = 0;
 function addProduct(tabId,intIndex) {
-    index = intIndex + count;
+    index = intIndex + prod_count;
     var div = document.getElementById("myProduct");
     var divrow = document.createElement("div");
     divrow.className = "row";
@@ -68,8 +68,7 @@ function addProduct(tabId,intIndex) {
     divrow.appendChild(divleft);
     divrow.appendChild(divright);
     div.appendChild(divrow);
-    console.log('product:' + index);
-    count++;
+    prod_count++;
 }
 
 

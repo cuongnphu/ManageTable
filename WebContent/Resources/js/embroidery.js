@@ -15,10 +15,10 @@ function postEmbroidery(tableId) {
     });
 }
 
-var count = 0;
+var embro_count = 0;
 var index = 0;
 function addEmbroidery(tabId,intIndex) {
-    index = intIndex + count;
+    index = intIndex + embro_count;
     var div = document.getElementById("myEmbroidery");
     var divrow = document.createElement("div");
     divrow.className = "row";
@@ -73,5 +73,5 @@ function addEmbroidery(tabId,intIndex) {
     divrow.appendChild(divleft);
     divrow.appendChild(divright);
     div.appendChild(divrow);
-    count++;
+    embro_count++;
 }

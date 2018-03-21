@@ -15,10 +15,10 @@ function postSewing(tableId) {
     });
 }
 
-var count = 0;
+var sew_count = 0;
 var index = 0;
 function addSewing(tabId,intIndex) {
-    index = intIndex + count;
+    index = intIndex + sew_count;
     var div = document.getElementById("mySewing");
     var divrow = document.createElement("div");
     divrow.className = "row";
@@ -73,5 +73,5 @@ function addSewing(tabId,intIndex) {
     divrow.appendChild(divleft);
     divrow.appendChild(divright);
     div.appendChild(divrow);
-    count++;
+    sew_count++;
 }
