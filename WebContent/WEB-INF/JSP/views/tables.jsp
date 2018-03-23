@@ -4,9 +4,11 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Manage Order Table</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Manage Order Table</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="<c:url value="/Resources/js/tables.js"/> "></script>
 </head>
 
 <body>
@@ -20,19 +22,19 @@
 				</tr>
 				<tr>
 					<td>Name :</td>
-					<td><form:input type="text" path="name" placeholder="Ba`n xxx" /></td>
+					<td><form:input id="nameTable" type="text" path="name" placeholder="Ba`n xxx" /></td>
 				</tr>
 				<tr>
 					<td>Pre_Weight :</td>
-					<td><form:input type="text" path="pre_weight" placeholder=".kg"/></td>
+					<td><form:input id="pre_weight" type="text" path="pre_weight" placeholder=".kg" /></td>
 				</tr>
 				<tr>
 					<td>After_Weight :</td>
-					<td><form:input type="text" path="after_weight" placeholder=".kg"/></td>
+					<td><form:input id="after_weight" type="text" path="after_weight" placeholder=".kg"/></td>
 				</tr>
 				<tr>
 					<td><a class="btn btn-primary btn-sm" href="detailtable" >View Info Detail</a></td>
-					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" /></td>
+					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" onchange="return tableFormValidate()" onclick="return tableFormValidate()"/></td>
 				</tr>
 			</table>
 		</div>
