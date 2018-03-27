@@ -75,3 +75,33 @@ function addPrinter(tabId,intIndex) {
     div.appendChild(divrow);
     print_count++;
 }
+
+var printerScript = {
+    editTableValidateForm: function () {
+        var namePrinter = $("#myPrinter> div.row > div.p-0 > input[id*=name]");
+        var pricePrinter = $("#myPrinter> div.row > div.p-0 > input[id*=price]");
+        var quantityPrinter = $("#myPrinter> div.row > div.p-0 > input[id*=quantity]");
+
+        if(typeof namePrinter.val() === "undefined")
+            return true;
+        else{
+            if(namePrinter.val() == ""){
+                namePrinter.css("borderColor","red");
+                return false;
+            }else
+                namePrinter.css("borderColor","");
+
+            if(isNaN(pricePrinter.val()) || pricePrinter.val() <= 0 ||  pricePrinter.val() == "" ) {
+                pricePrinter.css("borderColor","red");
+                return false;
+            }else
+                pricePrinter.css("borderColor","");
+
+            if(isNaN(quantityPrinter.val()) || quantityPrinter.val() <= 0 ||  quantityPrinter.val() == "" ) {
+                quantityPrinter.css("borderColor","red");
+                return false;
+            }else
+                quantityPrinter.css("borderColor","");
+        }
+    }
+};

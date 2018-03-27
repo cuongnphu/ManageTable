@@ -14,6 +14,7 @@
     <script src="<c:url value="/Resources/js/embroidery.js" /> "></script>
     <script src="<c:url value="/Resources/js/sewing.js" /> "></script>
     <script src="<c:url value="/Resources/js/material.js" /> "></script>
+    <script src="<c:url value="/Resources/js/tables.js" /> "></script>
 </head>
 <body>
 	<h3> Edit Information OrderTable </h3>
@@ -170,7 +171,10 @@
                     </td>
 				</tr>
 				<tr>
-                    <td colspan="8" align="center"><button class="btn btn-primary btn-sm" type="submit">Submit</button> | <a class="btn btn-primary btn-sm" onclick="window.location.replace('/ManageTable/tables')" >Cancel</a> </td>
+                    <td colspan="8" align="center">
+                        <button class="btn btn-primary btn-sm" type="submit" onclick="return editTableFormValidate()" >Submit</button>|
+                        <a class="btn btn-primary btn-sm" onclick="window.location.replace('/ManageTable/tables')" >Cancel</a>
+                    </td>
 				</tr>
 			</table>
 		</div>

@@ -4,9 +4,11 @@
 
 <html>
 <head>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Manage Order Table</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> " />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="<c:url value="/Resources/js/tables.js"/> "></script>
 </head>
@@ -34,7 +36,7 @@
 				</tr>
 				<tr>
 					<td><a class="btn btn-primary btn-sm" href="detailtable" >View Info Detail</a></td>
-					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" onchange="return tableFormValidate()" onclick="return tableFormValidate()"/></td>
+					<td><input class="btn btn-primary btn-sm" type="submit" value="Submit" onchange="return tableScript.tableFormValidate()" onclick="return tableScript.tableFormValidate()"/></td>
 				</tr>
 			</table>
 		</div>
@@ -42,8 +44,8 @@
 	<br>
 	<br>
 	<h3>List of OrderTable :</h3>
-	<table class="table table-bordered" style="width: 1400px">
-		<tr>
+	<table class="table table-bordered" id="tb-list" style="width: 1400px">
+		<tr class="tb-row">
 			<th>Name</th>
 			<th>Pre_Weight</th>
 			<th>After_Weight</th>
@@ -55,7 +57,7 @@
 			<th>Edit | Delete</th>
 		</tr>
 		<c:forEach items="${listTableForm}" var="tabform">
-			<tr>
+			<tr class="tb-row">
                 <td width="60" align="center">${tabform.orderTable.name}</td>
                 <td width="60" align="center">${tabform.orderTable.pre_weight}</td>
                 <td width="60" align="center">${tabform.orderTable.after_weight}</td>

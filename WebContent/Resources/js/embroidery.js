@@ -74,4 +74,34 @@ function addEmbroidery(tabId,intIndex) {
     divrow.appendChild(divright);
     div.appendChild(divrow);
     embro_count++;
-}
+};
+
+var embroideryScript = {
+    editTableValidateForm: function(){
+        var nameEmbroid = $("#myEmbroidery> div.row > div.p-0 > input[id*=name]");
+        var priceEmbroid= $("#myEmbroidery> div.row > div.p-0 > input[id*=price]");
+        var quantityEmbroid = $("#myEmbroidery> div.row > div.p-0 > input[id*=quantity]");
+
+        if(typeof nameEmbroid.val() === "undefined")
+            return true;
+        else{
+            if(nameEmbroid.val() == ""){
+                nameEmbroid.css("borderColor","red");
+                return false;
+            }else
+                nameEmbroid.css("borderColor","");
+
+            if(isNaN(priceEmbroid.val()) || priceEmbroid.val() <= 0 ||  priceEmbroid.val() == "" ) {
+                priceEmbroid.css("borderColor","red");
+                return false;
+            }else
+                priceEmbroid.css("borderColor","");
+
+            if(isNaN(quantityEmbroid.val()) || quantityEmbroid.val() <= 0 ||  quantityEmbroid.val() == "" ) {
+                quantityEmbroid.css("borderColor","red");
+                return false;
+            }else
+                quantityEmbroid.css("borderColor","");
+        }
+    }
+};

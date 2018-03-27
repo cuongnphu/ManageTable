@@ -74,10 +74,9 @@ public class OrderTableController {
     public ModelAndView saveOrderTable (@ModelAttribute("modeltable") OrderTable orderTable) {
         try{   	
             if(this.orderTableService.getOrderTableById(orderTable.getId()) != null);
-            log.info("Update a orderTable by id = " + orderTable.getId() );
             this.orderTableService.updateOrderTable(orderTable);
         }catch(EmptyResultDataAccessException e){
-            log.info("Save a new orderTable !!!");
+            log.info("Create a new orderTable !!!");
             this.orderTableService.saveOrderTable(orderTable);
         }
         
@@ -86,13 +85,12 @@ public class OrderTableController {
 
     @RequestMapping(value = "/InfoDetail",method=RequestMethod.POST)
     public ModelAndView saveInfoDetail (@ModelAttribute("tableForm") TableForm tableForm) {
-	    // Save or Update orderTable
+	    // Update orderTable
         try{
             if(this.orderTableService.getOrderTableById(tableForm.getOrderTable().getId()) != null);
             log.info("Update a orderTable by id = " + tableForm.getOrderTable().getId() );
             this.orderTableService.updateOrderTable(tableForm.getOrderTable());
         }catch(EmptyResultDataAccessException e){
-            log.info("Save a new orderTable !!!");
             this.orderTableService.saveOrderTable(tableForm.getOrderTable());
         }
 

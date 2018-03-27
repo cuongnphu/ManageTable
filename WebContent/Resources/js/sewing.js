@@ -75,3 +75,33 @@ function addSewing(tabId,intIndex) {
     div.appendChild(divrow);
     sew_count++;
 }
+
+var sewingScript = {
+    editTableValidateForm: function () {
+        var nameSewing = $("#mySewing > div.row > div.p-0 > input[id*=name]");
+        var priceSewing = $("#mySewing > div.row > div.p-0 > input[id*=price]");
+        var quantitySewing= $("#mySewing > div.row > div.p-0 > input[id*=quantity]");
+
+        if(typeof nameSewing.val() === "undefined")
+            return true;
+        else{
+            if(nameSewing.val() == ""){
+                nameSewing.css("borderColor","red");
+                return false;
+            }else
+                nameSewing.css("borderColor","");
+
+            if(isNaN(priceSewing.val()) || priceSewing.val() <= 0 ||  priceSewing.val() == "" ) {
+                priceSewing.css("borderColor","red");
+                return false;
+            }else
+                priceSewing.css("borderColor","");
+
+            if(isNaN(quantitySewing.val()) || quantitySewing.val() <= 0 ||  quantitySewing.val() == "" ) {
+                quantitySewing.css("borderColor","red");
+                return false;
+            }else
+                quantitySewing.css("borderColor","");
+        }
+    }
+};

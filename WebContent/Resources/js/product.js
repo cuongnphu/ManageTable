@@ -71,6 +71,29 @@ function addProduct(tabId,intIndex) {
     prod_count++;
 }
 
+var productScript = {
+    editTableValidateForm: function () {
+        var nameProduct = $("#myProduct > div.row > div.p-0 > input[id*=name]");
+        var quantityProduct = $("#myProduct > div.row > div.p-0 > input[id*=quantity]");
+        if(typeof nameProduct.val() === "undefined")
+            return true;
+        else{
+            if(nameProduct.val() == ""){
+                nameProduct.css("borderColor","red");
+                return false;
+            }else
+                nameProduct.css("borderColor","");
+
+            if(isNaN(quantityProduct.val()) || quantityProduct.val() <= 0 ||  quantityProduct.val() == "" ) {
+                quantityProduct.css("borderColor","red");
+                return false;
+            }else
+                quantityProduct.css("borderColor","");
+        }
+    }
+
+};
+
 
 
 

@@ -85,3 +85,40 @@ function addMaterial(tabId,intIndex) {
     div.appendChild(divrow);
     mate_count++;
 }
+
+var materialScript = {
+    editTableValidateForm: function () {
+        var nameMate = $("#myMaterial > div.row > div.p-0 > input[id*=name]");
+        var weightMate = $("#myMaterial > div.row > div.p-0 > input[id*=weight]");
+        var numClassMate = $("#myMaterial > div.row > div.p-0 > input[id*=num]");
+        var quantityMate = $("#myMaterial > div.row > div.p-0 > input[id*=quantity]");
+
+        if(typeof nameMate.val() === "undefined")
+            return true;
+        else{
+            if(nameMate.val() == ""){
+                nameMate.css("borderColor","red");
+                return false;
+            }else
+                nameMate.css("borderColor","");
+
+            if(isNaN(weightMate.val()) || weightMate.val() <= 0 ||  weightMate.val() == "" ) {
+                weightMate.css("borderColor","red");
+                return false;
+            }else
+                weightMate.css("borderColor","");
+
+            if(isNaN(numClassMate.val()) || numClassMate.val() <= 0 ||  numClassMate.val() == "" ) {
+                numClassMate.css("borderColor","red");
+                return false;
+            }else
+                numClassMate.css("borderColor","");
+
+            if(isNaN(quantityMate.val()) || quantityMate.val() <= 0 ||  quantityMate.val() == "" ) {
+                quantityMate.css("borderColor","red");
+                return false;
+            }else
+                quantityMate.css("borderColor","");
+        }
+    }
+};
