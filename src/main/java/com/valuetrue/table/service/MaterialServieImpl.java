@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class MaterialServieImpl implements MaterialServie {
 
-
     private MaterialDAO materialDAO;
 
     @Autowired
@@ -22,12 +21,16 @@ public class MaterialServieImpl implements MaterialServie {
 
     @Override
     public void saveMaterial(Material material) {
-        this.materialDAO.saveMaterial(material);
+        if(material.getName()!="" && material.getWeight()>0 && material.getNum_class()>0 && material.getQuantity()>0){
+            this.materialDAO.saveMaterial(material);
+        }
     }
 
     @Override
     public void updateMaterial(Material material) {
-        this.materialDAO.updateMaterial(material);
+        if(material.getName()!="" && material.getWeight()>0 && material.getNum_class()>0 && material.getQuantity()>0) {
+            this.materialDAO.updateMaterial(material);
+        }
     }
 
     @Override
@@ -50,7 +53,6 @@ public class MaterialServieImpl implements MaterialServie {
 
     @Override
     public List<Material> getAllMaterialsByTableId(int table_id) {
-
         return this.materialDAO.getAllMaterialsByTableId(table_id);
     }
 }

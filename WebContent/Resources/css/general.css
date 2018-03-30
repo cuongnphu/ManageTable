@@ -2,8 +2,8 @@ table td input{
     width: 100%;
 }
 
-#tb-list .tb-row:nth-child(2n+1) {
-    background: gainsboro;
+.tbody-list .tb-row:nth-child(2n+1){
+    background: rgba(0,0,0,.05);
 }
 
 .p-0 {
@@ -14,4 +14,10 @@ table td input{
 .p-1{
     padding: 1px !important;
     margin: 1px !important;
+}
+
+.thead{
+    color: #fff;
+    background-color: #212529;
+    border-color: #32383e;
 }

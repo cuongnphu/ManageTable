@@ -21,20 +21,22 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public void savePrinter(Printer printer) {
-        // Caculate total = price * quantity
-        Integer total = printer.getPrice()* printer.getQuantity();
-        printer.setTotal(total);
-
-        this.printerDAO.savePrinter(printer);
+        if(printer.getName()!= "" && printer.getPrice() > 0 && printer.getQuantity() > 0){
+            // Caculate total = price * quantity
+            Integer total = printer.getPrice()* printer.getQuantity();
+            printer.setTotal(total);
+            this.printerDAO.savePrinter(printer);
+        }
     }
 
     @Override
     public void updatePrinter(Printer printer) {
-        // Caculate total = price * quantity
-        Integer total = printer.getPrice()* printer.getQuantity();
-        printer.setTotal(total);
-
-        this.printerDAO.updatePrinter(printer);
+        if(printer.getName()!= "" && printer.getPrice() > 0 && printer.getQuantity() > 0){
+            // Caculate total = price * quantity
+            Integer total = printer.getPrice()* printer.getQuantity();
+            printer.setTotal(total);
+            this.printerDAO.updatePrinter(printer);
+        }
     }
 
     @Override

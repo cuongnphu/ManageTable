@@ -24,9 +24,8 @@ function addProduct(tabId,intIndex) {
     var divrow = document.createElement("div");
     divrow.className = "row";
     divrow.id = index;
-    var divleft = document.createElement("div");
-    divleft.className = "p-0";
-    divleft.style = "float: left;width: 90%";
+    var div1 = document.createElement("div");
+    div1.className = "col-sm-6 p-0";
     var inputid = document.createElement("input");
     inputid.id = "productList"+index+".id";
     inputid.type = "text";
@@ -45,50 +44,54 @@ function addProduct(tabId,intIndex) {
     inputName.id = "productList"+index+".name";
     inputName.type = "text";
     inputName.name = "productList["+index+"].name";
+    var div2 = document.createElement("div");
+    div2.className = "col-sm-5 p-0";
     var inputQuantity = document.createElement("input");
     inputQuantity.id = "productList"+index+".quantity";
     inputQuantity.type = "text";
     inputQuantity.name = "productList["+index+"].quantity";
-    divleft.appendChild(inputid);
-    divleft.appendChild(inputtableid);
-    divleft.appendChild(inputName);
-    divleft.innerHTML += '<br>';
-    divleft.appendChild(inputQuantity);
-    divleft.innerHTML += '<br><br>';
-    var divright = document.createElement("div");
-    divright.className = "p-1";
-    divright.style = "float:right;width:8%";
+    div1.appendChild(inputid);
+    div1.appendChild(inputtableid);
+    div1.appendChild(inputName);
+    div1.innerHTML += '<br><br>';
+    div2.appendChild(inputQuantity);
+    var div3 = document.createElement("div");
+    div3.className = "col-sm-1 p-0";
     var a = document.createElement("a");
-    a.className = "btn-primary btn-xs";
+    a.className = "btn-danger btn-xs";
     a.innerText = "-";
     a.onclick = function (ev) {
         a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
     };
-    divright.appendChild(a);
-    divrow.appendChild(divleft);
-    divrow.appendChild(divright);
+    div3.appendChild(a);
+    divrow.appendChild(div1);
+    divrow.appendChild(div2);
+    divrow.appendChild(div3);
     div.appendChild(divrow);
     prod_count++;
 }
 
 var productScript = {
     editTableValidateForm: function () {
-        var nameProduct = $("#myProduct > div.row > div.p-0 > input[id*=name]");
-        var quantityProduct = $("#myProduct > div.row > div.p-0 > input[id*=quantity]");
+        var nameProduct = $("#myProduct > div.row > div > input[id*=name]");
+        var quantityProduct = $("#myProduct > div.row > div > input[id*=quantity]");
         if(typeof nameProduct.val() === "undefined")
             return true;
         else{
-            if(nameProduct.val() == ""){
-                nameProduct.css("borderColor","red");
-                return false;
-            }else
-                nameProduct.css("borderColor","");
+            for(var i=0;i<nameProduct.size();i++){
+                if(nameProduct.get(i).value == ""){
+                    nameProduct.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    nameProduct.get(i).style.borderColor = "";
 
-            if(isNaN(quantityProduct.val()) || quantityProduct.val() <= 0 ||  quantityProduct.val() == "" ) {
-                quantityProduct.css("borderColor","red");
-                return false;
-            }else
-                quantityProduct.css("borderColor","");
+                if(isNaN(quantityProduct.get(i).value) || quantityProduct.get(i).value <= 0 ||  quantityProduct.get(i).value == "" ) {
+                    quantityProduct.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    quantityProduct.get(i).style.borderColor = "";
+            }
+
         }
     }
 

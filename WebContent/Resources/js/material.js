@@ -23,9 +23,16 @@ function addMaterial(tabId,intIndex) {
     var divrow = document.createElement("div");
     divrow.className = "row";
     divrow.id = index;
-    var divleft = document.createElement("div");
-    divleft.className = "p-0";
-    divleft.style = "float: left;width: 95%";
+    var div1 = document.createElement("div");
+    div1.className = "col-sm-3 p-0";
+    var div2 = document.createElement("div");
+    div2.className = "col-sm-3 p-0";
+    var div3 = document.createElement("div");
+    div3.className = "col-sm-2 p-0";
+    var div4 = document.createElement("div");
+    div4.className = "col-sm-3 p-0";
+    var div5 = document.createElement("div");
+    div5.className = "col-sm-1 p-0";
     var inputid = document.createElement("input");
     inputid.id = "materialList"+index+".id";
     inputid.type = "text";
@@ -43,82 +50,77 @@ function addMaterial(tabId,intIndex) {
     var inputName = document.createElement("input");
     inputName.id = "materialList"+index+".name";
     inputName.type = "text";
-    inputName.style = "width: 30%; ";
     inputName.name = "materialList["+index+"].name";
     var inputWeight = document.createElement("input");
     inputWeight.id = "materialList"+index+".weight";
     inputWeight.type = "text";
-    inputWeight.style = "width: 22%; ";
     inputWeight.name = "materialList["+index+"].weight";
     var inputNumClass = document.createElement("input");
     inputNumClass.id = "materialList"+index+".num_class";
     inputNumClass.type = "text";
-    inputNumClass.style = "width: 22%; ";
     inputNumClass.name = "materialList["+index+"].num_class";
     var inputQuantity = document.createElement("input");
     inputQuantity.id = "materialList"+index+".quantity";
     inputQuantity.type = "text";
-    inputQuantity.style = "width: 23%; ";
     inputQuantity.name = "materialList["+index+"].quantity";
-    divleft.appendChild(inputid);
-    divleft.appendChild(inputtableid);
-    divleft.appendChild(inputName);
-    divleft.innerHTML += '&nbsp;';
-    divleft.appendChild(inputWeight);
-    divleft.innerHTML += '&nbsp;';
-    divleft.appendChild(inputNumClass);
-    divleft.innerHTML += '&nbsp;';
-    divleft.appendChild(inputQuantity);
-    divleft.innerHTML += '<br><br>';
-    var divright = document.createElement("div");
-    divright.className = "p-1";
-    divright.style = "float:right;width:3%";
+    div1.appendChild(inputid);
+    div1.appendChild(inputtableid);
+    div1.appendChild(inputName);
+    div1.innerHTML += '<br><br>';
+    div2.appendChild(inputWeight);
+    div3.appendChild(inputNumClass);
+    div4.appendChild(inputQuantity);
     var a = document.createElement("a");
-    a.className = "btn-primary btn-xs";
+    a.className = "btn-danger btn-xs";
     a.innerText = "-";
     a.onclick = function (ev) {
         a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
     };
-    divright.appendChild(a);
-    divrow.appendChild(divleft);
-    divrow.appendChild(divright);
+    div5.appendChild(a);
+    divrow.appendChild(div1);
+    divrow.appendChild(div2);
+    divrow.appendChild(div3);
+    divrow.appendChild(div4);
+    divrow.appendChild(div5);
     div.appendChild(divrow);
     mate_count++;
 }
 
 var materialScript = {
     editTableValidateForm: function () {
-        var nameMate = $("#myMaterial > div.row > div.p-0 > input[id*=name]");
-        var weightMate = $("#myMaterial > div.row > div.p-0 > input[id*=weight]");
-        var numClassMate = $("#myMaterial > div.row > div.p-0 > input[id*=num]");
-        var quantityMate = $("#myMaterial > div.row > div.p-0 > input[id*=quantity]");
+        var nameMate = $("#myMaterial > div.row > div > input[id*=name]");
+        var weightMate = $("#myMaterial > div.row > div > input[id*=weight]");
+        var numClassMate = $("#myMaterial > div.row > div > input[id*=num]");
+        var quantityMate = $("#myMaterial > div.row > div > input[id*=quantity]");
 
         if(typeof nameMate.val() === "undefined")
             return true;
         else{
-            if(nameMate.val() == ""){
-                nameMate.css("borderColor","red");
-                return false;
-            }else
-                nameMate.css("borderColor","");
+            for(var i = 0 ; i<nameMate.size();i++){
+                if(nameMate.get(i).value == ""){
+                    nameMate.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    nameMate.get(i).style.borderColor = "";
 
-            if(isNaN(weightMate.val()) || weightMate.val() <= 0 ||  weightMate.val() == "" ) {
-                weightMate.css("borderColor","red");
-                return false;
-            }else
-                weightMate.css("borderColor","");
+                if(isNaN(weightMate.get(i).value) || weightMate.get(i).value <= 0 ||  weightMate.get(i).value == "" ) {
+                    weightMate.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    weightMate.get(i).style.borderColor = "";
 
-            if(isNaN(numClassMate.val()) || numClassMate.val() <= 0 ||  numClassMate.val() == "" ) {
-                numClassMate.css("borderColor","red");
-                return false;
-            }else
-                numClassMate.css("borderColor","");
+                if(isNaN(numClassMate.get(i).value) || numClassMate.get(i).value <= 0 ||  numClassMate.get(i).value == "" ) {
+                    numClassMate.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    numClassMate.get(i).style.borderColor = "";
 
-            if(isNaN(quantityMate.val()) || quantityMate.val() <= 0 ||  quantityMate.val() == "" ) {
-                quantityMate.css("borderColor","red");
-                return false;
-            }else
-                quantityMate.css("borderColor","");
+                if(isNaN(quantityMate.get(i).value) || quantityMate.get(i).value <= 0 ||  quantityMate.get(i).value == "" ) {
+                    quantityMate.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    quantityMate.get(i).style.borderColor = "";
+            }
         }
     }
 };

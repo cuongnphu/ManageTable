@@ -23,20 +23,23 @@ public class EmbroideryServiceImpl implements EmbroideryService {
 
     @Override
     public void saveEmbroidery(Embroidery embroidery) {
-        // Caculate total = price * quantity
-        Integer total = embroidery.getPrice()* embroidery.getQuantity();
-        embroidery.setTotal(total);
+        if(embroidery.getName()!="" && embroidery.getPrice() > 0 && embroidery.getQuantity() > 0){
+            // Caculate total = price * quantity
+            Integer total = embroidery.getPrice()* embroidery.getQuantity();
+            embroidery.setTotal(total);
+            this.embroideryDAO.saveEmbroidery(embroidery);
+        }
 
-        this.embroideryDAO.saveEmbroidery(embroidery);
     }
 
     @Override
     public void updateEmbroidery(Embroidery embroidery) {
-        // Caculate total = price * quantity
-        Integer total = embroidery.getPrice()* embroidery.getQuantity();
-        embroidery.setTotal(total);
-
-        this.embroideryDAO.updateEmbroidery(embroidery);
+        if(embroidery.getName()!="" && embroidery.getPrice() > 0 && embroidery.getQuantity() > 0) {
+            // Caculate total = price * quantity
+            Integer total = embroidery.getPrice() * embroidery.getQuantity();
+            embroidery.setTotal(total);
+            this.embroideryDAO.updateEmbroidery(embroidery);
+        }
     }
 
     @Override
@@ -54,13 +57,11 @@ public class EmbroideryServiceImpl implements EmbroideryService {
 
     @Override
     public List<Embroidery> getAllEmbroideries() {
-
         return this.embroideryDAO.getAllEmbroideries();
     }
 
     @Override
     public List<Embroidery> getAllEmbroideriesByTableId(int table_id) {
-
         return this.embroideryDAO.getAllEmbroideriesByTableId(table_id);
     }
 }

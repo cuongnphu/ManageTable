@@ -20,20 +20,23 @@ public class SewingServiceImpl implements SewingService {
 
     @Override
     public void saveSewing(Sewing sewing) {
-        // Caculate total = price * quantity
-        Integer total = sewing.getPrice()* sewing.getQuantity();
-        sewing.setTotal(total);
+        if (sewing.getName() != "" && sewing.getPrice() > 0 && sewing.getQuantity() > 0) {
+            // Caculate total = price * quantity
+            Integer total = sewing.getPrice() * sewing.getQuantity();
+            sewing.setTotal(total);
+            this.sewingDAO.saveSewing(sewing);
+        }
 
-        this.sewingDAO.saveSewing(sewing);
     }
 
     @Override
     public void updateSewing(Sewing sewing) {
-        // Caculate total = price * quantity
-        Integer total = sewing.getPrice()* sewing.getQuantity();
-        sewing.setTotal(total);
-
-        this.sewingDAO.updateSewing(sewing);
+        if (sewing.getName() != "" && sewing.getPrice() > 0 && sewing.getQuantity() > 0) {
+            // Caculate total = price * quantity
+            Integer total = sewing.getPrice() * sewing.getQuantity();
+            sewing.setTotal(total);
+            this.sewingDAO.updateSewing(sewing);
+        }
     }
 
     @Override
@@ -51,13 +54,11 @@ public class SewingServiceImpl implements SewingService {
 
     @Override
     public List<Sewing> getAllSewings() {
-
         return this.sewingDAO.getAllSewings();
     }
 
     @Override
     public List<Sewing> getAllSewingsByTableId(int table_id) {
-
         return this.sewingDAO.getAllSewingsByTableId(table_id);
     }
 }

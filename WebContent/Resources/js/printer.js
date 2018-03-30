@@ -23,9 +23,14 @@ function addPrinter(tabId,intIndex) {
     var divrow = document.createElement("div");
     divrow.className = "row";
     divrow.id = index;
-    var divleft = document.createElement("div");
-    divleft.className = "p-0";
-    divleft.style = "float: left;width: 90%";
+    var div1 = document.createElement("div");
+    div1.className = "col-sm-4 p-0";
+    var div2 = document.createElement("div");
+    div2.className = "col-sm-4 p-0";
+    var div3 = document.createElement("div");
+    div3.className = "col-sm-3 p-0";
+    var div4 = document.createElement("div");
+    div4.className = "col-sm-1 p-0";
     var inputid = document.createElement("input");
     inputid.id = "printerList"+index+".id";
     inputid.type = "text";
@@ -52,56 +57,56 @@ function addPrinter(tabId,intIndex) {
     inputQuantity.id = "printerList"+index+".quantity";
     inputQuantity.type = "text";
     inputQuantity.name = "printerList["+index+"].quantity";
-    divleft.appendChild(inputid);
-    divleft.appendChild(inputtableid);
-    divleft.appendChild(inputName);
-    divleft.innerHTML += '<br>';
-    divleft.appendChild(inputPrice);
-    divleft.innerHTML += '<br>';
-    divleft.appendChild(inputQuantity);
-    divleft.innerHTML += '<br><br>';
-    var divright = document.createElement("div");
-    divright.className = "p-1";
-    divright.style = "float:right;width:8%";
+    div1.appendChild(inputid);
+    div1.appendChild(inputtableid);
+    div1.appendChild(inputName);
+    div1.innerHTML += '<br><br>';
+    div2.appendChild(inputPrice);
+    div3.appendChild(inputQuantity);
     var a = document.createElement("a");
-    a.className = "btn-primary btn-xs";
+    a.className = "btn-danger btn-xs";
     a.innerText = "-";
     a.onclick = function (ev) {
         a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
     };
-    divright.appendChild(a);
-    divrow.appendChild(divleft);
-    divrow.appendChild(divright);
+    div4.appendChild(a);
+    divrow.appendChild(div1);
+    divrow.appendChild(div2);
+    divrow.appendChild(div3);
+    divrow.appendChild(div4);
     div.appendChild(divrow);
     print_count++;
 }
 
 var printerScript = {
     editTableValidateForm: function () {
-        var namePrinter = $("#myPrinter> div.row > div.p-0 > input[id*=name]");
-        var pricePrinter = $("#myPrinter> div.row > div.p-0 > input[id*=price]");
-        var quantityPrinter = $("#myPrinter> div.row > div.p-0 > input[id*=quantity]");
+        var namePrinter = $("#myPrinter > div.row > div > input[id*=name]");
+        var pricePrinter = $("#myPrinter > div.row > div > input[id*=price]");
+        var quantityPrinter = $("#myPrinter > div.row > div > input[id*=quantity]");
 
         if(typeof namePrinter.val() === "undefined")
             return true;
         else{
-            if(namePrinter.val() == ""){
-                namePrinter.css("borderColor","red");
-                return false;
-            }else
-                namePrinter.css("borderColor","");
+            for(var i=0;i<namePrinter.size();i++){
+                if(namePrinter.get(i).value == ""){
+                    namePrinter.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    namePrinter.get(i).style.borderColor = "";
 
-            if(isNaN(pricePrinter.val()) || pricePrinter.val() <= 0 ||  pricePrinter.val() == "" ) {
-                pricePrinter.css("borderColor","red");
-                return false;
-            }else
-                pricePrinter.css("borderColor","");
+                if(isNaN(pricePrinter.get(i).value) || pricePrinter.get(i).value <= 0 ||  pricePrinter.get(i).value == "" ) {
+                    pricePrinter.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    pricePrinter.get(i).style.borderColor = "";
 
-            if(isNaN(quantityPrinter.val()) || quantityPrinter.val() <= 0 ||  quantityPrinter.val() == "" ) {
-                quantityPrinter.css("borderColor","red");
-                return false;
-            }else
-                quantityPrinter.css("borderColor","");
+                if(isNaN(quantityPrinter.get(i).value) || quantityPrinter.get(i).value <= 0 ||  quantityPrinter.get(i).value == "" ) {
+                    quantityPrinter.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    quantityPrinter.get(i).style.borderColor = "";
+            }
+
         }
     }
 };

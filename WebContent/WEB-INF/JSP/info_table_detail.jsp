@@ -7,86 +7,124 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Detail Table Information</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> " />
 </head>
 <body>
     <a class="btn btn-info" href="tables">Thêm Bàn Mới</a>
-    <h3> Thông Tin Bàn </h3>
-    <table class="table table-bordered" style="width: 1400px">
-        <tr>
-            <th style="width: 5%">Tên</th>
-            <th style="width: 16%">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm">Tên SP</div>
-                        <div class="col-sm">S.Lượng</div>
-                    </div>
-                </div>
-            </th>
-            <th>Người In, Giá , S.Lượng</th>
-            <th>Người Thêu, Giá , S.Lượng</th>
-            <th>Người May, Giá , S.Lượng</th>
-            <th>Nguyên Liệu , S.Kg , S.Lớp , S.Lượng</th>
-        </tr>
-        <c:forEach items="${listTableForm}" var="tabform">
+    <h3> Thông Tin Chi Tiết Bàn: </h3>
+    <table class="table table-bordered"  style="width: 1400px">
+        <thead class="thead">
             <tr>
-                <td width="60" align="center">${tabform.orderTable.name}</td>
-                <td>
-                    <table class="table table-bordered">
-                        <c:forEach items="${tabform.productList}" var="prod">
-                            <tr>
-                                <td width="60" align="center">${prod.name}</td>
-                                <td width="60" align="center">${prod.quantity}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </td>
-                <td>
-                    <table class="table table-bordered">
-                        <c:forEach items="${tabform.printerList}" var="print">
-                            <tr>
-                                <td width="60" align="center">${print.name}</td>
-                                <td width="60" align="center">${print.price}</td>
-                                <td width="60" align="center">${print.quantity}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </td>
-                <td>
-                    <table class="table table-bordered">
-                        <c:forEach items="${tabform.embroideryList}" var="embroid">
-                            <tr>
-                                <td width="60" align="center">${embroid.name}</td>
-                                <td width="60" align="center">${embroid.price}</td>
-                                <td width="60" align="center">${embroid.quantity}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </td>
-                <td>
-                    <table class="table table-bordered">
-                        <c:forEach items="${tabform.sewingList}" var="sew">
-                            <tr>
-                                <td width="60" align="center">${sew.name}</td>
-                                <td width="60" align="center">${sew.price}</td>
-                                <td width="60" align="center">${sew.quantity}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </td>
-                <td>
-                    <table class="table table-bordered">
-                        <c:forEach items="${tabform.materialList}" var="material">
-                            <tr>
-                                <td width="60" align="center">${material.name}</td>
-                                <td width="60" align="center">${material.weight}</td>
-                                <td width="60" align="center">${material.num_class}</td>
-                                <td width="60" align="center">${material.quantity}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </td>
+                <th style="width: 5%" >Bàn</th>
+                <th style="width: 15%">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">S.Phẩm</div>
+                            <div class="col-sm-6">S.Lượng</div>
+                        </div>
+                    </div>
+                </th>
+                <th style="width: 19%">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">In</div>
+                            <div class="col-sm-4">Giá (đ)</div>
+                            <div class="col-sm-4">S.Lượng</div>
+                        </div>
+                    </div>
+                </th>
+                <th style="width: 19%">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">Thêu</div>
+                            <div class="col-sm-4">Giá (đ)</div>
+                            <div class="col-sm-4">S.Lượng</div>
+                        </div>
+                    </div>
+                </th>
+                <th style="width: 19%">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">May</div>
+                            <div class="col-sm-4">Giá (đ)</div>
+                            <div class="col-sm-4">S.Lượng</div>
+                        </div>
+                    </div>
+                </th>
+                <th style="width: 23%">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-3">N.Liệu</div>
+                            <div class="col-sm-4">Số (Kg)</div>
+                            <div class="col-sm-2">S.Lớp</div>
+                            <div class="col-sm-3">S.Lg</div>
+                        </div>
+                    </div>
+                </th>
             </tr>
-        </c:forEach>
+        </thead>
+        <tbody class="tbody-list">
+            <c:forEach items="${listTableForm}" var="tabform">
+                <tr class="tb-row">
+                    <td>${tabform.orderTable.name}</td>
+                    <td>
+                        <div class="container-fluid">
+                            <c:forEach items="${tabform.productList}" var="prod">
+                                <div class="row" style="border: 1px dashed darkgrey">
+                                    <div class="col-sm-6">${prod.name}</div>
+                                    <div class="col-sm-6">${prod.quantity}</div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="container-fluid">
+                            <c:forEach items="${tabform.printerList}" var="print">
+                                <div class="row" style="border: 1px dashed darkgrey">
+                                    <div class="col-sm-4">${print.name}</div>
+                                    <div class="col-sm-4">${print.price}</div>
+                                    <div class="col-sm-4">${print.quantity}</div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="container-fluid">
+                            <c:forEach items="${tabform.embroideryList}" var="embroid">
+                                <div class="row" style="border: 1px dashed darkgrey">
+                                    <div class="col-sm-4">${embroid.name}</div>
+                                    <div class="col-sm-4">${embroid.price}</div>
+                                    <div class="col-sm-4">${embroid.quantity}</div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="container-fluid">
+                            <c:forEach items="${tabform.sewingList}" var="sew">
+                                <div class="row" style="border: 1px dashed darkgrey">
+                                    <div class="col-sm-4">${sew.name}</div>
+                                    <div class="col-sm-4">${sew.price}</div>
+                                    <div class="col-sm-4">${sew.quantity}</div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="container-fluid">
+                            <c:forEach items="${tabform.materialList}" var="material">
+                                <div class="row" style="border: 1px dashed darkgrey">
+                                    <div class="col-sm-3">${material.name}</div>
+                                    <div class="col-sm-4">${material.weight}</div>
+                                    <div class="col-sm-2">${material.num_class}</div>
+                                    <div class="col-sm-3">${material.quantity}</div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 </body>
 </html>

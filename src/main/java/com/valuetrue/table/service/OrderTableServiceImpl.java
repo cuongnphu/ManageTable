@@ -21,8 +21,11 @@ public class OrderTableServiceImpl implements OrderTableService {
 
 	@Override
 	public void saveOrderTable(OrderTable orderTable) {
-		if(orderTable.getName()!= "" && orderTable.getPre_weight() > 0)
-		    this.orderTableDAO.saveOrderTable(orderTable);
+		if(orderTable.getName()!= ""){
+		    orderTable.setPre_weight(1);
+		    orderTable.setAfter_weight(1);
+            this.orderTableDAO.saveOrderTable(orderTable);
+        }
 	}
 
 	@Override

@@ -23,9 +23,14 @@ function addSewing(tabId,intIndex) {
     var divrow = document.createElement("div");
     divrow.className = "row";
     divrow.id = index;
-    var divleft = document.createElement("div");
-    divleft.className = "p-0";
-    divleft.style = "float: left;width: 90%";
+    var div1 = document.createElement("div");
+    div1.className = "col-sm-4 p-0";
+    var div2 = document.createElement("div");
+    div2.className = "col-sm-4 p-0";
+    var div3 = document.createElement("div");
+    div3.className = "col-sm-3 p-0";
+    var div4 = document.createElement("div");
+    div4.className = "col-sm-1 p-0";
     var inputid = document.createElement("input");
     inputid.id = "sewingList"+index+".id";
     inputid.type = "text";
@@ -52,56 +57,55 @@ function addSewing(tabId,intIndex) {
     inputQuantity.id = "sewingList"+index+".quantity";
     inputQuantity.type = "text";
     inputQuantity.name = "sewingList["+index+"].quantity";
-    divleft.appendChild(inputid);
-    divleft.appendChild(inputtableid);
-    divleft.appendChild(inputName);
-    divleft.innerHTML += '<br>';
-    divleft.appendChild(inputPrice);
-    divleft.innerHTML += '<br>';
-    divleft.appendChild(inputQuantity);
-    divleft.innerHTML += '<br><br>';
-    var divright = document.createElement("div");
-    divright.className = "p-1";
-    divright.style = "float:right;width:8%";
+    div1.appendChild(inputid);
+    div1.appendChild(inputtableid);
+    div1.appendChild(inputName);
+    div1.innerHTML += '<br><br>';
+    div2.appendChild(inputPrice);
+    div3.appendChild(inputQuantity);
     var a = document.createElement("a");
-    a.className = "btn-primary btn-xs";
+    a.className = "btn-danger btn-xs";
     a.innerText = "-";
     a.onclick = function (ev) {
         a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode);
     };
-    divright.appendChild(a);
-    divrow.appendChild(divleft);
-    divrow.appendChild(divright);
+    div4.appendChild(a);
+    divrow.appendChild(div1);
+    divrow.appendChild(div2);
+    divrow.appendChild(div3);
+    divrow.appendChild(div4);
     div.appendChild(divrow);
     sew_count++;
 }
 
 var sewingScript = {
     editTableValidateForm: function () {
-        var nameSewing = $("#mySewing > div.row > div.p-0 > input[id*=name]");
-        var priceSewing = $("#mySewing > div.row > div.p-0 > input[id*=price]");
-        var quantitySewing= $("#mySewing > div.row > div.p-0 > input[id*=quantity]");
+        var nameSewing = $("#mySewing > div.row > div > input[id*=name]");
+        var priceSewing = $("#mySewing > div.row > div > input[id*=price]");
+        var quantitySewing= $("#mySewing > div.row > div > input[id*=quantity]");
 
         if(typeof nameSewing.val() === "undefined")
             return true;
         else{
-            if(nameSewing.val() == ""){
-                nameSewing.css("borderColor","red");
-                return false;
-            }else
-                nameSewing.css("borderColor","");
+            for(var i=0;i<nameSewing.size();i++){
+                if(nameSewing.get(i).value == ""){
+                    nameSewing.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    nameSewing.get(i).style.borderColor = "";
 
-            if(isNaN(priceSewing.val()) || priceSewing.val() <= 0 ||  priceSewing.val() == "" ) {
-                priceSewing.css("borderColor","red");
-                return false;
-            }else
-                priceSewing.css("borderColor","");
+                if(isNaN(priceSewing.get(i).value) || priceSewing.get(i).value <= 0 ||  priceSewing.get(i).value == "" ) {
+                    priceSewing.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    priceSewing.get(i).style.borderColor = "";
 
-            if(isNaN(quantitySewing.val()) || quantitySewing.val() <= 0 ||  quantitySewing.val() == "" ) {
-                quantitySewing.css("borderColor","red");
-                return false;
-            }else
-                quantitySewing.css("borderColor","");
+                if(isNaN(quantitySewing.get(i).value) || quantitySewing.get(i).value <= 0 ||  quantitySewing.get(i).value == "" ) {
+                    quantitySewing.get(i).style.borderColor = "red";
+                    return false;
+                }else
+                    quantitySewing.get(i).style.borderColor = "";
+            }
         }
     }
 };

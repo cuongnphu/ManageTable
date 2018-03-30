@@ -21,7 +21,8 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public void saveProduct(Product product) {
-		this.prodDAO.saveProduct(product);
+		if(product.getName()!= "" && product.getQuantity()> 0)
+			this.prodDAO.saveProduct(product);
 	}
 
 	@Override
