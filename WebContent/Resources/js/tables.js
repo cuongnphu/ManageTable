@@ -19,6 +19,11 @@ var tableScript = {
         }else
             document.getElementById('nameTable').style.borderColor = "";
 
+    },
+
+    editTableConfirmOut: function () {
+        if (confirm("Bạn muốn thoát ??? ") == true)
+            window.location.replace('/ManageTable/tables');
     }
 };
 
