@@ -5,12 +5,13 @@
 <head>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Detail Table Information</title>
+    <title>Thông Tin Chi Tiết Bàn</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> "/>
 </head>
 <body>
 <a class="btn btn-info" href="tables">&#10009 Bàn Mới</a>
+<a class="btn btn-info" href="teams">&#10009 Đội Mới</a>
 <h3> Thông Tin Chi Tiết Bàn: </h3>
 <table class="table table-bordered" style="width: 1400px">
     <thead class="thead">

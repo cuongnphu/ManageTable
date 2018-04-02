@@ -6,7 +6,7 @@
 <head>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Manage Order Table</title>
+    <title>Quản Lý Bàn</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> "/>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>

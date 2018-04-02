@@ -40,7 +40,7 @@ public class PrinterDAOImpl implements PrinterDAO {
         jdbcTemplateServlet.update(sql, new Object[]{printer.getName(), printer.getTable_id(), printer.getPrice(), printer.getQuantity(), printer.getTotal(), printer.getId()});
     }
 
-    // DELETE a parituclar Printer by Id
+    // DELETE a particular Printer by Id
     @Override
     public void deletePrinter(int id) {
         String sql = "delete from Printer where id=?";

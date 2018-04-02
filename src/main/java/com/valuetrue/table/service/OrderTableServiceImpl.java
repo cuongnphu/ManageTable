@@ -30,7 +30,8 @@ public class OrderTableServiceImpl implements OrderTableService {
 
 	@Override
 	public void updateOrderTable(OrderTable orderTable) {	
-		this.orderTableDAO.updateOrderTable(orderTable);
+		if(orderTable.getName()!= "")
+			this.orderTableDAO.updateOrderTable(orderTable);
 	}
 
 	@Override
