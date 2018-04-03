@@ -5,6 +5,7 @@ import com.valuetrue.table.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -51,6 +52,11 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List<Team> getAllTeams() {
         return this.teamDAO.getAllTeams();
+    }
+
+    @Override
+    public List<Team> getAllTeamsOrderByParams(ArrayList<String> listParams, String option) {
+        return this.teamDAO.getAllTeamsOrderByParams(listParams,option);
     }
 
     @Override

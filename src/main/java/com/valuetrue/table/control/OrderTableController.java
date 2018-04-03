@@ -83,7 +83,7 @@ public class OrderTableController {
         return new ModelAndView("redirect:/tables");
     }
 
-    @RequestMapping(value = "/InfoDetail",method=RequestMethod.POST)
+    @RequestMapping(value = "/infodetail",method=RequestMethod.POST)
     public ModelAndView saveInfoDetail (@ModelAttribute("tableForm") TableForm tableForm) {
 	    // Update orderTable
         try{

@@ -6,7 +6,7 @@
 <head>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Edit Information OrderTable</title>
+    <title>Cập Nhật Thông Tin Bàn</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> "/>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -19,7 +19,7 @@
 </head>
 <body>
 <h3>Nhập Thông Tin Bàn: </h3>
-<form:form method="post" action="/ManageTable/InfoDetail" modelAttribute="tableForm">
+<form:form method="post" action="/ManageTable/infodetail" modelAttribute="tableForm">
     <div class="table-responsive">
         <table class="table table-bordered" style="width: 1400px;">
             <thead class="thead">

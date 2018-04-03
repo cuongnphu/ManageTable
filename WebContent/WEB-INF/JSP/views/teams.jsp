@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> "/>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="<c:url value="/Resources/js/tables.js"/> "></script>
+    <script src="<c:url value="/Resources/js/team.js"/> "></script>
 </head>
 <body>
 <h3>Thêm Đội: </h3>
@@ -38,12 +38,14 @@
             </tr>
             <tr>
                 <td><a class="btn btn-info" href="detailtable">&#10094 Thông Tin Chi Tiết Bàn</a></td>
-                <td><input class="btn btn-info" type="submit" value="Tạo Đội"/></td>
+                <td><input class="btn btn-info" type="submit" value="Tạo Đội" onchange="return teamScript.teamFormValidate()"
+                           onclick="return teamScript.teamFormValidate()"/>
+                </td>
             </tr>
         </table>
     </div>
 </form:form>
-<h3>Danh Sách Bàn :</h3>
+<h3>Danh Sách Đội :</h3>
 <table class="table table-bordered" style="width: 900px">
     <thead class="thead">
     <tr>
@@ -67,8 +69,8 @@
                 <c:if test="${teamform.enable == false}">STOP</c:if>
             </td>
             <td>
-                <p><a class="btn-info btn-sm" href="editteam/${teamform.id}">&#9998</a></p>
-                <p><a class="btn-info btn-sm" href="deleteteam/${teamform.id}">&#9940</a></p>
+                <p><a class="btn-info btn-sm" onclick="teamScript.teamFormConfirmEdit(${teamform.id})">&#9998</a></p>
+                <p><a class="btn-info btn-sm" onclick="teamScript.teamFormConfirmDelete(${teamform.id})">&#9940</a></p>
             </td>
         </tr>
     </c:forEach>

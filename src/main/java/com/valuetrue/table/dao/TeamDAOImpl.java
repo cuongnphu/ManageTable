@@ -91,6 +91,35 @@ public class TeamDAOImpl implements TeamDAO {
         return teamList;
     }
 
+    @Override
+    public List<Team> getAllTeamsOrderByParams(ArrayList<String> listParams,String option) {
+        // Initialize String sql query
+        String sql = "select * from Team ORDER BY ";
+        for(int i = 0;i<listParams.size();i++){
+            sql += listParams.get(i).toString();
+        }
+        sql = sql + " " + option + ";";
+
+        // Use jdbc method for sql query
+        List<Team> teamList = jdbcTemplateServlet.query(sql, new ResultSetExtractor<List<Team>>() {
+            @Override
+            public List<Team> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Team> list = new ArrayList<Team>();
+                while (rs.next()) {
+                    Team teamer = new Team();
+                    teamer.setId(rs.getInt(1));
+                    teamer.setName(rs.getString(2));
+                    teamer.setTeam_id(rs.getInt(3));
+                    teamer.setTotal(rs.getInt(4));
+                    teamer.setEnable(rs.getBoolean(5));
+                    list.add(teamer);
+                }
+                return list;
+            }
+        });
+        return teamList;
+    }
+
     // GET all teams by Team_Id
     @Override
     public List<Team> getAllTeamsByTeamId(int team_id) {
