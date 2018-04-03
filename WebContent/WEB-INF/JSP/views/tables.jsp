@@ -147,7 +147,7 @@
             </td>
             <td>
                 <p><a class="btn-info btn-sm" href="edit/${tabform.orderTable.id}">&#9998</a></p>
-                <p><a class="btn-info btn-sm" href="delete/${tabform.orderTable.id}">&#9940</a></p>
+                <p><a class="btn-info btn-sm" onclick="tableScript.tableFormConfirmDelete(${tabform.orderTable.id})">&#9940</a></p>
             </td>
         </tr>
     </c:forEach>

@@ -2,6 +2,7 @@ var checkNameTeam = false;
 var teamScript = {
     teamFormValidate: function () {
         var nameTeam = $("#nameTeam");
+        var teamId = $("#team_id");
 
         if(nameTeam.get(0).value == ""){
             nameTeam.get(0).style.borderColor = "red";
@@ -11,10 +12,12 @@ var teamScript = {
 
         if(checkNameTeam == false){
             nameTeam.get(0).style.borderColor = "red";
+            teamId.get(0).style.borderColor = "red";
             return false;
-        }else
+        }else{
             nameTeam.get(0).style.borderColor = "";
-
+            teamId.get(0).style.borderColor = "";
+        }
     },
     
     editTeamConfirmOut: function () {
@@ -35,11 +38,20 @@ var teamScript = {
 
 $(document).ready(function () {
     $("#nameTeam").focusout(function () {
-        var txt = $("#nameTeam").val();
-        $.post("/ManageTable/checkteam", {suggest: txt}, function(result){
+        var txtName = $("#nameTeam").val();
+        var txtTeamId = $("#team_id").val();
+        $.post("/ManageTable/checkteam", {nameCheck: txtName, teamIdCheck: txtTeamId}, function(result){
             checkNameTeam = result;
         });
     });
+
+    $("#team_id").change(function () {
+        var txtName = $("#nameTeam").val();
+        var txtTeamId = $("#team_id").val();
+        $.post("/ManageTable/checkteam", {nameCheck: txtName, teamIdCheck: txtTeamId}, function(result){
+            checkNameTeam = result;
+        });
+    })
 })
 
 

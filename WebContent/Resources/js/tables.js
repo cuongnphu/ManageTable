@@ -24,6 +24,12 @@ var tableScript = {
     editTableConfirmOut: function () {
         if (confirm("Bạn muốn thoát ??? ") == true)
             window.location.replace('/ManageTable/tables');
+    },
+
+    tableFormConfirmDelete: function (id) {
+        if(confirm("BẠN muốn XÓA ... Bàn này ??? \n " +
+                " Bàn chỉ được xóa khi ko có dự liệu ") == true)
+            window.location.replace("delete/"+id);
     }
 };
 

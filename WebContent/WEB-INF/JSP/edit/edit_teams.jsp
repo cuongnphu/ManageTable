@@ -23,25 +23,19 @@
             </tr>
             <tr>
                 <td>Name :</td>
-                <td><form:input id="nameTeam" type="text" path="name" placeholder="Tên đội"/></td>
+                <td><form:input id="nameTeam" type="text" path="name" readonly="true" cssStyle="background: gainsboro"/></td>
             </tr>
             <tr>
                 <td>Ngành Nghề :</td>
                 <td>
-                    <form:select path="team_id">
+                    <form:select path="team_id" cssStyle="background: gainsboro; " >
                         <c:if test="${modelTeam.team_id == 1}">
                             <form:option value="1" selected="selected" >In</form:option>
-                            <form:option value="2">Thêu</form:option>
-                            <form:option value="3">May</form:option>
                         </c:if>
                         <c:if test="${modelTeam.team_id == 2}">
-                            <form:option value="1" >In</form:option>
                             <form:option value="2" selected="selected" >Thêu</form:option>
-                            <form:option value="3">May</form:option>
                         </c:if>
                         <c:if test="${modelTeam.team_id == 3}">
-                            <form:option value="1" >In</form:option>
-                            <form:option value="2" >Thêu</form:option>
                             <form:option value="3" selected="selected" >May</form:option>
                         </c:if>
                     </form:select>
@@ -65,9 +59,8 @@
             <tr>
                 <td></td>
                 <td>
-                    <a class="btn btn-info" onclick="teamScript.editTeamConfirmOut()">&#10094 Thoát</a>
-                    <button class="btn-info btn" type="submit" onclick="return teamScript.teamFormValidate()"
-                            onchange="return teamScript.teamFormValidate()">Cập Nhật &#10004</button>
+                    <a class="btn btn-info" onclick="window.location.replace('/ManageTable/teams')">&#10094 Thoát</a>
+                    <button class="btn-info btn" type="submit" >Cập Nhật &#10004</button>
                 </td>
             </tr>
         </table>

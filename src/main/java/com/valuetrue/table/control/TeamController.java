@@ -106,11 +106,11 @@ public class TeamController {
     }
 
     @RequestMapping(value = "/checkteam", method = RequestMethod.POST)
-    public @ResponseBody boolean checkTeamName(String suggest) {
+    public @ResponseBody boolean checkTeamName(String nameCheck,int teamIdCheck) {
         // Get all Teams
         List<Team> listTeams = this.teamService.getAllTeams();
         for(int i = 0; i < listTeams.size();i++){
-            if(suggest.equalsIgnoreCase(listTeams.get(i).getName().trim())){
+            if(nameCheck.equalsIgnoreCase(listTeams.get(i).getName().trim()) && teamIdCheck == listTeams.get(i).getTeam_id() ){
                 return false;
             }
         }
