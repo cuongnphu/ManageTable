@@ -23,6 +23,7 @@ public class OrderTableController {
     private EmbroideryService embroideryService;
     private SewingService sewingService;
     private MaterialServie materialServie;
+    private TeamService teamService;
 
     @Autowired
     public void setDetailTableService(DetailTableService detailTableService) {
@@ -57,6 +58,11 @@ public class OrderTableController {
     @Autowired
     public void setMaterialServie(MaterialServie materialServie) {
         this.materialServie = materialServie;
+    }
+
+    @Autowired
+    public void setTeamService(TeamService teamService) {
+        this.teamService = teamService;
     }
 
     @RequestMapping(value = "/tables", method = RequestMethod.GET)
@@ -127,7 +133,7 @@ public class OrderTableController {
 
         // Save or Update embroidery
         if (tableForm.getEmbroideryList() != null) {
-            for (int i = 0; i < tableForm.getPrinterList().size(); i++) {
+            for (int i = 0; i < tableForm.getEmbroideryList().size(); i++) {
                 try {
                     if (this.embroideryService.getEmbroideryById(tableForm.getEmbroideryList().get(i).getId()) != null)
                         ;
@@ -199,6 +205,10 @@ public class OrderTableController {
         List<Material> materialListByTableId = this.materialServie.getAllMaterialsByTableId(id);
         log.info(materialListByTableId);
 
+        // Get all Team
+        List<Team> teamList = this.teamService.getAllTeamsByActive();
+        log.info(teamList);
+
         // Setter for modelAttribute object
         tableForm.setOrderTable(orderTab);
         tableForm.setProductList(productListByTableId);
@@ -206,6 +216,7 @@ public class OrderTableController {
         tableForm.setEmbroideryList(embroideryListByTableId);
         tableForm.setSewingList(sewingListByTableId);
         tableForm.setMaterialList(materialListByTableId);
+        tableForm.setTeamList(teamList);
 
         // Get all orderTable detail
         List<TableForm> listTabForm = this.detailTableService.getAllTableForm();

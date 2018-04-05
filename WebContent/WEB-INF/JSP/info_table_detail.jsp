@@ -10,8 +10,29 @@
     <link rel="stylesheet" href="<c:url value="/Resources/css/general.css" /> "/>
 </head>
 <body>
-<a class="btn btn-info" href="tables">&#10009 Bàn Mới</a>
-<a class="btn btn-info" href="teams">&#10009 Đội Mới</a>
+<table class="table" style="width: 1400px">
+    <thead></thead>
+    <tbody>
+    <tr>
+        <td>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <input class="btn btn-info" value="&#10009 Thêm Bàn Mới"
+                               onclick="window.location.replace('/ManageTable/tables')"></input>
+                    </div>
+                    <div class="col-sm-5">
+
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-info" href="teams">&#10009 Đội Mới</a>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
 <h3> Thông Tin Chi Tiết Bàn: </h3>
 <table class="table table-bordered" style="width: 1400px">
     <thead class="thead">

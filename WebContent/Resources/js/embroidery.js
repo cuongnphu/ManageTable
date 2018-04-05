@@ -1,3 +1,7 @@
+var embro_count = 0;
+var index = 0;
+var listNameTeam ;
+
 function postEmbroidery(tableId) {
     console.log("add embroidery in table ...");
     $.ajax({
@@ -15,8 +19,6 @@ function postEmbroidery(tableId) {
     });
 }
 
-var embro_count = 0;
-var index = 0;
 function addEmbroidery(tabId,intIndex) {
     index = intIndex + embro_count;
     var div = document.getElementById("myEmbroidery");
@@ -45,10 +47,19 @@ function addEmbroidery(tabId,intIndex) {
     inputtableid.readOnly = "true";
     inputtableid.hidden = "true";
     inputtableid.setAttribute('value',tabId.toString());
-    var inputName = document.createElement("input");
-    inputName.id = "embroideryList"+index+".name";
-    inputName.type = "text";
-    inputName.name = "embroideryList["+index+"].name";
+
+    var selectName = document.createElement("select");
+    selectName.id = "embroideryList"+index+".name";
+    selectName.name = "embroideryList["+index+"].name";
+    for (var i = 0; i < listNameTeam.length; i++) {
+        if(listNameTeam[i].team_id == 2){
+            var option = document.createElement("option");
+            option.setAttribute('value', listNameTeam[i].name);
+            option.innerHTML = listNameTeam[i].name;
+            selectName.appendChild(option);
+        }
+    }
+
     var inputPrice = document.createElement("input");
     inputPrice.id = "embroideryList"+index+".price";
     inputPrice.type = "text";
@@ -59,7 +70,7 @@ function addEmbroidery(tabId,intIndex) {
     inputQuantity.name = "embroideryList["+index+"].quantity";
     div1.appendChild(inputid);
     div1.appendChild(inputtableid);
-    div1.appendChild(inputName);
+    div1.appendChild(selectName);
     div1.innerHTML += '<br><br>';
     div2.appendChild(inputPrice);
     div3.appendChild(inputQuantity);
@@ -76,11 +87,11 @@ function addEmbroidery(tabId,intIndex) {
     divrow.appendChild(div4);
     div.appendChild(divrow);
     embro_count++;
-};
+}
 
 var embroideryScript = {
     editTableValidateForm: function(){
-        var nameEmbroid = $("#myEmbroidery > div.row > div > input[id*=name]");
+        var nameEmbroid = $("#myEmbroidery > div.row > div > select[id*=name]");
         var priceEmbroid= $("#myEmbroidery > div.row > div > input[id*=price]");
         var quantityEmbroid = $("#myEmbroidery> div.row > div > input[id*=quantity]");
 

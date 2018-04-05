@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-
 @Service
 public class MaterialServieImpl implements MaterialServie {
 
@@ -21,16 +20,18 @@ public class MaterialServieImpl implements MaterialServie {
 
     @Override
     public void saveMaterial(Material material) {
-        if(material.getName()!="" && material.getWeight()>0 && material.getNum_class()>0 && material.getQuantity()>0){
-            this.materialDAO.saveMaterial(material);
-        }
+        if (material.getName() != "" && material.getWeight() != null && material.getNum_class() != null && material.getQuantity() != null)
+            if (material.getWeight() > 0 && material.getNum_class() > 0 && material.getQuantity() > 0)
+                this.materialDAO.saveMaterial(material);
+
     }
 
     @Override
     public void updateMaterial(Material material) {
-        if(material.getName()!="" && material.getWeight()>0 && material.getNum_class()>0 && material.getQuantity()>0) {
-            this.materialDAO.updateMaterial(material);
-        }
+        if (material.getName() != "" && material.getWeight() != null && material.getNum_class() != null && material.getQuantity() != null)
+            if (material.getWeight() > 0 && material.getNum_class() > 0 && material.getQuantity() > 0)
+                this.materialDAO.updateMaterial(material);
+
     }
 
     @Override
@@ -40,7 +41,7 @@ public class MaterialServieImpl implements MaterialServie {
 
     @Override
     public Material getMaterialById(int id) {
-        if(id != 0)
+        if (id != 0)
             return this.materialDAO.getMaterialById(id);
         else
             return this.materialDAO.getMaterialById(0);

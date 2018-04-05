@@ -63,4 +63,9 @@ public class TeamServiceImpl implements TeamService {
     public List<Team> getAllTeamsByTeamId(int team_id) {
         return this.teamDAO.getAllTeamsByTeamId(team_id);
     }
+
+    @Override
+    public List<Team> getAllTeamsByActive() {
+        return this.teamDAO.getAllTeamsByActive();
+    }
 }

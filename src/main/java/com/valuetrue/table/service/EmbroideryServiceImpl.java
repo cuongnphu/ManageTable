@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-
-
 @Service
 public class EmbroideryServiceImpl implements EmbroideryService {
 
@@ -23,23 +21,25 @@ public class EmbroideryServiceImpl implements EmbroideryService {
 
     @Override
     public void saveEmbroidery(Embroidery embroidery) {
-        if(embroidery.getName()!="" && embroidery.getPrice() > 0 && embroidery.getQuantity() > 0){
-            // Caculate total = price * quantity
-            Integer total = embroidery.getPrice()* embroidery.getQuantity();
-            embroidery.setTotal(total);
-            this.embroideryDAO.saveEmbroidery(embroidery);
-        }
+        if (embroidery.getName() != "" && embroidery.getPrice() != null && embroidery.getQuantity() != null)
+            if (embroidery.getPrice() > 0 && embroidery.getQuantity() > 0) {
+                // Caculate total = price * quantity
+                Integer total = embroidery.getPrice() * embroidery.getQuantity();
+                embroidery.setTotal(total);
+                this.embroideryDAO.saveEmbroidery(embroidery);
+            }
 
     }
 
     @Override
     public void updateEmbroidery(Embroidery embroidery) {
-        if(embroidery.getName()!="" && embroidery.getPrice() > 0 && embroidery.getQuantity() > 0) {
-            // Caculate total = price * quantity
-            Integer total = embroidery.getPrice() * embroidery.getQuantity();
-            embroidery.setTotal(total);
-            this.embroideryDAO.updateEmbroidery(embroidery);
-        }
+        if (embroidery.getName() != "" && embroidery.getPrice() != null && embroidery.getQuantity() != null)
+            if (embroidery.getPrice() > 0 && embroidery.getQuantity() > 0) {
+                // Caculate total = price * quantity
+                Integer total = embroidery.getPrice() * embroidery.getQuantity();
+                embroidery.setTotal(total);
+                this.embroideryDAO.updateEmbroidery(embroidery);
+            }
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EmbroideryServiceImpl implements EmbroideryService {
 
     @Override
     public Embroidery getEmbroideryById(int id) {
-        if(id != 0)
+        if (id != 0)
             return this.embroideryDAO.getEmbroideryById(id);
         else
             return this.embroideryDAO.getEmbroideryById(0);

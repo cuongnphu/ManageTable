@@ -14,6 +14,7 @@ public class TableForm {
 	private List<Embroidery> embroideryList;
 	private List<Sewing> sewingList;
 	private List<Material> materialList;
+	private List<Team> teamList;
 
 	// Getter & Setter
 	public List<Product> getProductList() {
@@ -64,5 +65,12 @@ public class TableForm {
 		this.materialList = materialList;
 	}
 
+	public List<Team> getTeamList() {
+		return teamList;
+	}
+
+	public void setTeamList(List<Team> teamList) {
+		this.teamList = teamList;
+	}
 
 }

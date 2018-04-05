@@ -118,5 +118,12 @@ public class TeamController {
         return true;
     }
 
+    @RequestMapping(value = "/listteamname", method = RequestMethod.POST)
+    public @ResponseBody List<Team> getListTeamName() {
+        // Get all Teams by status Active
+        List<Team> listTeams = this.teamService.getAllTeamsByActive();
+        return listTeams;
+    }
+
 }
 

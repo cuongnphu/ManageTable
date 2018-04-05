@@ -21,13 +21,14 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public void saveProduct(Product product) {
-		if(product.getName()!= "" && product.getQuantity()> 0)
+		if(product.getName()!= "" && product.getQuantity() != null && product.getQuantity()> 0)
 			this.prodDAO.saveProduct(product);
 	}
 
 	@Override
 	public void updateProduct(Product product) {
-		this.prodDAO.updateProduct(product);
+		if(product.getName()!= "" && product.getQuantity() != null && product.getQuantity() > 0)
+			this.prodDAO.updateProduct(product);
 		
 	}
 

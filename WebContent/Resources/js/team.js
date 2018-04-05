@@ -51,7 +51,7 @@ $(document).ready(function () {
         $.post("/ManageTable/checkteam", {nameCheck: txtName, teamIdCheck: txtTeamId}, function(result){
             checkNameTeam = result;
         });
-    })
+    });
 })
 
 

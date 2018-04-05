@@ -121,7 +121,13 @@
                                                     hidden="true"/>
                                         <form:input type="text" path="printerList[${status.index}].table_id"
                                                     readonly="true" hidden="true"/>
-                                        <form:input type="text" path="printerList[${status.index}].name"/>
+                                        <form:select path="printerList[${status.index}].name">
+                                            <c:forEach items="${tableForm.teamList}" var="team">
+                                                <c:if test="${team.team_id == 1}">
+                                                    <form:option value="${team.name}">${team.name}</form:option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </form:select>
                                         <br>
                                     </div>
                                     <div class="col-sm-4 p-0">
@@ -154,7 +160,13 @@
                                                     readonly="true" hidden="true"/>
                                         <form:input type="text" path="embroideryList[${status.index}].table_id"
                                                     readonly="true" hidden="true"/>
-                                        <form:input type="text" path="embroideryList[${status.index}].name"/>
+                                        <form:select path="embroideryList[${status.index}].name">
+                                            <c:forEach items="${tableForm.teamList}" var="team">
+                                                <c:if test="${team.team_id == 2}">
+                                                    <form:option value="${team.name}">${team.name}</form:option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </form:select>
                                         <br>
                                     </div>
                                     <div class="col-sm-4 p-0">
@@ -187,7 +199,13 @@
                                                     hidden="true"/>
                                         <form:input type="text" path="sewingList[${status.index}].table_id"
                                                     readonly="true" hidden="true"/>
-                                        <form:input type="text" path="sewingList[${status.index}].name"/>
+                                        <form:select path="sewingList[${status.index}].name">
+                                            <c:forEach items="${tableForm.teamList}" var="team">
+                                                <c:if test="${team.team_id == 3}">
+                                                    <form:option value="${team.name}">${team.name}</form:option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </form:select>
                                         <br>
                                     </div>
                                     <div class="col-sm-4 p-0">

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-
 @Service
 public class PrinterServiceImpl implements PrinterService {
 
@@ -21,22 +20,24 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public void savePrinter(Printer printer) {
-        if(printer.getName()!= "" && printer.getPrice() > 0 && printer.getQuantity() > 0){
-            // Caculate total = price * quantity
-            Integer total = printer.getPrice()* printer.getQuantity();
-            printer.setTotal(total);
-            this.printerDAO.savePrinter(printer);
-        }
+        if (printer.getName() != "" && printer.getPrice() != null && printer.getQuantity() != null)
+            if (printer.getPrice() > 0 && printer.getQuantity() > 0) {
+                // Caculate total = price * quantity
+                Integer total = printer.getPrice() * printer.getQuantity();
+                printer.setTotal(total);
+                this.printerDAO.savePrinter(printer);
+            }
     }
 
     @Override
     public void updatePrinter(Printer printer) {
-        if(printer.getName()!= "" && printer.getPrice() > 0 && printer.getQuantity() > 0){
-            // Caculate total = price * quantity
-            Integer total = printer.getPrice()* printer.getQuantity();
-            printer.setTotal(total);
-            this.printerDAO.updatePrinter(printer);
-        }
+        if (printer.getName() != "" && printer.getPrice() != null && printer.getQuantity() != null)
+            if (printer.getPrice() > 0 && printer.getQuantity() > 0) {
+                // Caculate total = price * quantity
+                Integer total = printer.getPrice() * printer.getQuantity();
+                printer.setTotal(total);
+                this.printerDAO.updatePrinter(printer);
+            }
     }
 
     @Override
@@ -46,7 +47,7 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public Printer getPrinterById(int id) {
-        if(id != 0)
+        if (id != 0)
             return this.printerDAO.getPrinterById(id);
         else
             return this.printerDAO.getPrinterById(0);

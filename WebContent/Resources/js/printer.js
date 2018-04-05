@@ -1,23 +1,25 @@
+var print_count = 0;
+var index = 0;
+var listNameTeam = null;
+
 function postPrinter(tableId) {
     console.log("add printer in table ...");
     $.ajax({
         type: "post",
-        url: "/ManageTable/addprinter/"+tableId,
+        url: "/ManageTable/addprinter/" + tableId,
         success: function (data) {
-            var redirect =  data;
-            if(redirect){
+            var redirect = data;
+            if (redirect) {
                 window.location.replace(redirect);
             }
         },
-        error: function(e){
-            alert('Error: ' +JSON.stringify(e));
+        error: function (e) {
+            alert('Error: ' + JSON.stringify(e));
         }
     });
 }
 
-var print_count = 0;
-var index = 0;
-function addPrinter(tabId,intIndex) {
+function addPrinter(tabId, intIndex) {
     index = intIndex + print_count;
     var div = document.getElementById("myPrinter");
     var divrow = document.createElement("div");
@@ -32,34 +34,41 @@ function addPrinter(tabId,intIndex) {
     var div4 = document.createElement("div");
     div4.className = "col-sm-1 p-0";
     var inputid = document.createElement("input");
-    inputid.id = "printerList"+index+".id";
+    inputid.id = "printerList" + index + ".id";
     inputid.type = "text";
-    inputid.name = "printerList["+index+"].id";
+    inputid.name = "printerList[" + index + "].id";
     inputid.readOnly = "true";
     inputid.hidden = "true";
-    inputid.setAttribute('value',"0");
+    inputid.setAttribute('value', "0");
     var inputtableid = document.createElement("input");
-    inputtableid.id = "printerList"+index+".table_id";
+    inputtableid.id = "printerList" + index + ".table_id";
     inputtableid.type = "text";
-    inputtableid.name = "printerList["+index+"].table_id";
+    inputtableid.name = "printerList[" + index + "].table_id";
     inputtableid.readOnly = "true";
     inputtableid.hidden = "true";
-    inputtableid.setAttribute('value',tabId.toString());
-    var inputName = document.createElement("input");
-    inputName.id = "printerList"+index+".name";
-    inputName.type = "text";
-    inputName.name = "printerList["+index+"].name";
+    inputtableid.setAttribute('value', tabId.toString());
+    var selectName = document.createElement("select");
+    selectName.id = "printerList" + index + ".name";
+    selectName.name = "printerList[" + index + "].name";
+    for (var i = 0; i < listNameTeam.length; i++) {
+        if(listNameTeam[i].team_id == 1){
+            var option = document.createElement("option");
+            option.setAttribute('value', listNameTeam[i].name);
+            option.innerHTML = listNameTeam[i].name;
+            selectName.appendChild(option);
+        }
+    }
     var inputPrice = document.createElement("input");
-    inputPrice.id = "printerList"+index+".price";
+    inputPrice.id = "printerList" + index + ".price";
     inputPrice.type = "text";
-    inputPrice.name = "printerList["+index+"].price";
+    inputPrice.name = "printerList[" + index + "].price";
     var inputQuantity = document.createElement("input");
-    inputQuantity.id = "printerList"+index+".quantity";
+    inputQuantity.id = "printerList" + index + ".quantity";
     inputQuantity.type = "text";
-    inputQuantity.name = "printerList["+index+"].quantity";
+    inputQuantity.name = "printerList[" + index + "].quantity";
     div1.appendChild(inputid);
     div1.appendChild(inputtableid);
-    div1.appendChild(inputName);
+    div1.appendChild(selectName);
     div1.innerHTML += '<br><br>';
     div2.appendChild(inputPrice);
     div3.appendChild(inputQuantity);
@@ -80,33 +89,43 @@ function addPrinter(tabId,intIndex) {
 
 var printerScript = {
     editTableValidateForm: function () {
-        var namePrinter = $("#myPrinter > div.row > div > input[id*=name]");
+        var namePrinter = $("#myPrinter > div.row > div > select[id*=name]");
         var pricePrinter = $("#myPrinter > div.row > div > input[id*=price]");
         var quantityPrinter = $("#myPrinter > div.row > div > input[id*=quantity]");
 
-        if(typeof namePrinter.val() === "undefined")
+        if (typeof namePrinter.val() === "undefined")
             return true;
-        else{
-            for(var i=0;i<namePrinter.size();i++){
-                if(namePrinter.get(i).value == ""){
+        else {
+            for (var i = 0; i < namePrinter.size(); i++) {
+                if (namePrinter.get(i).value == "") {
                     namePrinter.get(i).style.borderColor = "red";
                     return false;
-                }else
+                } else
                     namePrinter.get(i).style.borderColor = "";
 
-                if(isNaN(pricePrinter.get(i).value) || pricePrinter.get(i).value <= 0 ||  pricePrinter.get(i).value == "" ) {
+                if (isNaN(pricePrinter.get(i).value) || pricePrinter.get(i).value <= 0 || pricePrinter.get(i).value == "") {
                     pricePrinter.get(i).style.borderColor = "red";
                     return false;
-                }else
+                } else
                     pricePrinter.get(i).style.borderColor = "";
 
-                if(isNaN(quantityPrinter.get(i).value) || quantityPrinter.get(i).value <= 0 ||  quantityPrinter.get(i).value == "" ) {
+                if (isNaN(quantityPrinter.get(i).value) || quantityPrinter.get(i).value <= 0 || quantityPrinter.get(i).value == "") {
                     quantityPrinter.get(i).style.borderColor = "red";
                     return false;
-                }else
+                } else
                     quantityPrinter.get(i).style.borderColor = "";
             }
 
         }
     }
 };
+
+function getListTeamName() {
+    $.post("/ManageTable/listteamname", function (result) {
+        var str = JSON.stringify(result);
+        listNameTeam = JSON.parse(str);
+    });
+
+}
+
+$(document).ready(getListTeamName());

@@ -1,3 +1,7 @@
+var sew_count = 0;
+var index = 0;
+var listNameTeam ;
+
 function postSewing(tableId) {
     console.log("add sewing in table ...");
     $.ajax({
@@ -15,8 +19,6 @@ function postSewing(tableId) {
     });
 }
 
-var sew_count = 0;
-var index = 0;
 function addSewing(tabId,intIndex) {
     index = intIndex + sew_count;
     var div = document.getElementById("mySewing");
@@ -45,10 +47,21 @@ function addSewing(tabId,intIndex) {
     inputtableid.readOnly = "true";
     inputtableid.hidden = "true";
     inputtableid.setAttribute('value',tabId.toString());
-    var inputName = document.createElement("input");
-    inputName.id = "sewingList"+index+".name";
-    inputName.type = "text";
-    inputName.name = "sewingList["+index+"].name";
+
+
+    var selectName = document.createElement("select");
+    selectName.id = "sewingList"+index+".name";
+    selectName.name = "sewingList["+index+"].name";
+    for (var i = 0; i < listNameTeam.length; i++) {
+        if(listNameTeam[i].team_id == 3){
+            var option = document.createElement("option");
+            option.setAttribute('value', listNameTeam[i].name);
+            option.innerHTML = listNameTeam[i].name;
+            selectName.appendChild(option);
+        }
+    }
+
+
     var inputPrice = document.createElement("input");
     inputPrice.id = "sewingList"+index+".price";
     inputPrice.type = "text";
@@ -59,7 +72,7 @@ function addSewing(tabId,intIndex) {
     inputQuantity.name = "sewingList["+index+"].quantity";
     div1.appendChild(inputid);
     div1.appendChild(inputtableid);
-    div1.appendChild(inputName);
+    div1.appendChild(selectName);
     div1.innerHTML += '<br><br>';
     div2.appendChild(inputPrice);
     div3.appendChild(inputQuantity);
@@ -80,7 +93,7 @@ function addSewing(tabId,intIndex) {
 
 var sewingScript = {
     editTableValidateForm: function () {
-        var nameSewing = $("#mySewing > div.row > div > input[id*=name]");
+        var nameSewing = $("#mySewing > div.row > div > select[id*=name]");
         var priceSewing = $("#mySewing > div.row > div > input[id*=price]");
         var quantitySewing= $("#mySewing > div.row > div > input[id*=quantity]");
 

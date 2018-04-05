@@ -91,6 +91,7 @@ public class TeamDAOImpl implements TeamDAO {
         return teamList;
     }
 
+    // GET all Teams with order By params
     @Override
     public List<Team> getAllTeamsOrderByParams(ArrayList<String> listParams,String option) {
         // Initialize String sql query
@@ -125,6 +126,30 @@ public class TeamDAOImpl implements TeamDAO {
     public List<Team> getAllTeamsByTeamId(int team_id) {
         String sql = "select * from Team where team_id=?";
         List<Team> teamList = jdbcTemplateServlet.query(sql, new Object[]{team_id} ,new ResultSetExtractor<List<Team>>() {
+            @Override
+            public List<Team> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Team> list = new ArrayList<Team>();
+                while (rs.next()) {
+                    Team teamer = new Team();
+                    teamer.setId(rs.getInt(1));
+                    teamer.setName(rs.getString(2));
+                    teamer.setTeam_id(rs.getInt(3));
+                    teamer.setTotal(rs.getInt(4));
+                    teamer.setEnable(rs.getBoolean(5));
+                    list.add(teamer);
+                }
+                return list;
+            }
+        });
+        return teamList;
+    }
+
+    /*GET all Teams by status Active
+    * */
+    @Override
+    public List<Team> getAllTeamsByActive() {
+        String sql = "select * from Team where enable>0";
+        List<Team> teamList = jdbcTemplateServlet.query(sql,new ResultSetExtractor<List<Team>>() {
             @Override
             public List<Team> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Team> list = new ArrayList<Team>();

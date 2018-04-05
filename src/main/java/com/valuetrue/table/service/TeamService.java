@@ -16,4 +16,5 @@ public interface TeamService {
     public List<Team> getAllTeams();
     public List<Team> getAllTeamsOrderByParams(ArrayList<String> listParams, String option);
     public List<Team> getAllTeamsByTeamId(int team_id);
+    public List<Team> getAllTeamsByActive();
 }
