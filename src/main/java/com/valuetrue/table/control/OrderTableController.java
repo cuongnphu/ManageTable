@@ -247,7 +247,8 @@ public class OrderTableController {
         if (productListByTableId.size() == 0 && printerListByTableId.size() == 0 && embroideryListByTableId.size() == 0 && sewingListByTableId.size() == 0 && materialListByTableId.size() == 0) {
             log.info("Delete an orderTable by id = " + id);
             this.orderTableService.deleteOrderTable(id);
-        }
+        }else
+            log.info(" ==================== Action DELETE Table is not correctly !!!!  ============================== " + "\n" );
 
         return new ModelAndView("redirect:/tables");
     }

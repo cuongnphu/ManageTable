@@ -100,7 +100,7 @@ public class TeamController {
             log.info("Delete an Team by id = " + id );
             this.teamService.deleteTeam(id);
         }else
-            log.info(" ==================== Action DELETE is not correctly !!!!  ============================== " + "\n" );
+            log.info(" ==================== Action DELETE Team is not correctly !!!!  ============================== " + "\n" );
 
         return new ModelAndView("redirect:/teams");
     }
@@ -110,7 +110,7 @@ public class TeamController {
         // Get all Teams
         List<Team> listTeams = this.teamService.getAllTeams();
         for(int i = 0; i < listTeams.size();i++){
-            if(nameCheck.equalsIgnoreCase(listTeams.get(i).getName().trim()) && teamIdCheck == listTeams.get(i).getTeam_id() ){
+            if(nameCheck.trim().equalsIgnoreCase(listTeams.get(i).getName().trim()) && teamIdCheck == listTeams.get(i).getTeam_id() ){
                 return false;
             }
         }
