@@ -64,4 +64,12 @@ public class EmbroideryServiceImpl implements EmbroideryService {
     public List<Embroidery> getAllEmbroideriesByTableId(int table_id) {
         return this.embroideryDAO.getAllEmbroideriesByTableId(table_id);
     }
+
+    @Override
+    public List<Embroidery> getAllEmbroideriesByName(String name) {
+        if(name != "")
+            return this.embroideryDAO.getAllEmbroideriesByName(name);
+
+        return null;
+    }
 }

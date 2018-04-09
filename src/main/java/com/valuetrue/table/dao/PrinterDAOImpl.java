@@ -116,4 +116,27 @@ public class PrinterDAOImpl implements PrinterDAO {
         });
         return printerList;
     }
+
+    @Override
+    public List<Printer> getAllPrinterByName(String name) {
+        String sql = "select * from Printer where name=?";
+        List<Printer> printerList = jdbcTemplateServlet.query(sql, new Object[]{name} ,new ResultSetExtractor<List<Printer>>() {
+            @Override
+            public List<Printer> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Printer> list = new ArrayList<Printer>();
+                while (rs.next()) {
+                    Printer print = new Printer();
+                    print.setId(rs.getInt(1));
+                    print.setName(rs.getString(2));
+                    print.setTable_id(rs.getInt(3));
+                    print.setPrice(rs.getInt(4));
+                    print.setQuantity(rs.getInt(5));
+                    print.setTotal(rs.getInt(6));
+                    list.add(print);
+                }
+                return list;
+            }
+        });
+        return printerList;
+    }
 }

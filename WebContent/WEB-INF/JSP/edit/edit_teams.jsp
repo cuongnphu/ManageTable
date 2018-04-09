@@ -22,7 +22,7 @@
                 <form:input type="text" path="total" readonly="true" hidden="true"/>
             </tr>
             <tr>
-                <td>Name :</td>
+                <td>Tên Đội :</td>
                 <td><form:input id="nameTeam" type="text" path="name" readonly="true" cssStyle="background: gainsboro"/></td>
             </tr>
             <tr>

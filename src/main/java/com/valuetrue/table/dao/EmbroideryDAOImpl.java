@@ -116,4 +116,27 @@ public class EmbroideryDAOImpl implements EmbroideryDAO {
         });
         return embroideryList;
     }
+
+    @Override
+    public List<Embroidery> getAllEmbroideriesByName(String name) {
+        String sql = "select * from Embroidery where name=?";
+        List<Embroidery> embroideryList = jdbcTemplateServlet.query(sql, new Object[]{name} ,new ResultSetExtractor<List<Embroidery>>() {
+            @Override
+            public List<Embroidery> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Embroidery> list = new ArrayList<Embroidery>();
+                while (rs.next()) {
+                    Embroidery embroid = new Embroidery();
+                    embroid.setId(rs.getInt(1));
+                    embroid.setName(rs.getString(2));
+                    embroid.setTable_id(rs.getInt(3));
+                    embroid.setPrice(rs.getInt(4));
+                    embroid.setQuantity(rs.getInt(5));
+                    embroid.setTotal(rs.getInt(6));
+                    list.add(embroid);
+                }
+                return list;
+            }
+        });
+        return embroideryList;
+    }
 }

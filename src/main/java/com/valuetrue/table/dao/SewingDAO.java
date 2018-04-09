@@ -14,5 +14,6 @@ public interface SewingDAO {
     public Sewing getSewingById(int id);
     public List<Sewing> getAllSewings();
     public List<Sewing> getAllSewingsByTableId(int table_id);
+    public List<Sewing> getAllSewingByName(String name);
 
 }

@@ -23,7 +23,7 @@
                 <form:input type="text" path="enable" readonly="true" hidden="true"/>
             </tr>
             <tr>
-                <td>Name :</td>
+                <td>Tên Đội :</td>
                 <td><form:input id="nameTeam" type="text" path="name" placeholder="Tên đội"/></td>
             </tr>
             <tr>

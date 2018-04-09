@@ -121,7 +121,7 @@ var printerScript = {
 };
 
 function getListTeamName() {
-    $.post("/ManageTable/listteamname", function (result) {
+    $.post("/ManageTable/listactiveteam", function (result) {
         var str = JSON.stringify(result);
         listNameTeam = JSON.parse(str);
     });

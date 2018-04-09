@@ -118,4 +118,28 @@ public class SewingDAOImpl implements SewingDAO {
 
         return sewingList;
     }
+
+    @Override
+    public List<Sewing> getAllSewingByName(String name) {
+        String sql = "select * from Sewing where name=?";
+        List<Sewing> sewingList = jdbcTemplateServlet.query(sql, new Object[]{name} ,new ResultSetExtractor<List<Sewing>>() {
+            @Override
+            public List<Sewing> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Sewing> list = new ArrayList<Sewing>();
+                while (rs.next()) {
+                    Sewing sew = new Sewing();
+                    sew.setId(rs.getInt(1));
+                    sew.setName(rs.getString(2));
+                    sew.setTable_id(rs.getInt(3));
+                    sew.setPrice(rs.getInt(4));
+                    sew.setQuantity(rs.getInt(5));
+                    sew.setTotal(rs.getInt(6));
+                    list.add(sew);
+                }
+                return list;
+            }
+        });
+
+        return sewingList;
+    }
 }

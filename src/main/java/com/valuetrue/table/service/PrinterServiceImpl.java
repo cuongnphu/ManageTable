@@ -62,4 +62,11 @@ public class PrinterServiceImpl implements PrinterService {
     public List<Printer> getAllPrintersByTableId(int table_id) {
         return this.printerDAO.getAllPrintersByTableId(table_id);
     }
+
+    @Override
+    public List<Printer> getAllPrinterByName(String name) {
+        if(name != "")
+            return this.printerDAO.getAllPrinterByName(name);
+        return null;
+    }
 }

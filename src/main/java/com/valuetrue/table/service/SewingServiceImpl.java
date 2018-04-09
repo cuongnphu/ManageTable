@@ -63,4 +63,11 @@ public class SewingServiceImpl implements SewingService {
     public List<Sewing> getAllSewingsByTableId(int table_id) {
         return this.sewingDAO.getAllSewingsByTableId(table_id);
     }
+
+    @Override
+    public List<Sewing> getAllSewingByName(String name) {
+        if(name != "")
+            return this.sewingDAO.getAllSewingByName(name);
+        return null;
+    }
 }

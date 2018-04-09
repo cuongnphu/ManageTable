@@ -22,7 +22,7 @@
                                onclick="window.location.replace('/ManageTable/tables')"></input>
                     </div>
                     <div class="col-sm-5">
-
+                        <a class="btn btn-info" href="statistics/1">&#9636 Thống Kê Báo Cáo</a>
                     </div>
                     <div class="col-sm-2">
                         <a class="btn btn-info" href="teams">&#10009 Đội Mới</a>
