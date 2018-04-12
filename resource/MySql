@@ -9,7 +9,7 @@ CREATE table ORDERTABLE(
 
  CREATE table PRODUCT(
      id int(11) unsigned NOT NULL AUTO_INCREMENT,
-     table_id int(10) not null default 0,
+     table_id int(11) unsigned NOT NULL,
      name VARCHAR(255) NOT NULL DEFAULT '',
      quantity INT(10) not null default 0,
      PRIMARY KEY(id)
