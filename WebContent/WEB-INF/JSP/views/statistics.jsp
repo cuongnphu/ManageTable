@@ -68,7 +68,7 @@
     </div>
 </form:form>
 <h3>Thống Kê Chi Tiết :</h3>
-<table class="table table-bordered" style="width: 900px">
+<table class="table table-bordered" style="width: 1200px">
     <thead class="thead">
     <tr>
         <th style="width: 20%">Tên Đội</th>
@@ -76,8 +76,10 @@
         <th style="width: 50%">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-6">Tên Bàn</div>
-                    <div class="col-sm-6">$(đ)</div>
+                    <div class="col-sm-3">Tên Bàn</div>
+                    <div class="col-sm-3">$(đ)</div>
+                    <div class="col-sm-3">S.Lượng</div>
+                    <div class="col-sm-3">Total</div>
                 </div>
             </div>
         </th>
